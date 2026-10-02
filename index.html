@@ -1,0 +1,449 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Madruga: avisos de compras públicas para tu negocio</title>
+<meta name="description" content="Madruga revisa cada mañana los procesos nuevos de compras públicas del Ecuador y te envía por WhatsApp solo los de tu negocio. Piloto gratis de dos semanas.">
+<meta property="og:type" content="website">
+<meta property="og:title" content="Madruga: avisos de compras públicas para tu negocio">
+<meta property="og:description" content="Cada mañana, los procesos nuevos de compras públicas del Ecuador que encajan con lo que vendes. Piloto gratis de dos semanas.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%2312264A'/%3E%3Cpath d='M9 21a7 7 0 0 1 14 0z' fill='%23FFD83A'/%3E%3Cpath d='M5 21h22' stroke='%23EEF2F8' stroke-width='2.5' stroke-linecap='round'/%3E%3Cpath d='M16 7v3M8 11l2 2M24 11l-2 2' stroke='%23FFD83A' stroke-width='2.5' stroke-linecap='round'/%3E%3C/svg%3E">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Archivo:wdth,wght@62..125,100..900&amp;display=swap">
+<style>
+:root{
+box-sizing:border-box;
+padding-top:env(safe-area-inset-top,0px);
+padding-bottom:env(safe-area-inset-bottom,0px);
+--papel:#EEF2F8;
+--hoja:#FFFFFF;
+--tinta:#12264A;
+--tinta-suave:#44567A;
+--linea:#C7D2E4;
+--resaltador:#FFD83A;
+--sobre-resaltador:#12264A;
+--sello:#1D4ED8;
+color-scheme:light;
+}
+@media (prefers-color-scheme:dark){
+:root:not([data-theme="light"]){
+--papel:#0B1530;
+--hoja:#121F42;
+--tinta:#EAF0FB;
+--tinta-suave:#AAB8D6;
+--linea:#2B3C68;
+--sello:#9DB9FF;
+color-scheme:dark;
+}
+}
+:root[data-theme="dark"]{
+--papel:#0B1530;
+--hoja:#121F42;
+--tinta:#EAF0FB;
+--tinta-suave:#AAB8D6;
+--linea:#2B3C68;
+--sello:#9DB9FF;
+color-scheme:dark;
+}
+*,*::before,*::after{box-sizing:inherit}
+html{scroll-padding-top:env(safe-area-inset-top,0px);-webkit-text-size-adjust:100%}
+body{
+margin:0;
+background:var(--papel);
+color:var(--tinta);
+font-family:"Archivo","Helvetica Neue",Arial,sans-serif;
+font-size:1.0625rem;
+line-height:1.55;
+}
+svg{max-width:100%}
+a{color:var(--sello)}
+:focus-visible{outline:3px solid var(--sello);outline-offset:3px}
+.contenedor{max-width:68rem;margin-inline:auto;padding-inline:clamp(1.1rem,4vw,2.5rem)}
+.borrador{margin:0;padding:.7rem 1.1rem;background:var(--tinta);color:var(--papel);font-size:.95rem;text-align:center}
+.falta{background:var(--resaltador);color:var(--sobre-resaltador);padding:0 .25rem}
+.cabecera{display:flex;align-items:center;justify-content:space-between;gap:1rem;padding-block:1.1rem}
+.marca{display:inline-flex;align-items:center;gap:.5rem;color:var(--tinta);text-decoration:none;font-weight:800;font-stretch:112%;font-size:1.35rem;letter-spacing:-.01em}
+.marca svg{width:1.9rem;height:1.9rem;flex:none}
+.etiqueta{border:1.5px solid var(--tinta);border-radius:999px;padding:.2rem .75rem;font-size:.9rem;font-weight:600}
+.portada{display:grid;gap:1.6rem;padding-block:1.2rem 3rem;grid-template-areas:"titulo" "giros" "hoja" "accion"}
+.portada-titulo{grid-area:titulo}
+.giros{grid-area:giros}
+.hoja{grid-area:hoja}
+.portada-accion{grid-area:accion}
+@media (min-width:60rem){
+.portada{
+grid-template-columns:minmax(0,1.05fr) minmax(0,.95fr);
+column-gap:3.5rem;
+grid-template-areas:"titulo hoja" "giros hoja" "accion hoja";
+align-content:start;
+padding-block:2.5rem 4.5rem;
+}
+.hoja{align-self:start}
+}
+h1{margin:0 0 1rem;font-weight:800;font-stretch:75%;font-size:clamp(2.6rem,10.5vw,4.6rem);line-height:.98;letter-spacing:-.012em;text-wrap:balance}
+.bajada{margin:0;font-size:1.15rem;max-width:34rem;color:var(--tinta-suave)}
+.giros-titulo{margin:0 0 .6rem;font-weight:700;font-size:1.05rem}
+.giros-lista{display:flex;flex-wrap:wrap;gap:.5rem}
+.chip{min-height:2.75rem;padding:.45rem .95rem;border:1.5px solid var(--tinta);border-radius:999px;background:transparent;color:var(--tinta);font:inherit;font-size:.95rem;font-weight:600;line-height:1.2;cursor:pointer}
+.chip[aria-pressed="true"]{background:var(--tinta);color:var(--papel)}
+.hoja{background:var(--hoja);border:1px solid var(--linea);padding:1rem .9rem 1.1rem}
+.hoja-cabeza{display:flex;justify-content:space-between;align-items:baseline;gap:1rem;margin:0 .35rem .5rem;padding-bottom:.6rem;border-bottom:2px solid var(--tinta)}
+.hoja-titulo{margin:0;font-size:1.05rem;font-weight:700}
+.hoja-cuenta{font-size:.9rem;color:var(--tinta-suave);white-space:nowrap}
+.procesos{list-style:none;margin:0;padding:0}
+.proc{
+display:grid;grid-template-columns:minmax(0,1fr) auto;column-gap:1rem;
+padding:.6rem .55rem;border-bottom:1px dashed var(--linea);
+background-image:linear-gradient(var(--resaltador),var(--resaltador));
+background-repeat:no-repeat;background-size:0% 100%;
+border-radius:3px 9px 4px 11px/9px 3px 11px 4px;
+transition:background-size .45s cubic-bezier(.2,.7,.2,1),color .2s .1s;
+}
+.proc-objeto{font-weight:600;line-height:1.25;transition:color .2s .1s}
+.proc-entidad{grid-column:1;font-size:.875rem;color:var(--tinta-suave);transition:color .2s .1s}
+.proc-monto{grid-column:2;grid-row:1;font-weight:700;font-variant-numeric:tabular-nums;transition:color .2s .1s}
+.hay-giro .proc:not(.es-tuyo) .proc-objeto,
+.hay-giro .proc:not(.es-tuyo) .proc-monto{color:var(--tinta-suave)}
+.proc.es-tuyo{background-size:100% 100%;color:var(--sobre-resaltador);border-bottom-color:transparent}
+.proc.es-tuyo .proc-entidad{color:var(--sobre-resaltador)}
+.hoja-nota{margin:.8rem .35rem 0;font-size:.875rem;color:var(--tinta-suave)}
+.cta{
+display:inline-flex;align-items:center;justify-content:center;gap:.6rem;
+min-height:3.6rem;padding:.8rem 1.5rem;
+background:var(--resaltador);color:var(--sobre-resaltador);
+border:2px solid var(--tinta);border-radius:6px;box-shadow:4px 4px 0 var(--tinta);
+font-weight:800;font-stretch:88%;font-size:1.2rem;line-height:1.15;text-decoration:none;text-align:center;
+transition:transform .12s,box-shadow .12s;
+}
+.cta:hover{transform:translate(2px,2px);box-shadow:2px 2px 0 var(--tinta)}
+.cta svg{width:1.4rem;height:1.4rem;flex:none}
+.cta[aria-disabled="true"]{opacity:.55;cursor:not-allowed}
+.cta[aria-disabled="true"]:hover{transform:none;box-shadow:4px 4px 0 var(--tinta)}
+@media (max-width:40rem){.cta{display:flex;width:100%}}
+.accion-nota{margin:.9rem 0 0;font-size:.95rem;color:var(--tinta-suave);max-width:32rem}
+.seccion{padding-block:clamp(2.6rem,7vw,4.5rem);border-top:1px solid var(--linea)}
+h2{margin:0 0 1.2rem;font-weight:750;font-stretch:80%;font-size:clamp(1.8rem,6vw,2.6rem);line-height:1.04;letter-spacing:-.008em;text-wrap:balance}
+.entrada{margin:0 0 1.6rem;max-width:38rem}
+.llegada{display:grid;gap:1.8rem}
+@media (min-width:60rem){.llegada{grid-template-columns:minmax(0,34rem) minmax(0,1fr);column-gap:3.5rem;align-items:start}}
+.aviso{max-width:34rem;background:var(--hoja);border:1px solid var(--linea);border-radius:4px 18px 18px 18px;padding:1rem 1.1rem 1.1rem}
+.aviso-cabeza{display:flex;justify-content:space-between;gap:1rem;margin-bottom:.5rem;font-size:.9rem;color:var(--tinta-suave)}
+.aviso-cabeza strong{color:var(--tinta)}
+.aviso p{margin:0 0 .7rem}
+.aviso ol{margin:0 0 .7rem;padding-left:1.3rem}
+.aviso li{margin-bottom:.6rem}
+.aviso li strong{display:block}
+.aviso p:last-child{margin-bottom:0}
+.aviso-nota{margin:.7rem 0 0;font-size:.875rem;color:var(--tinta-suave)}
+.contenido-titulo{margin:0 0 .5rem;font-weight:700}
+.contenido{margin:0;padding-left:1.2rem}
+.contenido li{margin-bottom:.35rem}
+.pasos{list-style:none;margin:0;padding:0;counter-reset:paso;display:grid;gap:1.4rem;max-width:44rem}
+.pasos li{counter-increment:paso;display:grid;grid-template-columns:3.2rem minmax(0,1fr);column-gap:.6rem;align-items:start}
+.pasos li::before{content:counter(paso);font-weight:800;font-stretch:62%;font-size:3.4rem;line-height:.9}
+.pasos p{margin:.25rem 0 0}
+.oferta{display:grid;gap:1.5rem;max-width:50rem;border:2px solid var(--tinta);padding:clamp(1.2rem,4vw,2.2rem)}
+@media (min-width:48rem){.oferta{grid-template-columns:auto minmax(0,1fr);column-gap:2.5rem;align-items:start}}
+.precio{margin:0;line-height:.9}
+.precio-monto{display:block;font-weight:800;font-stretch:62%;font-size:clamp(4.5rem,18vw,7rem);letter-spacing:-.02em}
+.precio-detalle{display:block;margin-top:.5rem;font-weight:600;line-height:1.3}
+.oferta ul{margin:0 0 1.4rem;padding-left:1.2rem}
+.oferta li{margin-bottom:.5rem}
+.preguntas{max-width:44rem;border-bottom:1px solid var(--linea)}
+.preguntas details{border-top:1px solid var(--linea)}
+.preguntas summary{display:flex;justify-content:space-between;align-items:center;gap:1rem;min-height:3.25rem;padding:.6rem 0;font-weight:650;cursor:pointer;list-style:none}
+.preguntas summary::-webkit-details-marker{display:none}
+.preguntas summary::after{content:"+";flex:none;font-weight:500;font-size:1.5rem;line-height:1}
+.preguntas details[open] summary::after{content:"–"}
+.preguntas details p{margin:0 0 1rem;max-width:40rem}
+.pie{padding-block:2rem 3rem;border-top:2px solid var(--tinta);font-size:.9rem;color:var(--tinta-suave)}
+.pie p{margin:0 0 .6rem;max-width:46rem}
+@media (prefers-reduced-motion:reduce){
+*,*::before,*::after{transition:none !important;animation:none !important}
+}
+</style>
+</head>
+<body>
+<p class="borrador" id="borrador">Borrador. Falta el número de WhatsApp y el nombre del responsable. No compartas esta página todavía.</p>
+<header class="cabecera contenedor">
+<a class="marca" href="#inicio">
+<svg viewBox="0 0 32 32" aria-hidden="true">
+<path d="M8 22a8 8 0 0 1 16 0z" fill="var(--resaltador)" stroke="currentColor" stroke-width="2.5" stroke-linejoin="round"/>
+<path d="M3 22h26M16 5v4M5.5 10.5l2.8 2.8M26.5 10.5l-2.8 2.8" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"/>
+</svg>
+<span data-v="marca">Madruga</span>
+</a>
+<span class="etiqueta">Piloto gratis</span>
+</header>
+<main id="inicio">
+<section class="portada contenedor">
+<div class="portada-titulo">
+<h1>El Estado compra todos los días. Entérate cuando busca lo que tú vendes.</h1>
+<p class="bajada"><span data-v="marca">Madruga</span> revisa cada mañana los procesos nuevos de compras públicas del Ecuador y te envía por WhatsApp solo los de tu negocio.</p>
+</div>
+<div class="giros" role="group" aria-labelledby="giros-titulo">
+<p class="giros-titulo" id="giros-titulo">¿Qué vendes?</p>
+<div class="giros-lista">
+<button class="chip" type="button" data-giro="ferre" aria-pressed="false">Ferretería y construcción</button>
+<button class="chip" type="button" data-giro="limp" aria-pressed="false">Limpieza y aseo</button>
+<button class="chip" type="button" data-giro="alim" aria-pressed="false">Alimentos y catering</button>
+<button class="chip" type="button" data-giro="pape" aria-pressed="false">Papelería e imprenta</button>
+<button class="chip" type="button" data-giro="tec" aria-pressed="false">Tecnología</button>
+<button class="chip" type="button" data-giro="mant" aria-pressed="false">Mantenimiento y repuestos</button>
+<button class="chip" type="button" data-giro="otro" aria-pressed="false">Otra cosa</button>
+</div>
+</div>
+<div class="hoja" id="hoja">
+<div class="hoja-cabeza">
+<p class="hoja-titulo">Procesos publicados hoy</p>
+<span class="hoja-cuenta" id="hoja-cuenta">8 procesos</span>
+</div>
+<ul class="procesos">
+<li class="proc" data-giro="ferre" data-cierre="viernes a las 12:00">
+<span class="proc-objeto">Pintura y materiales para mantenimiento de aulas</span>
+<span class="proc-monto">$1.840</span>
+<span class="proc-entidad">Distrito de educación</span>
+</li>
+<li class="proc" data-giro="limp" data-cierre="jueves a las 17:00">
+<span class="proc-objeto">Insumos de limpieza para centros de salud</span>
+<span class="proc-monto">$3.200</span>
+<span class="proc-entidad">Coordinación zonal de salud</span>
+</li>
+<li class="proc" data-giro="tec" data-cierre="miércoles a las 16:00">
+<span class="proc-objeto">Tóner y repuestos para impresoras</span>
+<span class="proc-monto">$1.120</span>
+<span class="proc-entidad">Universidad pública</span>
+</li>
+<li class="proc" data-giro="alim" data-cierre="jueves a las 10:00">
+<span class="proc-objeto">Alimentación para taller de capacitación</span>
+<span class="proc-monto">$960</span>
+<span class="proc-entidad">Gobierno provincial</span>
+</li>
+<li class="proc" data-giro="ferre" data-cierre="lunes a las 15:00">
+<span class="proc-objeto">Herramientas menores para cuadrilla de obras</span>
+<span class="proc-monto">$2.780</span>
+<span class="proc-entidad">Municipio</span>
+</li>
+<li class="proc" data-giro="pape" data-cierre="viernes a las 15:00">
+<span class="proc-objeto">Impresión de material informativo</span>
+<span class="proc-monto">$2.450</span>
+<span class="proc-entidad">Municipio</span>
+</li>
+<li class="proc" data-giro="mant" data-cierre="martes a las 11:00">
+<span class="proc-objeto">Mantenimiento preventivo de vehículos</span>
+<span class="proc-monto">$5.600</span>
+<span class="proc-entidad">Empresa pública de agua potable</span>
+</li>
+<li class="proc" data-giro="tec" data-cierre="lunes a las 12:00">
+<span class="proc-objeto">Computadores portátiles para oficinas</span>
+<span class="proc-monto">$9.400</span>
+<span class="proc-entidad">Hospital general</span>
+</li>
+</ul>
+<p class="hoja-nota">Ejemplos ilustrativos. No son procesos reales.</p>
+</div>
+<div class="portada-accion">
+<a class="cta js-cta" aria-disabled="true" target="_blank" rel="noopener">
+<svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5h16v11H9l-5 4z"/></svg>
+Unirme al piloto por WhatsApp
+</a>
+<p class="accion-nota">Piloto gratis de dos semanas. Hoy no pagas nada. Después, $<span data-v="precio">15</span> al mes solo si quieres seguir.</p>
+</div>
+</section>
+<section class="seccion contenedor" aria-labelledby="t-llegada">
+<h2 id="t-llegada">Así te llega cada mañana</h2>
+<div class="llegada">
+<div>
+<div class="aviso">
+<div class="aviso-cabeza"><strong data-v="marca">Madruga</strong><span>07:00</span></div>
+<div id="aviso-cuerpo" aria-live="polite">
+<p>Buenos días. Hoy hay 2 procesos nuevos para ferretería y construcción en tus provincias:</p>
+<ol>
+<li><strong>Pintura y materiales para mantenimiento de aulas</strong>Distrito de educación. Presupuesto referencial: $1.840. Recibe ofertas hasta el viernes a las 12:00.</li>
+<li><strong>Herramientas menores para cuadrilla de obras</strong>Municipio. Presupuesto referencial: $2.780. Recibe ofertas hasta el lunes a las 15:00.</li>
+</ol>
+<p>Búscalos por su código en el portal oficial de compras públicas.</p>
+</div>
+</div>
+<p class="aviso-nota">Ejemplo de aviso. Los procesos son ilustrativos.</p>
+</div>
+<div>
+<p class="contenido-titulo">Cada aviso trae</p>
+<ul class="contenido">
+<li>La entidad que compra.</li>
+<li>Qué necesita.</li>
+<li>El presupuesto referencial.</li>
+<li>Hasta cuándo recibe ofertas.</li>
+<li>El código para buscarlo en el portal oficial.</li>
+</ul>
+</div>
+</div>
+</section>
+<section class="seccion contenedor" aria-labelledby="t-pasos">
+<h2 id="t-pasos">Cómo funciona</h2>
+<ol class="pasos">
+<li><p>Nos escribes por WhatsApp y nos cuentas qué vendes y en qué provincias trabajas.</p></li>
+<li><p>Cada mañana, de lunes a viernes, revisamos los procesos nuevos publicados en los datos abiertos del SERCOP.</p></li>
+<li><p>Te enviamos solo los que encajan con tu negocio. El resto ni lo ves.</p></li>
+</ol>
+</section>
+<section class="seccion contenedor" id="piloto" aria-labelledby="t-piloto">
+<h2 id="t-piloto">Pruébalo gratis dos semanas</h2>
+<p class="entrada"><span data-v="marca">Madruga</span> está empezando. Los primeros <span data-v="cupos">20</span> negocios reciben sus avisos gratis durante dos semanas, desde el <span data-v="fecha">lunes 19 de octubre de 2026</span>.</p>
+<div class="oferta">
+<p class="precio">
+<span class="precio-monto">$0</span>
+<span class="precio-detalle">las dos primeras semanas</span>
+</p>
+<div>
+<ul>
+<li>Empiezas sin pagar y sin dar datos de pago.</li>
+<li>Avisos de lunes a viernes por WhatsApp.</li>
+<li>Filtro por lo que vendes y por provincia.</li>
+<li>Al terminar decides: sigues por $<span data-v="precio">15</span> al mes, IVA incluido, o lo dejas sin costo.</li>
+</ul>
+<a class="cta js-cta" aria-disabled="true" target="_blank" rel="noopener">
+<svg viewBox="0 0 24 24" aria-hidden="true" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 5h16v11H9l-5 4z"/></svg>
+Unirme al piloto por WhatsApp
+</a>
+<p class="accion-nota">Solo cobramos a quien decide continuar, y con factura.</p>
+</div>
+</div>
+</section>
+<section class="seccion contenedor" aria-labelledby="t-preguntas">
+<h2 id="t-preguntas">Preguntas frecuentes</h2>
+<div class="preguntas">
+<details>
+<summary><span>¿<span data-v="marca">Madruga</span> pertenece al SERCOP?</span></summary>
+<p>No. Es un servicio privado e independiente. No está afiliado al SERCOP ni a ninguna entidad del Estado.</p>
+</details>
+<details>
+<summary>¿De dónde salen los datos?</summary>
+<p>De la plataforma oficial de datos abiertos del SERCOP, publicada con licencia Creative Commons Atribución 3.0 Ecuador. Nosotros los filtramos y te los resumimos.</p>
+</details>
+<details>
+<summary>¿Me garantizan ganar contratos?</summary>
+<p>No. Te avisamos a tiempo de los procesos que encajan con tu negocio. Decidir si participas y preparar tu oferta sigue en tus manos.</p>
+</details>
+<details>
+<summary>¿Cuánto cuesta después del piloto?</summary>
+<p>$<span data-v="precio">15</span> al mes, IVA incluido, y solo si decides seguir. Si no te sirve, lo dejas al terminar las dos semanas y no pagas nada.</p>
+</details>
+<details>
+<summary>¿Cómo pago y qué recibo?</summary>
+<p>Durante el piloto no pagas. Si decides seguir, te enviamos los datos para la transferencia y recibes tu factura.</p>
+</details>
+<details>
+<summary>¿Qué datos míos guardan?</summary>
+<p>Esta página no guarda nada. Solo usamos lo que nos cuentes por WhatsApp (qué vendes, tus provincias y tu contacto) para enviarte los avisos, y puedes pedir que lo borremos cuando quieras.</p>
+</details>
+<details>
+<summary>¿Quién responde por el servicio?</summary>
+<p><span class="falta" data-v="responsable">[nombre del responsable]</span>. Nos encuentras en el mismo WhatsApp del piloto.</p>
+</details>
+</div>
+</section>
+</main>
+<footer class="pie contenedor">
+<p><span data-v="marca">Madruga</span> es un servicio independiente. No está afiliado al SERCOP ni al Gobierno del Ecuador y no garantiza adjudicaciones.</p>
+<p>Fuente de los datos: Servicio Nacional de Contratación Pública (SERCOP), plataforma de datos abiertos, licencia Creative Commons Atribución 3.0 Ecuador.</p>
+<p>Los procesos que aparecen en esta página son ejemplos ilustrativos.</p>
+</footer>
+<script>
+const CONFIG = {
+marca: "Madruga",
+whatsapp: "593960020627",
+responsable: "Adrián Montúfar",
+cupos: "20",
+precio: "15",
+fecha: "lunes 19 de octubre de 2026"
+};
+const GIROS = {
+ferre: "ferretería y construcción",
+limp: "limpieza y aseo",
+alim: "alimentos y catering",
+pape: "papelería e imprenta",
+tec: "tecnología",
+mant: "mantenimiento y repuestos",
+otro: "otra cosa (te cuento por aquí)"
+};
+const listo = /^\d{10,15}$/.test(CONFIG.whatsapp) && Boolean(CONFIG.responsable);
+document.querySelectorAll("[data-v]").forEach(function (el) {
+const valor = CONFIG[el.dataset.v];
+if (valor) {
+el.textContent = valor;
+el.classList.remove("falta");
+}
+});
+document.getElementById("borrador").hidden = listo;
+const hoja = document.getElementById("hoja");
+const cuenta = document.getElementById("hoja-cuenta");
+const cuerpo = document.getElementById("aviso-cuerpo");
+const chips = Array.from(document.querySelectorAll(".chip"));
+const filas = Array.from(document.querySelectorAll(".proc"));
+function parrafo(texto) {
+const p = document.createElement("p");
+p.textContent = texto;
+return p;
+}
+function pintarAviso(giro, mias) {
+const piezas = [];
+if (!mias.length) {
+piezas.push(parrafo("Cuéntanos qué vendes y armamos tu filtro. Tus avisos llegarán con este mismo formato."));
+} else {
+const cuantos = mias.length === 1 ? "1 proceso nuevo" : mias.length + " procesos nuevos";
+piezas.push(parrafo("Buenos días. Hoy hay " + cuantos + " para " + GIROS[giro] + " en tus provincias:"));
+const lista = document.createElement("ol");
+mias.forEach(function (fila) {
+const item = document.createElement("li");
+const objeto = document.createElement("strong");
+objeto.textContent = fila.querySelector(".proc-objeto").textContent;
+item.appendChild(objeto);
+item.appendChild(document.createTextNode(
+fila.querySelector(".proc-entidad").textContent +
+". Presupuesto referencial: " + fila.querySelector(".proc-monto").textContent +
+". Recibe ofertas hasta el " + fila.dataset.cierre + "."
+));
+lista.appendChild(item);
+});
+piezas.push(lista);
+piezas.push(parrafo("Búscalos por su código en el portal oficial de compras públicas."));
+}
+cuerpo.replaceChildren.apply(cuerpo, piezas);
+}
+function actualizarBotones(giro) {
+const texto = "Hola, quiero unirme al piloto de " + CONFIG.marca + ". Vendo: " + GIROS[giro] + ".";
+document.querySelectorAll(".js-cta").forEach(function (boton) {
+if (listo) {
+boton.href = "https://wa.me/" + CONFIG.whatsapp + "?text=" + encodeURIComponent(texto);
+boton.removeAttribute("aria-disabled");
+} else {
+boton.removeAttribute("href");
+boton.setAttribute("aria-disabled", "true");
+}
+});
+}
+function elegir(giro) {
+const mias = filas.filter(function (fila) { return fila.dataset.giro === giro; });
+chips.forEach(function (chip) {
+chip.setAttribute("aria-pressed", String(chip.dataset.giro === giro));
+});
+hoja.classList.add("hay-giro");
+filas.forEach(function (fila) {
+fila.classList.toggle("es-tuyo", fila.dataset.giro === giro);
+});
+cuenta.textContent = mias.length
+? mias.length + " de " + filas.length + " para tu negocio"
+: filas.length + " procesos";
+pintarAviso(giro, mias);
+actualizarBotones(giro);
+}
+chips.forEach(function (chip) {
+chip.addEventListener("click", function () { elegir(chip.dataset.giro); });
+});
+const sinMovimiento = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+actualizarBotones("ferre");
+window.setTimeout(function () { elegir("ferre"); }, sinMovimiento ? 0 : 500);
+</script>
+</body>
+</html>
