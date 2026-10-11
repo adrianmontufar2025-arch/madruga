@@ -1,0 +1,772 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Calculadora del cable de carga</title>
+<meta name="description" content="Calcula la tensión, el factor de seguridad, los anclajes y el motor de un cable aéreo de carga para finca, más el arrastre por el suelo y el cable eléctrico del winche.">
+<style>
+:root{
+--fondo:#F3F1EA;
+--hoja:#FFFFFF;
+--texto:#1E2A1F;
+--texto-suave:#55624F;
+--linea:#CFD3C4;
+--acento:#1F6B3A;
+--sobre-acento:#FFFFFF;
+--ok:#1F7A3D;
+--ok-fondo:#E3F3E6;
+--alerta:#8A5A00;
+--alerta-fondo:#FFF1CC;
+--peligro:#B3261E;
+--peligro-fondo:#FDE3E0;
+--cable:#1E2A1F;
+--trayectoria:#C2410C;
+color-scheme:light;
+}
+@media (prefers-color-scheme:dark){
+:root:not([data-theme="light"]){
+--fondo:#111811;
+--hoja:#1A231A;
+--texto:#E8EEE3;
+--texto-suave:#A8B5A0;
+--linea:#33402F;
+--acento:#7CCB93;
+--sobre-acento:#0E1A10;
+--ok:#7CCB93;
+--ok-fondo:#17301E;
+--alerta:#F2C14E;
+--alerta-fondo:#3A2E10;
+--peligro:#FF8A80;
+--peligro-fondo:#3D1A17;
+--cable:#E8EEE3;
+--trayectoria:#FB923C;
+color-scheme:dark;
+}
+}
+:root[data-theme="dark"]{
+--fondo:#111811;
+--hoja:#1A231A;
+--texto:#E8EEE3;
+--texto-suave:#A8B5A0;
+--linea:#33402F;
+--acento:#7CCB93;
+--sobre-acento:#0E1A10;
+--ok:#7CCB93;
+--ok-fondo:#17301E;
+--alerta:#F2C14E;
+--alerta-fondo:#3A2E10;
+--peligro:#FF8A80;
+--peligro-fondo:#3D1A17;
+--cable:#E8EEE3;
+--trayectoria:#FB923C;
+color-scheme:dark;
+}
+*,*::before,*::after{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{
+margin:0;
+background:var(--fondo);
+color:var(--texto);
+font-family:system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+font-size:1rem;
+line-height:1.5;
+}
+a{color:var(--acento)}
+:focus-visible{outline:3px solid var(--acento);outline-offset:2px}
+.contenedor{max-width:62rem;margin-inline:auto;padding-inline:16px}
+header{padding-block:1.4rem .6rem}
+h1{margin:0 0 .4rem;font-size:clamp(1.6rem,6vw,2.3rem);line-height:1.1;letter-spacing:-.01em}
+.bajada{margin:0;color:var(--texto-suave);max-width:44rem}
+nav{display:flex;flex-wrap:wrap;gap:.5rem;padding-block:.9rem}
+nav a{padding:.45rem .9rem;border:1.5px solid var(--linea);border-radius:999px;text-decoration:none;color:var(--texto);font-weight:600;font-size:.95rem}
+nav a:hover{border-color:var(--acento)}
+.tarjeta{background:var(--hoja);border:1px solid var(--linea);border-radius:10px;padding:1.1rem 1rem 1.3rem;margin-bottom:1.4rem}
+@media (min-width:48rem){.tarjeta{padding:1.5rem 1.6rem 1.7rem}}
+h2{margin:0 0 .3rem;font-size:1.35rem;line-height:1.2}
+.tarjeta>p.intro{margin:0 0 1rem;color:var(--texto-suave);max-width:46rem}
+.campos{display:grid;gap:.9rem 1rem;grid-template-columns:repeat(auto-fill,minmax(13.5rem,1fr));margin-bottom:1.2rem}
+label{display:block;font-weight:600;font-size:.92rem;margin-bottom:.25rem}
+.ayuda{display:block;font-weight:400;color:var(--texto-suave);font-size:.82rem;margin-top:.2rem}
+input,select{width:100%;min-height:2.75rem;padding:.5rem .65rem;border:1.5px solid var(--linea);border-radius:6px;background:var(--fondo);color:var(--texto);font:inherit;font-size:1rem}
+input:focus,select:focus{border-color:var(--acento)}
+.veredicto{border-radius:8px;padding:.8rem 1rem;margin:0 0 1rem;font-weight:650;border:1.5px solid currentColor}
+.veredicto p{margin:0}
+.veredicto p+p{margin-top:.35rem;font-weight:400}
+.v-ok{color:var(--ok);background:var(--ok-fondo)}
+.v-alerta{color:var(--alerta);background:var(--alerta-fondo)}
+.v-peligro{color:var(--peligro);background:var(--peligro-fondo)}
+.cifras{display:grid;gap:.6rem;grid-template-columns:repeat(auto-fill,minmax(12.5rem,1fr));margin:0 0 1.2rem;padding:0;list-style:none}
+.cifra{border:1px solid var(--linea);border-radius:8px;padding:.65rem .8rem}
+.cifra-nombre{display:block;font-size:.85rem;color:var(--texto-suave)}
+.cifra-valor{display:block;font-size:1.45rem;font-weight:750;font-variant-numeric:tabular-nums;line-height:1.2}
+.cifra-nota{display:block;font-size:.82rem;color:var(--texto-suave)}
+.avisos{margin:0 0 1.2rem;padding-left:1.2rem}
+.avisos li{margin-bottom:.45rem}
+figure{margin:0 0 1.2rem}
+.perfil{width:100%;height:auto;display:block;border:1px solid var(--linea);border-radius:8px;background:var(--fondo)}
+figcaption{font-size:.85rem;color:var(--texto-suave);margin-top:.4rem}
+.leyenda{display:flex;flex-wrap:wrap;gap:.3rem 1.1rem;font-size:.85rem;color:var(--texto-suave);margin-top:.4rem}
+.leyenda span{display:inline-flex;align-items:center;gap:.4rem}
+.leyenda svg{width:1.8rem;height:.6rem;flex:none}
+h3{margin:1.2rem 0 .5rem;font-size:1.05rem}
+.tabla-envoltura{overflow-x:auto;-webkit-overflow-scrolling:touch;margin-bottom:.6rem}
+table{border-collapse:collapse;width:100%;min-width:34rem;font-size:.92rem;font-variant-numeric:tabular-nums}
+th,td{padding:.45rem .55rem;border-bottom:1px solid var(--linea);text-align:right;white-space:nowrap}
+th:first-child,td:first-child{text-align:left}
+th{font-weight:650;color:var(--texto-suave);font-size:.82rem;vertical-align:bottom;white-space:normal}
+tr.elegida td{font-weight:700;background:var(--fondo)}
+.marca-ok{color:var(--ok);font-weight:700}
+.marca-mal{color:var(--peligro);font-weight:700}
+.nota{font-size:.88rem;color:var(--texto-suave);margin:.3rem 0 0;max-width:46rem}
+footer{padding-block:1rem 2.5rem;font-size:.88rem;color:var(--texto-suave)}
+footer p{margin:0 0 .5rem;max-width:46rem}
+@media print{nav{display:none}.tarjeta{break-inside:avoid}}
+</style>
+</head>
+<body>
+<header class="contenedor">
+<h1>Calculadora del cable de carga</h1>
+<p class="bajada">Para el sistema de transporte con winche eléctrico de 220&nbsp;V, poleas y carro de garruchas. Mete las medidas de tu sitio y te dice si el cable y los anclajes aguantan, cuánto tensar y qué motor necesitas.</p>
+<nav aria-label="Secciones">
+<a href="#aereo">Cable aéreo</a>
+<a href="#arrastre">Arrastre por el suelo</a>
+<a href="#electrico">Cable eléctrico</a>
+</nav>
+</header>
+
+<main class="contenedor">
+
+<section class="tarjeta" id="aereo" aria-labelledby="t-aereo">
+<h2 id="t-aereo">1. Cable aéreo (tarabita de carga)</h2>
+<p class="intro">El anclaje bajo es el punto A; el alto, donde va el winche, es el punto B. Mide la distancia horizontal y el desnivel entre los dos anclajes, no a lo largo del terreno.</p>
+<form class="campos" id="f-aereo" autocomplete="off" onsubmit="return false">
+<div>
+<label for="a-L">Distancia horizontal A–B (m)</label>
+<input id="a-L" inputmode="decimal" value="150">
+</div>
+<div>
+<label for="a-h">Desnivel: cuánto más alto está B (m)</label>
+<input id="a-h" inputmode="decimal" value="50">
+</div>
+<div>
+<label for="a-carga">Carga útil por viaje (kg)<span class="ayuda">Un barril de 55 galones lleno pesa unos 220&nbsp;kg.</span></label>
+<input id="a-carga" inputmode="decimal" value="300">
+</div>
+<div>
+<label for="a-carro">Carro, gancho y canasta (kg)</label>
+<input id="a-carro" inputmode="decimal" value="50">
+</div>
+<div>
+<label for="a-d">Cable portante (6x19 alma de acero)</label>
+<select id="a-d">
+<option value="9.5">3/8" (9,5 mm)</option>
+<option value="12.7">1/2" (12,7 mm)</option>
+<option value="15.9" selected>5/8" (15,9 mm)</option>
+<option value="19.1">3/4" (19,1 mm)</option>
+</select>
+</div>
+<div>
+<label for="a-mbs">Resistencia de ruptura del cable (t)<span class="ayuda">Se llena sola con el mínimo de norma. Si tu cable trae certificado, pon su valor.</span></label>
+<input id="a-mbs" inputmode="decimal" value="">
+</div>
+<div>
+<label for="a-flecha">Flecha con la carga en el centro<span class="ayuda">Cuánto baja el cable bajo la línea recta, en % de la distancia. Más flecha, menos tensión.</span></label>
+<select id="a-flecha">
+<option value="4">4 %</option>
+<option value="5">5 %</option>
+<option value="6" selected>6 %</option>
+<option value="7">7 %</option>
+<option value="8">8 %</option>
+<option value="10">10 %</option>
+</select>
+</div>
+<div>
+<label for="a-dt">Cable tractor del winche</label>
+<select id="a-dt">
+<option value="6.4">1/4" (6,4 mm)</option>
+<option value="7.9" selected>5/16" (7,9 mm)</option>
+<option value="9.5">3/8" (9,5 mm)</option>
+</select>
+</div>
+<div>
+<label for="a-v">Velocidad del cable (m/min)</label>
+<input id="a-v" inputmode="decimal" value="18">
+</div>
+</form>
+
+<div id="a-veredicto" class="veredicto" role="status" aria-live="polite"></div>
+<ul class="cifras" id="a-cifras"></ul>
+<ul class="avisos" id="a-avisos"></ul>
+
+<figure>
+<svg class="perfil" id="a-perfil" viewBox="0 0 640 300" role="img" aria-labelledby="a-perfil-titulo"><title id="a-perfil-titulo">Perfil del cable</title></svg>
+<div class="leyenda" aria-hidden="true">
+<span><svg viewBox="0 0 28 8"><line x1="0" y1="4" x2="28" y2="4" stroke="var(--texto-suave)" stroke-width="1.5" stroke-dasharray="4 3"/></svg>Línea recta A–B</span>
+<span><svg viewBox="0 0 28 8"><line x1="0" y1="4" x2="28" y2="4" stroke="var(--texto-suave)" stroke-width="1.5"/></svg>Cable vacío</span>
+<span><svg viewBox="0 0 28 8"><line x1="0" y1="4" x2="28" y2="4" stroke="var(--cable)" stroke-width="2.5"/></svg>Cable con la carga al centro</span>
+<span><svg viewBox="0 0 28 8"><line x1="0" y1="4" x2="28" y2="4" stroke="var(--trayectoria)" stroke-width="2.5" stroke-dasharray="1 4" stroke-linecap="round"/></svg>Camino que hace el carro cargado</span>
+</div>
+<figcaption>Misma escala horizontal y vertical. No muestra el terreno: verifica en el sitio que la carga colgada pase al menos 1&nbsp;m sobre el suelo, el cultivo y los caminos.</figcaption>
+</figure>
+
+<h3>Tabla de tensado</h3>
+<p class="nota" style="margin-bottom:.6rem">Tensa el cable vacío con el tecle de palanca y mira el dinamómetro en el anclaje bajo. La fila marcada es la flecha que elegiste. Nunca tenses por encima de esa lectura: menos flecha significa más tensión en el cable y en los anclajes.</p>
+<div class="tabla-envoltura">
+<table>
+<thead>
+<tr>
+<th scope="col">Flecha con carga</th>
+<th scope="col">Tensión en vacío al tensar (kg)</th>
+<th scope="col">Flecha en vacío (m)</th>
+<th scope="col">Tensión máxima con carga (kg)</th>
+<th scope="col">Factor de seguridad</th>
+<th scope="col">Carro vacío baja hasta (m de A)</th>
+</tr>
+</thead>
+<tbody id="a-tabla"></tbody>
+</table>
+</div>
+<p class="nota">Cálculo con cable parabólico elástico. La tensión máxima ya incluye un factor dinámico de 1,2 sobre la carga; el factor de seguridad usa el 80&nbsp;% de la resistencia de ruptura por las grapas. Mínimo aceptado: 4.</p>
+</section>
+
+<section class="tarjeta" id="arrastre" aria-labelledby="t-arrastre">
+<h2 id="t-arrastre">2. Arrastre por el suelo</h2>
+<p class="intro">Para subir o bajar una carreta o una narria por un camino o una rampa con el mismo winche, sin cable aéreo.</p>
+<form class="campos" id="f-arrastre" autocomplete="off" onsubmit="return false">
+<div>
+<label for="b-peso">Peso total: carga más carreta (kg)</label>
+<input id="b-peso" inputmode="decimal" value="350">
+</div>
+<div>
+<label for="b-pend">Pendiente del camino (%)</label>
+<input id="b-pend" inputmode="decimal" value="30">
+</div>
+<div>
+<label for="b-sup">Cómo va la carga</label>
+<select id="b-sup">
+<option value="0.08">Carreta con ruedas en camino firme</option>
+<option value="0.2">Carreta con ruedas en tierra blanda</option>
+<option value="0.45" selected>Narria sobre pasto o rieles de madera</option>
+<option value="0.65">Narria sobre tierra o barro</option>
+</select>
+</div>
+<div>
+<label for="b-aparejo">Aparejo</label>
+<select id="b-aparejo">
+<option value="1" selected>Directo (1 a 1)</option>
+<option value="2">Polea móvil en la carga (2 a 1)</option>
+</select>
+</div>
+<div>
+<label for="b-desvio">Giro del cable en la polea de desvío (grados)<span class="ayuda">0 si no hay desvío; 90 si el cable dobla en escuadra.</span></label>
+<input id="b-desvio" inputmode="decimal" value="0">
+</div>
+</form>
+<div id="b-veredicto" class="veredicto" role="status" aria-live="polite"></div>
+<ul class="cifras" id="b-cifras"></ul>
+<p class="nota">Incluye un factor de 1,2 por tirones y arranques, y un 5&nbsp;% de pérdida en cada polea. Los rozamientos son orientativos: mide la fuerza real con el dinamómetro en la primera prueba.</p>
+</section>
+
+<section class="tarjeta" id="electrico" aria-labelledby="t-electrico">
+<h2 id="t-electrico">3. Cable eléctrico del winche (220 V monofásico)</h2>
+<p class="intro">Del tablero con breaker y diferencial hasta el winche. Si el cable es delgado, el motor no arranca con carga o se recalienta.</p>
+<form class="campos" id="f-electrico" autocomplete="off" onsubmit="return false">
+<div>
+<label for="c-kw">Motor del winche</label>
+<select id="c-kw">
+<option value="1.1">1,1 kW (1,5 HP)</option>
+<option value="1.5">1,5 kW (2 HP)</option>
+<option value="2.2" selected>2,2 kW (3 HP)</option>
+<option value="3.7">3,7 kW (5 HP)</option>
+</select>
+</div>
+<div>
+<label for="c-arranque">Arranque</label>
+<select id="c-arranque">
+<option value="directo" selected>Directo (motor monofásico)</option>
+<option value="variador">Con variador de frecuencia</option>
+</select>
+</div>
+<div>
+<label for="c-dist">Distancia del tablero al winche (m)</label>
+<input id="c-dist" inputmode="decimal" value="40">
+</div>
+</form>
+<div id="c-veredicto" class="veredicto" role="status" aria-live="polite"></div>
+<ul class="cifras" id="c-cifras"></ul>
+<p class="nota">Conductor de cobre. Caída de tensión máxima: 3&nbsp;% en marcha y 15&nbsp;% al arrancar. Siempre con interruptor diferencial de 30&nbsp;mA y puesta a tierra. Que la instalación la haga un electricista calificado.</p>
+</section>
+
+</main>
+<footer class="contenedor">
+<p>Herramienta de diseño preliminar. No reemplaza la revisión de un ingeniero ni la prueba de carga de los anclajes antes de usar la línea. El cable aéreo es solo para carga: nunca para transportar personas.</p>
+<p>Supuestos: cable 6x19 con alma de acero grado 1770 (EN 12385-4), peso 0,0040·d² kg/m, módulo 100 GPa sobre un área metálica de 0,40·d². Rodadura del carro 3&nbsp;%. Eficiencia del winche 70&nbsp;%.</p>
+</footer>
+
+<script>
+// ==motor==
+const G = 9.80665;
+const FACTOR_DINAMICO = 1.2;
+const EFICIENCIA_GRAPAS = 0.8;
+const RODADURA = 0.03;
+const FS_MINIMO = 4;
+const EFICIENCIA_WINCHE = 0.7;
+const TRACCION_WINCHE = 500;
+const MOTORES_KW = [0.75, 1.1, 1.5, 2.2, 3, 3.7, 5.5, 7.5];
+
+function pesoCable(d) { return 0.0040 * d * d; }
+function rupturaCable(d) { return d * d * 1770 * 0.356 / 1000 / G; }
+function rigidezCable(d) { return 100000 * 0.40 * d * d / G; }
+
+// Largo e integral de (1 + y'^2) en un tramo donde y'(t) = a + b·t.
+function tramo(a, b, t0, t1) {
+  const u0 = a + b * t0;
+  const u1 = a + b * t1;
+  if (Math.abs(b) < 1e-12) {
+    return [(t1 - t0) * Math.sqrt(1 + u0 * u0), (t1 - t0) * (1 + u0 * u0)];
+  }
+  const F = function (u) { return (u * Math.sqrt(1 + u * u) + Math.asinh(u)) / 2; };
+  return [(F(u1) - F(u0)) / b, (t1 - t0) + (u1 * u1 * u1 - u0 * u0 * u0) / (3 * b)];
+}
+
+// Cable parabólico entre A (0, 0) y B (L, h), peso w por metro horizontal,
+// carga puntual P en x y tensión horizontal H. Devuelve el largo geométrico
+// y la integral de T·ds (para el estiramiento elástico).
+function largos(L, h, w, P, x, H) {
+  const b = w / H;
+  const a1 = h / L - (w * L / 2 + P * (L - x) / L) / H;
+  const a2 = h / L - (w * L / 2 - P * x / L) / H;
+  const t1 = tramo(a1, b, 0, x);
+  const t2 = tramo(a2, b, x, L);
+  return [t1[0] + t2[0], H * (t1[1] + t2[1])];
+}
+
+// Tensión horizontal para la que el cable, con largo sin estirar S0, alcanza.
+function resolverH(L, h, w, EA, P, x, S0) {
+  let bajo = 1e-3;
+  let alto = 1e8;
+  for (let i = 0; i < 120; i++) {
+    const medio = Math.sqrt(bajo * alto);
+    const r = largos(L, h, w, P, x, medio);
+    if (r[0] - r[1] / EA - S0 > 0) bajo = medio; else alto = medio;
+  }
+  return Math.sqrt(bajo * alto);
+}
+
+function alturaCable(L, h, w, P, x, H, t) {
+  const M = w * t * (L - t) / 2 + (t <= x ? P * t * (L - x) / L : P * x * (L - t) / L);
+  return h * t / L - M / H;
+}
+
+function largoSinEstirar(L, h, w, EA, P, flecha) {
+  const Hd = (P * L / 4 + w * L * L / 8) / (flecha * L);
+  const r = largos(L, h, w, P, L / 2, Hd);
+  return r[0] - r[1] / EA;
+}
+
+// Camino del carro: posición x y altura de la carga para cada x.
+function camino(L, h, w, EA, P, S0, n) {
+  const puntos = [];
+  for (let i = 0; i <= n; i++) {
+    const x = L * (0.02 + 0.96 * i / n);
+    const H = resolverH(L, h, w, EA, P, x, S0);
+    puntos.push({ x: x, y: alturaCable(L, h, w, P, x, H, x), H: H });
+  }
+  return puntos;
+}
+
+function puntoBajo(puntos) {
+  let menor = puntos[0];
+  puntos.forEach(function (p) { if (p.y < menor.y) menor = p; });
+  return menor;
+}
+
+function analizarFlecha(p, flecha, n) {
+  const w = pesoCable(p.d);
+  const EA = rigidezCable(p.d);
+  const L = p.L;
+  const h = p.h;
+  const Pest = p.carga + p.carro;
+  const Pdin = Pest * FACTOR_DINAMICO;
+  const S0 = largoSinEstirar(L, h, w, EA, Pest, flecha);
+  const H0 = resolverH(L, h, w, EA, 0, L / 2, S0);
+  const tensionVacioA = Math.hypot(H0, -H0 * h / L + w * L / 2);
+  const flechaVacio = w * L * L / 8 / H0;
+  const conCarga = camino(L, h, w, EA, Pdin, S0, n);
+  let Tmax = 0;
+  let xTmax = 0;
+  conCarga.forEach(function (q) {
+    const VB = q.H * h / L + Pdin * q.x / L + w * L / 2;
+    const T = Math.hypot(q.H, VB);
+    if (T > Tmax) { Tmax = T; xTmax = q.x; }
+  });
+  const vacio = camino(L, h, w, EA, p.carro, S0, n);
+  return {
+    flecha: flecha,
+    S0: S0,
+    H0: H0,
+    tensionVacioA: tensionVacioA,
+    flechaVacio: flechaVacio,
+    Tmax: Tmax,
+    xTmax: xTmax,
+    fs: p.mbs * 1000 * EFICIENCIA_GRAPAS / Tmax,
+    conCarga: conCarga,
+    bajoVacio: puntoBajo(vacio),
+    bajoCarga: puntoBajo(camino(L, h, w, EA, Pest, S0, n))
+  };
+}
+
+function analizarAereo(p) {
+  const r = analizarFlecha(p, p.flecha, 96);
+  const L = p.L;
+  const h = p.h;
+  const wt = pesoCable(p.dt);
+  const Pdin = (p.carga + p.carro) * FACTOR_DINAMICO;
+  let traccion = 0;
+  let despeje = 0;
+  for (let i = 1; i < r.conCarga.length; i++) {
+    const a = r.conCarga[i - 1];
+    const b = r.conCarga[i];
+    const ang = Math.atan2(b.y - a.y, b.x - a.x);
+    const F = Pdin * Math.sin(ang) + RODADURA * Pdin * Math.cos(ang) + wt * (h - b.y);
+    if (F > traccion) traccion = F;
+  }
+  r.conCarga.forEach(function (q) {
+    const bajoRecta = h * q.x / L - q.y;
+    if (bajoRecta > despeje) despeje = bajoRecta;
+  });
+  const cuerda = Math.hypot(L, h);
+  const potencia = traccion * G * (p.v / 60) / EFICIENCIA_WINCHE / 1000;
+  const motor = MOTORES_KW.find(function (k) { return k >= potencia; }) || null;
+  return Object.assign(r, {
+    traccion: traccion,
+    despeje: despeje,
+    cuerda: cuerda,
+    potencia: potencia,
+    motor: motor,
+    anclaje: 2 * r.Tmax,
+    largoPortante: Math.ceil((r.S0 + 12) / 10) * 10,
+    largoTractor: Math.ceil((cuerda * 1.05 + 15) / 10) * 10,
+    margenTope: Math.max(3, 0.03 * L)
+  });
+}
+
+function analizarArrastre(p) {
+  const ang = Math.atan(p.pendiente / 100);
+  const fuerzaCarga = p.peso * (Math.sin(ang) + p.mu * Math.cos(ang)) * FACTOR_DINAMICO;
+  const poleas = (p.aparejo === 2 ? 1 : 0) + (p.desvio > 0 ? 1 : 0);
+  const traccion = fuerzaCarga / p.aparejo * Math.pow(1.05, poleas);
+  const cargaDesvio = p.desvio > 0 ? 2 * traccion * Math.sin(p.desvio * Math.PI / 360) : 0;
+  return {
+    fuerzaCarga: fuerzaCarga,
+    traccion: traccion,
+    anclajeWinche: traccion,
+    cargaDesvio: cargaDesvio,
+    anclajeMuerto: p.aparejo === 2 ? fuerzaCarga / 2 : 0
+  };
+}
+
+const CONDUCTORES = [
+  { awg: "14", mm2: 2.08, amp: 15 },
+  { awg: "12", mm2: 3.31, amp: 20 },
+  { awg: "10", mm2: 5.26, amp: 30 },
+  { awg: "8", mm2: 8.37, amp: 40 },
+  { awg: "6", mm2: 13.3, amp: 55 },
+  { awg: "4", mm2: 21.2, amp: 70 },
+  { awg: "2", mm2: 33.6, amp: 95 }
+];
+const BREAKERS = [16, 20, 25, 32, 40, 50, 63, 80, 100];
+// Corriente de placa a 220 V monofásico (NEC 430.248 ajustada de 230 V).
+const CORRIENTE_MOTOR = { "1.1": 10.5, "1.5": 12.5, "2.2": 17.8, "3.7": 29.3 };
+
+function analizarElectrico(p) {
+  const corriente = p.arranque === "variador" ? p.kw * 10 : CORRIENTE_MOTOR[String(p.kw)];
+  const arranque = corriente * (p.arranque === "variador" ? 1.5 : 6);
+  const breaker = BREAKERS.find(function (b) { return b >= 1.25 * corriente; });
+  const rho = 0.0206;
+  const caida = function (c, I) { return 2 * p.dist * I * rho / c.mm2 / 220 * 100; };
+  const conductor = CONDUCTORES.find(function (c) {
+    return c.amp >= breaker && caida(c, corriente) <= 3 && caida(c, arranque) <= 15;
+  }) || null;
+  const generador = Math.ceil(p.kw * (p.arranque === "variador" ? 2 : 3) * 2) / 2;
+  return {
+    corriente: corriente,
+    arranqueCorriente: arranque,
+    breaker: breaker,
+    conductor: conductor,
+    caidaMarcha: conductor ? caida(conductor, corriente) : null,
+    caidaArranque: conductor ? caida(conductor, arranque) : null,
+    generador: generador
+  };
+}
+// ==fin motor==
+
+const fmt0 = new Intl.NumberFormat("es-EC", { maximumFractionDigits: 0, useGrouping: false });
+const fmt1 = new Intl.NumberFormat("es-EC", { minimumFractionDigits: 1, maximumFractionDigits: 1, useGrouping: false });
+function kg(v) { return fmt0.format(v) + " kg"; }
+function m(v) { return fmt0.format(v) + " m"; }
+function m1(v) { return fmt1.format(v) + " m"; }
+function num(id) {
+  const v = parseFloat(String(document.getElementById(id).value).replace(",", "."));
+  return Number.isFinite(v) ? v : NaN;
+}
+function el(tag, clase, texto) {
+  const e = document.createElement(tag);
+  if (clase) e.className = clase;
+  if (texto !== undefined) e.textContent = texto;
+  return e;
+}
+function cifra(nombre, valor, nota) {
+  const li = el("li", "cifra");
+  li.appendChild(el("span", "cifra-nombre", nombre));
+  li.appendChild(el("span", "cifra-valor", valor));
+  if (nota) li.appendChild(el("span", "cifra-nota", nota));
+  return li;
+}
+function veredicto(caja, nivel, titulo, detalle) {
+  caja.className = "veredicto v-" + nivel;
+  const partes = [el("p", "", titulo)];
+  if (detalle) partes.push(el("p", "", detalle));
+  caja.replaceChildren.apply(caja, partes);
+}
+
+const mbsCampo = document.getElementById("a-mbs");
+function llenarRuptura() {
+  mbsCampo.value = fmt1.format(rupturaCable(parseFloat(document.getElementById("a-d").value)));
+}
+document.getElementById("a-d").addEventListener("change", function () {
+  llenarRuptura();
+});
+
+function dibujarPerfil(p, r) {
+  const svg = document.getElementById("a-perfil");
+  const NS = "http://www.w3.org/2000/svg";
+  const w = pesoCable(p.d);
+  const EA = rigidezCable(p.d);
+  const Pest = p.carga + p.carro;
+  const L = p.L;
+  const h = p.h;
+  const Hc = resolverH(L, h, w, EA, Pest, L / 2, r.S0);
+  const Hv = r.H0;
+  const n = 80;
+  const vacio = [];
+  const cargado = [];
+  for (let i = 0; i <= n; i++) {
+    const t = L * i / n;
+    vacio.push([t, alturaCable(L, h, w, 0, L / 2, Hv, t)]);
+    cargado.push([t, alturaCable(L, h, w, Pest, L / 2, Hc, t)]);
+  }
+  const yCarga = alturaCable(L, h, w, Pest, L / 2, Hc, L / 2);
+  let yMin = Math.min(0, yCarga);
+  r.conCarga.forEach(function (q) { if (q.y < yMin) yMin = q.y; });
+  const ancho = 640;
+  const margen = { izq: 46, der: 46, arriba: 34, abajo: 40 };
+  const escala = Math.min((ancho - margen.izq - margen.der) / L, 260 / Math.max(h - yMin, 1));
+  const alto = Math.max(200, Math.ceil((h - yMin) * escala + margen.arriba + margen.abajo));
+  svg.setAttribute("viewBox", "0 0 " + ancho + " " + alto);
+  const X = function (x) { return margen.izq + x * escala; };
+  const Y = function (y) { return alto - margen.abajo - (y - yMin) * escala; };
+  const titulo = svg.querySelector("title");
+  titulo.textContent = "Perfil del cable: " + fmt0.format(L) + " m de distancia y " + fmt0.format(h) +
+    " m de desnivel. Con la carga al centro el cable baja " + fmt1.format(r.despeje) + " m bajo la línea recta.";
+  svg.replaceChildren(titulo);
+  function nodo(tag, attrs) {
+    const e = document.createElementNS(NS, tag);
+    Object.keys(attrs).forEach(function (k) { e.setAttribute(k, attrs[k]); });
+    svg.appendChild(e);
+    return e;
+  }
+  function linea(puntos, attrs) {
+    attrs.points = puntos.map(function (q) { return X(q[0]).toFixed(1) + "," + Y(q[1]).toFixed(1); }).join(" ");
+    attrs.fill = "none";
+    return nodo("polyline", attrs);
+  }
+  function texto(x, y, contenido, ancla) {
+    const t = nodo("text", { x: x, y: y, "text-anchor": ancla || "middle", fill: "var(--texto)", "font-size": "13", "font-weight": "600" });
+    t.textContent = contenido;
+    return t;
+  }
+  linea([[0, 0], [L, h]], { stroke: "var(--texto-suave)", "stroke-width": 1.5, "stroke-dasharray": "6 5" });
+  linea(vacio, { stroke: "var(--texto-suave)", "stroke-width": 1.5 });
+  linea(r.conCarga.map(function (q) { return [q.x, q.y]; }), { stroke: "var(--trayectoria)", "stroke-width": 3, "stroke-dasharray": "1 6", "stroke-linecap": "round" });
+  linea(cargado, { stroke: "var(--cable)", "stroke-width": 2.5 });
+  const cx = X(L / 2);
+  const cy = Y(yCarga);
+  nodo("rect", { x: cx - 9, y: cy - 6, width: 18, height: 9, rx: 2, fill: "var(--acento)" });
+  nodo("line", { x1: cx, y1: cy + 3, x2: cx, y2: cy + 14, stroke: "var(--cable)", "stroke-width": 2 });
+  nodo("rect", { x: cx - 10, y: cy + 14, width: 20, height: 14, rx: 2, fill: "var(--trayectoria)" });
+  [[0, 0, "A"], [L, h, "B"]].forEach(function (a) {
+    const ax = X(a[0]);
+    const ay = Y(a[1]);
+    nodo("path", { d: "M" + (ax - 10) + "," + (ay + 14) + " L" + ax + "," + ay + " L" + (ax + 10) + "," + (ay + 14) + " Z", fill: "var(--texto)" });
+    texto(ax, ay + 30, a[2]);
+  });
+  texto(X(L), Y(h) - 12, "Winche", "end");
+  const bajo = r.bajoCarga;
+  if (bajo.x > r.margenTope) {
+    nodo("circle", { cx: X(bajo.x), cy: Y(bajo.y), r: 5, fill: "none", stroke: "var(--trayectoria)", "stroke-width": 2 });
+    texto(X(bajo.x), Y(bajo.y) + 22, "Punto bajo a " + m(bajo.x));
+  }
+}
+
+function actualizarAereo() {
+  const p = {
+    L: num("a-L"), h: num("a-h"), carga: num("a-carga"), carro: num("a-carro"),
+    d: parseFloat(document.getElementById("a-d").value),
+    mbs: num("a-mbs"),
+    flecha: parseFloat(document.getElementById("a-flecha").value) / 100,
+    dt: parseFloat(document.getElementById("a-dt").value),
+    v: num("a-v")
+  };
+  const caja = document.getElementById("a-veredicto");
+  const cifras = document.getElementById("a-cifras");
+  const avisos = document.getElementById("a-avisos");
+  const tabla = document.getElementById("a-tabla");
+  const malos = [];
+  if (!(p.L >= 10 && p.L <= 600)) malos.push("la distancia debe estar entre 10 y 600 m");
+  if (!(p.h >= 0 && (!(p.L > 0) || p.h <= 1.5 * p.L))) malos.push("el desnivel debe estar entre 0 y 1,5 veces la distancia");
+  if (!(p.carga > 0 && p.carga <= 2000)) malos.push("la carga debe estar entre 1 y 2000 kg");
+  if (!(p.carro >= 0 && p.carro <= 500)) malos.push("el peso del carro debe estar entre 0 y 500 kg");
+  if (!(p.mbs > 0)) malos.push("falta la resistencia de ruptura del cable");
+  if (!(p.v > 0 && p.v <= 60)) malos.push("la velocidad debe estar entre 1 y 60 m/min");
+  if (malos.length) {
+    veredicto(caja, "alerta", "Revisa los datos: " + malos.join("; ") + ".");
+    cifras.replaceChildren();
+    avisos.replaceChildren();
+    tabla.replaceChildren();
+    return;
+  }
+  const r = analizarAereo(p);
+
+  if (r.fs >= FS_MINIMO) {
+    veredicto(caja, "ok", "El cable aguanta: factor de seguridad " + fmt1.format(r.fs) + ".",
+      "Cada anclaje debe resistir al menos " + kg(r.anclaje) + " y pasar la prueba de carga antes de usar la línea.");
+  } else if (r.fs >= 3) {
+    veredicto(caja, "alerta", "No cumple: factor de seguridad " + fmt1.format(r.fs) + ", el mínimo es 4.",
+      "Sube la flecha (mira la tabla de tensado), usa un cable más grueso o lleva menos carga por viaje.");
+  } else {
+    veredicto(caja, "peligro", "Peligroso: factor de seguridad " + fmt1.format(r.fs) + ". No instales esta línea así.",
+      "Sube la flecha, usa un cable más grueso o lleva menos carga por viaje.");
+  }
+
+  cifras.replaceChildren(
+    cifra("Tensión máxima en el cable", kg(r.Tmax), "en el anclaje alto, con la carga a " + m(r.xTmax) + " de A"),
+    cifra("Cada anclaje debe resistir", kg(r.anclaje), "el doble de la tensión máxima"),
+    cifra("Tensa el cable vacío hasta", kg(r.tensionVacioA), "lectura del dinamómetro en A; flecha en vacío " + m1(r.flechaVacio)),
+    cifra("Tracción máxima del winche", kg(r.traccion), "con el cable tractor de " + document.getElementById("a-dt").selectedOptions[0].textContent),
+    cifra("Motor mínimo", r.motor ? fmt1.format(r.motor) + " kW" : "más de 7,5 kW", "calculado " + fmt1.format(r.potencia) + " kW a " + fmt0.format(p.v) + " m/min"),
+    cifra("Cable portante a comprar", m(r.largoPortante), "incluye 12 m para amarres y tensado"),
+    cifra("Cable tractor a comprar", m(r.largoTractor), "incluye vueltas muertas en el tambor")
+  );
+
+  const lista = [];
+  if (r.traccion > TRACCION_WINCHE) {
+    lista.push("La tracción pasa de los " + TRACCION_WINCHE + " kg del winche del diseño. Lleva menos carga por viaje o usa un winche más grande.");
+  }
+  const tope = r.margenTope;
+  if (r.bajoVacio.x <= tope && r.bajoCarga.x <= tope) {
+    lista.push("El carro baja solo hasta el anclaje bajo. Pon un tope a " + m(tope) + " de A para que no choque.");
+  } else {
+    lista.push("El cable hace un punto bajo: con carga el carro se detiene a " + m(r.bajoCarga.x) +
+      " de A y vacío a " + m(r.bajoVacio.x) + ". Pon la plataforma de carga baja ahí, o sube la flecha de tensado (menos flecha) si el factor de seguridad lo permite.");
+  }
+  lista.push("Con la carga al centro el cable baja " + m1(r.despeje) + " bajo la línea recta A–B, y la carga cuelga unos 1,5 m más. Verifica que no toque el suelo ni el cultivo.");
+  if (p.h / p.L > 1) {
+    lista.push("Pendiente de más de 100 %. Revisa con cuidado los anclajes del lado alto y el frenado del winche.");
+  }
+  avisos.replaceChildren.apply(avisos, lista.map(function (t) { return el("li", "", t); }));
+
+  const filas = [4, 5, 6, 7, 8, 10].map(function (f) {
+    const q = f / 100 === p.flecha ? r : analizarFlecha(p, f / 100, 48);
+    const tr = el("tr", f / 100 === p.flecha ? "elegida" : "");
+    tr.appendChild(el("td", "", f + " %"));
+    tr.appendChild(el("td", "", fmt0.format(q.tensionVacioA)));
+    tr.appendChild(el("td", "", fmt1.format(q.flechaVacio)));
+    tr.appendChild(el("td", "", fmt0.format(q.Tmax)));
+    const fs = el("td", q.fs >= FS_MINIMO ? "marca-ok" : "marca-mal", fmt1.format(q.fs) + (q.fs >= FS_MINIMO ? " ✓" : " ✗"));
+    tr.appendChild(fs);
+    tr.appendChild(el("td", "", q.bajoVacio.x <= tope ? "hasta A" : fmt0.format(q.bajoVacio.x)));
+    return tr;
+  });
+  tabla.replaceChildren.apply(tabla, filas);
+  dibujarPerfil(p, r);
+}
+
+function actualizarArrastre() {
+  const p = {
+    peso: num("b-peso"), pendiente: num("b-pend"),
+    mu: parseFloat(document.getElementById("b-sup").value),
+    aparejo: parseInt(document.getElementById("b-aparejo").value, 10),
+    desvio: num("b-desvio")
+  };
+  const caja = document.getElementById("b-veredicto");
+  const cifras = document.getElementById("b-cifras");
+  if (!(p.peso > 0) || !(p.pendiente >= 0 && p.pendiente <= 150) || !(p.desvio >= 0 && p.desvio <= 180)) {
+    veredicto(caja, "alerta", "Revisa los datos: peso mayor a 0, pendiente entre 0 y 150 % y giro entre 0 y 180 grados.");
+    cifras.replaceChildren();
+    return;
+  }
+  const r = analizarArrastre(p);
+  if (r.traccion <= TRACCION_WINCHE) {
+    veredicto(caja, "ok", "El winche de " + TRACCION_WINCHE + " kg puede con esta carga: necesita " + kg(r.traccion) + ".");
+  } else {
+    veredicto(caja, "peligro", "Pasa la capacidad del winche: necesita " + kg(r.traccion) + " y el winche da " + TRACCION_WINCHE + " kg.",
+      p.aparejo === 1 ? "Usa una polea móvil en la carga (2 a 1) o lleva menos peso." : "Lleva menos peso por viaje o mejora el camino.");
+  }
+  const lista = [
+    cifra("Fuerza para mover la carga", kg(r.fuerzaCarga)),
+    cifra("Tracción en el winche", kg(r.traccion)),
+    cifra("Anclaje del winche debe resistir", kg(2 * r.anclajeWinche), "el doble de la tracción")
+  ];
+  if (r.cargaDesvio > 0) lista.push(cifra("Anclaje de la polea de desvío", kg(2 * r.cargaDesvio), "el doble de la fuerza que recibe (" + kg(r.cargaDesvio) + ")"));
+  if (r.anclajeMuerto > 0) lista.push(cifra("Anclaje del extremo fijo (2 a 1)", kg(2 * r.anclajeMuerto), "el doble de " + kg(r.anclajeMuerto)));
+  cifras.replaceChildren.apply(cifras, lista);
+}
+
+function actualizarElectrico() {
+  const p = {
+    kw: parseFloat(document.getElementById("c-kw").value),
+    arranque: document.getElementById("c-arranque").value,
+    dist: num("c-dist")
+  };
+  const caja = document.getElementById("c-veredicto");
+  const cifras = document.getElementById("c-cifras");
+  if (!(p.dist > 0 && p.dist <= 500)) {
+    veredicto(caja, "alerta", "Revisa la distancia: entre 1 y 500 m.");
+    cifras.replaceChildren();
+    return;
+  }
+  const r = analizarElectrico(p);
+  if (!r.conductor) {
+    veredicto(caja, "peligro", "A esa distancia ningún cable común sirve. Acerca el tablero al winche o lleva la acometida más cerca.");
+    cifras.replaceChildren(cifra("Corriente del motor", fmt1.format(r.corriente) + " A"));
+    return;
+  }
+  const lista = [];
+  if (p.arranque === "variador" && p.kw > 2.2) {
+    lista.push("Pocos variadores aceptan entrada monofásica para más de 2,2 kW. Confirma con el proveedor.");
+  }
+  veredicto(caja, "ok", "Usa cable " + r.conductor.awg + " AWG (" + fmt1.format(r.conductor.mm2) + " mm²) de 3 conductores: dos fases y tierra.",
+    lista.join(" ") || null);
+  cifras.replaceChildren(
+    cifra("Corriente del motor", fmt1.format(r.corriente) + " A", "al arrancar unos " + fmt0.format(r.arranqueCorriente) + " A"),
+    cifra("Breaker bipolar", r.breaker + " A", p.arranque === "variador" ? "curva C" : "curva C; curva D si salta al arrancar"),
+    cifra("Caída de tensión en marcha", fmt1.format(r.caidaMarcha) + " %", "al arrancar " + fmt1.format(r.caidaArranque) + " %"),
+    cifra("Generador, si no hay red", "≥ " + fmt1.format(r.generador) + " kVA", "220 V monofásico")
+  );
+}
+
+llenarRuptura();
+document.getElementById("f-aereo").addEventListener("input", actualizarAereo);
+document.getElementById("f-aereo").addEventListener("change", actualizarAereo);
+document.getElementById("f-arrastre").addEventListener("input", actualizarArrastre);
+document.getElementById("f-arrastre").addEventListener("change", actualizarArrastre);
+document.getElementById("f-electrico").addEventListener("input", actualizarElectrico);
+document.getElementById("f-electrico").addEventListener("change", actualizarElectrico);
+actualizarAereo();
+actualizarArrastre();
+actualizarElectrico();
+</script>
+</body>
+</html>

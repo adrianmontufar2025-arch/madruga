@@ -1,0 +1,107 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 640" font-family="system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" role="img" aria-labelledby="titulo desc">
+  <title id="titulo">Modos de arrastre por el suelo e izaje con trípode</title>
+  <desc id="desc">A la izquierda, vista en planta de un camino con una curva: el winche está arriba, anclado hacia atrás; el cable baja por el camino, gira en una polea de desvío anclada con estacas por fuera de la curva y llega a una narria cargada. La zona dentro del ángulo del cable está marcada como peligrosa. A la derecha, un trípode de tubo levanta un barril: el cable sale del winche, pasa por una polea al pie de una pata, sube a la polea de la cabeza y baja al gancho.</desc>
+  <defs>
+    <pattern id="peligro" width="10" height="10" patternUnits="userSpaceOnUse" patternTransform="rotate(45)">
+      <line x1="0" y1="0" x2="0" y2="10" stroke="#B3261E" stroke-width="2" stroke-opacity=".45"/>
+    </pattern>
+  </defs>
+  <rect width="1000" height="640" fill="#FFFFFF"/>
+  <line x1="500" y1="20" x2="500" y2="620" stroke="#CFD3C4" stroke-width="1.5"/>
+
+  <!-- ===== Modo B ===== -->
+  <text x="30" y="40" font-size="20" font-weight="700" fill="#1E2A1F">Modo B · Arrastre por el suelo</text>
+  <text x="30" y="62" font-size="14" fill="#55624F">Vista en planta, desde arriba</text>
+
+  <!-- camino -->
+  <path d="M80,500 C110,420 150,330 200,270 C250,215 330,190 440,175" fill="none" stroke="#C9B89A" stroke-width="58" stroke-linecap="round"/>
+  <path d="M80,500 C110,420 150,330 200,270 C250,215 330,190 440,175" fill="none" stroke="#EDE6D8" stroke-width="52" stroke-linecap="round"/>
+  <!-- zona de peligro dentro del ángulo -->
+  <path d="M190,262 L420,186 L118,452 Z" fill="url(#peligro)" stroke="#B3261E" stroke-width="1.5" stroke-dasharray="5 4"/>
+  <!-- winche y amarre trasero -->
+  <rect x="418" y="150" width="56" height="44" rx="4" fill="#1F6B3A"/>
+  <circle cx="424" cy="172" r="12" fill="#FFFFFF" stroke="#1E2A1F" stroke-width="2.5"/>
+  <line x1="474" y1="166" x2="490" y2="162" stroke="#1E2A1F" stroke-width="2.5"/>
+  <line x1="474" y1="178" x2="490" y2="182" stroke="#1E2A1F" stroke-width="2.5"/>
+  <g fill="#4A4F47"><circle cx="490" cy="162" r="4"/><circle cx="490" cy="182" r="4"/></g>
+  <!-- polea de desvío y su anclaje por fuera de la curva -->
+  <circle cx="186" cy="258" r="11" fill="#FFFFFF" stroke="#1E2A1F" stroke-width="3"/>
+  <line x1="178" y1="250" x2="140" y2="212" stroke="#1F6B3A" stroke-width="3.5"/>
+  <g fill="#4A4F47"><circle cx="136" cy="208" r="4"/><circle cx="122" cy="194" r="4"/><circle cx="108" cy="180" r="4"/></g>
+  <line x1="136" y1="208" x2="108" y2="180" stroke="#1F6B3A" stroke-width="2"/>
+  <!-- cable tractor -->
+  <path d="M412,174 L197,256 M178,265 L112,440" fill="none" stroke="#C2410C" stroke-width="3"/>
+  <!-- narria con carga -->
+  <g transform="rotate(-20 100 470)">
+    <rect x="76" y="440" width="48" height="70" rx="6" fill="#7A5A3A"/>
+    <rect x="84" y="450" width="32" height="20" rx="2" fill="#3B6EA8"/>
+    <rect x="84" y="474" width="32" height="20" rx="2" fill="#D7B98A"/>
+  </g>
+  <g font-size="13" fill="#1E2A1F">
+    <text x="300" y="130" font-weight="700">Winche 220 V</text>
+    <text x="300" y="147">anclado hacia atrás</text>
+    <text x="30" y="150" font-weight="700">Polea de desvío</text>
+    <text x="30" y="167">anclada por fuera de la curva</text>
+    <text x="214" y="380" font-weight="700" fill="#B3261E">Zona de latigazo:</text>
+    <text x="214" y="397" fill="#B3261E">nadie dentro del ángulo</text>
+    <text x="214" y="414" fill="#B3261E">del cable</text>
+    <text x="150" y="530" font-weight="700">Narria o carreta</text>
+    <text x="150" y="547">con la carga amarrada</text>
+  </g>
+  <g font-size="13" fill="#1E2A1F">
+    <text x="30" y="584">La polea de desvío recibe hasta el doble de la tracción</text>
+    <text x="30" y="601">(1,4 veces si el cable gira 90°). Con una polea móvil en</text>
+    <text x="30" y="618">la narria (2 a 1) el winche tira la mitad, a media velocidad.</text>
+  </g>
+
+  <!-- ===== Modo C ===== -->
+  <text x="530" y="40" font-size="20" font-weight="700" fill="#1E2A1F">Modo C · Izaje con trípode</text>
+  <text x="530" y="62" font-size="14" fill="#55624F">Vista lateral</text>
+
+  <rect x="510" y="470" width="480" height="40" fill="#EDE6D8"/>
+  <line x1="510" y1="470" x2="990" y2="470" stroke="#8B6B4A" stroke-width="2"/>
+  <!-- pata trasera -->
+  <line x1="740" y1="150" x2="752" y2="470" stroke="#55624F" stroke-width="6" stroke-dasharray="12 7"/>
+  <!-- patas delanteras -->
+  <line x1="740" y1="150" x2="640" y2="470" stroke="#4A4F47" stroke-width="7" stroke-linecap="round"/>
+  <line x1="740" y1="150" x2="850" y2="470" stroke="#4A4F47" stroke-width="7" stroke-linecap="round"/>
+  <!-- cadena entre patas -->
+  <line x1="640" y1="466" x2="850" y2="466" stroke="#1F6B3A" stroke-width="3" stroke-dasharray="6 3"/>
+  <!-- cabezal y polea -->
+  <rect x="724" y="128" width="32" height="18" rx="3" fill="#B7C0AE" stroke="#1E2A1F" stroke-width="2"/>
+  <circle cx="740" cy="160" r="11" fill="#FFFFFF" stroke="#1E2A1F" stroke-width="3"/>
+  <!-- winche -->
+  <rect x="530" y="438" width="58" height="28" rx="4" fill="#1F6B3A"/>
+  <circle cx="584" cy="452" r="11" fill="#FFFFFF" stroke="#1E2A1F" stroke-width="2.5"/>
+  <line x1="530" y1="458" x2="516" y2="466" stroke="#1E2A1F" stroke-width="2.5"/>
+  <line x1="516" y1="458" x2="512" y2="484" stroke="#7A5A3A" stroke-width="3"/>
+  <!-- polea al pie anclada a estaca -->
+  <circle cx="632" cy="452" r="8" fill="#FFFFFF" stroke="#1E2A1F" stroke-width="2.5"/>
+  <line x1="626" y1="458" x2="612" y2="466" stroke="#1F6B3A" stroke-width="2.5"/>
+  <line x1="612" y1="458" x2="606" y2="490" stroke="#7A5A3A" stroke-width="3"/>
+  <!-- cable -->
+  <path d="M595,446 L628,445 M639,449 L731,155 M751,160 L751,300" fill="none" stroke="#C2410C" stroke-width="3"/>
+  <!-- gancho y barril -->
+  <path d="M746,300 q5,7 10,0" fill="none" stroke="#1E2A1F" stroke-width="2.5"/>
+  <rect x="731" y="306" width="40" height="56" rx="5" fill="#3B6EA8"/>
+  <line x1="731" y1="324" x2="771" y2="324" stroke="#FFFFFF" stroke-width="2"/>
+  <line x1="731" y1="344" x2="771" y2="344" stroke="#FFFFFF" stroke-width="2"/>
+  <g font-size="13" fill="#1E2A1F">
+    <text x="772" y="122" font-weight="700">Cabezal con polea</text>
+    <text x="772" y="139">y ojo de 1 t o más</text>
+    <text x="840" y="230" font-weight="700">Patas de tubo 2"</text>
+    <text x="840" y="247">cédula 40, de 3,5 m,</text>
+    <text x="840" y="264">abiertas unos 20°</text>
+    <text x="866" y="330" font-weight="700" fill="#B3261E">Nadie debajo</text>
+    <text x="866" y="347" fill="#B3261E">de la carga</text>
+    <text x="520" y="372" font-weight="700">Polea al pie,</text>
+    <text x="520" y="389">anclada a una</text>
+    <text x="520" y="406">estaca, no a la pata</text>
+    <text x="680" y="496" font-weight="700">Cadena entre las patas</text>
+  </g>
+  <g font-size="13" fill="#1E2A1F">
+    <text x="530" y="584">Para cargar el camión: sube el barril, el camión retrocede</text>
+    <text x="530" y="601">entre las patas y bajas el barril sobre el balde.</text>
+    <text x="530" y="618">La cabeza recibe cerca del doble del peso de la carga.</text>
+  </g>
+</svg>

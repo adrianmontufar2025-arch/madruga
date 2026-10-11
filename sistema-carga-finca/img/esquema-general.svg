@@ -1,0 +1,118 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 760" font-family="system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" role="img" aria-labelledby="titulo desc">
+  <title id="titulo">Esquema general del cable aéreo de carga</title>
+  <desc id="desc">Perfil de una ladera con un cable portante tendido entre un anclaje bajo y un anclaje alto. Un carro de garruchas rueda sobre el cable con un barril colgado. El cable tractor va del carro al winche eléctrico de 220 voltios, instalado al costado del anclaje alto y amarrado hacia atrás. En el anclaje bajo hay un tensor con dinamómetro y una plataforma de carga.</desc>
+  <rect width="1000" height="760" fill="#FFFFFF"/>
+  <text x="30" y="40" font-size="22" font-weight="700" fill="#1E2A1F">Modo A · Cable aéreo de carga (tarabita)</text>
+  <text x="30" y="64" font-size="14" fill="#55624F">Esquema sin escala. El winche va siempre en el anclaje alto; el carro baja por gravedad, frenado por el winche.</text>
+
+  <!-- terreno -->
+  <path d="M0,500 L170,500 C230,505 300,525 360,538 C420,550 470,545 520,505 C600,445 690,385 760,315 C790,262 800,215 808,202 C815,193 830,190 1000,190 L1000,570 L0,570 Z" fill="#EDE6D8" stroke="#8B6B4A" stroke-width="2"/>
+  <text x="380" y="530" font-size="13" fill="#8B6B4A" font-style="italic">quebrada</text>
+
+  <!-- árbol del anclaje bajo -->
+  <rect x="38" y="410" width="22" height="92" fill="#7A5A3A"/>
+  <circle cx="49" cy="392" r="40" fill="#5E8F5A"/>
+  <circle cx="26" cy="412" r="22" fill="#5E8F5A"/>
+  <circle cx="74" cy="410" r="24" fill="#5E8F5A"/>
+  <!-- eslinga, tecle y dinamómetro -->
+  <ellipse cx="49" cy="490" rx="15" ry="5" fill="none" stroke="#1F6B3A" stroke-width="3"/>
+  <line x1="64" y1="490" x2="78" y2="489" stroke="#1E2A1F" stroke-width="2"/>
+  <rect x="78" y="482" width="18" height="14" rx="2" fill="#1F6B3A"/>
+  <line x1="96" y1="489" x2="102" y2="489" stroke="#1E2A1F" stroke-width="2"/>
+  <circle cx="108" cy="489" r="6" fill="#FFFFFF" stroke="#1E2A1F" stroke-width="2"/>
+
+  <!-- plataforma de carga -->
+  <rect x="150" y="486" width="70" height="8" fill="#B08A5C" stroke="#7A5A3A" stroke-width="1.5"/>
+  <line x1="156" y1="494" x2="156" y2="501" stroke="#7A5A3A" stroke-width="3"/>
+  <line x1="214" y1="494" x2="214" y2="501" stroke="#7A5A3A" stroke-width="3"/>
+
+  <!-- árbol del anclaje alto -->
+  <rect x="858" y="98" width="24" height="94" fill="#7A5A3A"/>
+  <circle cx="870" cy="82" r="44" fill="#5E8F5A"/>
+  <circle cx="842" cy="104" r="24" fill="#5E8F5A"/>
+  <circle cx="898" cy="102" r="24" fill="#5E8F5A"/>
+  <ellipse cx="870" cy="180" rx="16" ry="5" fill="none" stroke="#1F6B3A" stroke-width="3"/>
+
+  <!-- cable portante -->
+  <path d="M114,489 Q480,444 856,180" fill="none" stroke="#1E2A1F" stroke-width="3.5"/>
+  <!-- tope -->
+  <rect x="160" y="475" width="10" height="12" fill="#C2410C" transform="rotate(-8 165 481)"/>
+
+  <!-- winche (al costado del anclaje alto) -->
+  <rect x="892" y="180" width="78" height="6" fill="#55624F"/>
+  <line x1="896" y1="152" x2="972" y2="152" stroke="#55624F" stroke-width="3"/>
+  <line x1="898" y1="152" x2="898" y2="180" stroke="#55624F" stroke-width="2"/>
+  <line x1="968" y1="152" x2="968" y2="180" stroke="#55624F" stroke-width="2"/>
+  <circle cx="905" cy="167" r="12" fill="#FFFFFF" stroke="#1E2A1F" stroke-width="2.5"/>
+  <circle cx="905" cy="167" r="4" fill="#1E2A1F"/>
+  <rect x="922" y="156" width="40" height="22" rx="3" fill="#1F6B3A"/>
+  <!-- amarre trasero -->
+  <line x1="970" y1="183" x2="994" y2="188" stroke="#1E2A1F" stroke-width="2"/>
+  <line x1="990" y1="176" x2="996" y2="202" stroke="#7A5A3A" stroke-width="3"/>
+
+  <!-- tablero -->
+  <line x1="950" y1="110" x2="950" y2="152" stroke="#7A5A3A" stroke-width="3"/>
+  <rect x="936" y="84" width="28" height="30" rx="2" fill="#FFFFFF" stroke="#1E2A1F" stroke-width="2"/>
+  <circle cx="950" cy="96" r="5" fill="#B3261E"/>
+  <path d="M964,102 C985,104 990,132 975,150" fill="none" stroke="#1E2A1F" stroke-width="1.5" stroke-dasharray="3 3"/>
+
+  <!-- cable tractor -->
+  <path d="M440,402 C600,372 790,232 905,155" fill="none" stroke="#C2410C" stroke-width="2.2"/>
+
+  <!-- carro -->
+  <g transform="translate(421 409) rotate(-21.4)">
+    <circle cx="-11" cy="-7" r="7" fill="#FFFFFF" stroke="#1E2A1F" stroke-width="2"/>
+    <circle cx="11" cy="-7" r="7" fill="#FFFFFF" stroke="#1E2A1F" stroke-width="2"/>
+    <rect x="-22" y="-10" width="44" height="18" rx="3" fill="#1F6B3A" fill-opacity=".9"/>
+  </g>
+  <line x1="421" y1="414" x2="421" y2="438" stroke="#1E2A1F" stroke-width="2"/>
+  <path d="M416,438 q5,6 10,0" fill="none" stroke="#1E2A1F" stroke-width="2"/>
+  <!-- barril -->
+  <rect x="407" y="442" width="28" height="38" rx="4" fill="#3B6EA8"/>
+  <line x1="407" y1="454" x2="435" y2="454" stroke="#FFFFFF" stroke-width="1.5"/>
+  <line x1="407" y1="468" x2="435" y2="468" stroke="#FFFFFF" stroke-width="1.5"/>
+
+  <!-- llamadas -->
+  <g font-size="13" font-weight="700" fill="#FFFFFF" text-anchor="middle">
+    <line x1="932" y1="190" x2="930" y2="232" stroke="#1F6B3A" stroke-width="1.2"/>
+    <circle cx="930" cy="244" r="12" fill="#1F6B3A"/><text x="930" y="249">1</text>
+    <line x1="858" y1="176" x2="822" y2="138" stroke="#1F6B3A" stroke-width="1.2"/>
+    <circle cx="812" cy="128" r="12" fill="#1F6B3A"/><text x="812" y="133">2</text>
+    <line x1="640" y1="306" x2="610" y2="252" stroke="#1F6B3A" stroke-width="1.2"/>
+    <circle cx="604" cy="240" r="12" fill="#1F6B3A"/><text x="604" y="245">3</text>
+    <line x1="410" y1="398" x2="372" y2="360" stroke="#1F6B3A" stroke-width="1.2"/>
+    <circle cx="364" cy="350" r="12" fill="#1F6B3A"/><text x="364" y="355">4</text>
+    <line x1="700" y1="300" x2="724" y2="336" stroke="#1F6B3A" stroke-width="1.2"/>
+    <circle cx="730" cy="348" r="12" fill="#1F6B3A"/><text x="730" y="353">5</text>
+    <line x1="437" y1="462" x2="470" y2="470" stroke="#1F6B3A" stroke-width="1.2"/>
+    <circle cx="482" cy="472" r="12" fill="#1F6B3A"/><text x="482" y="477">6</text>
+    <line x1="166" y1="474" x2="176" y2="440" stroke="#1F6B3A" stroke-width="1.2"/>
+    <circle cx="180" cy="428" r="12" fill="#1F6B3A"/><text x="180" y="433">7</text>
+    <line x1="92" y1="481" x2="112" y2="446" stroke="#1F6B3A" stroke-width="1.2"/>
+    <circle cx="118" cy="434" r="12" fill="#1F6B3A"/><text x="118" y="439">8</text>
+    <line x1="40" y1="494" x2="28" y2="526" stroke="#1F6B3A" stroke-width="1.2"/>
+    <circle cx="26" cy="538" r="12" fill="#1F6B3A"/><text x="26" y="543">9</text>
+    <line x1="938" y1="90" x2="914" y2="66" stroke="#1F6B3A" stroke-width="1.2"/>
+    <circle cx="904" cy="56" r="12" fill="#C2410C"/><text x="904" y="61">10</text>
+    <line x1="994" y1="202" x2="984" y2="232" stroke="#1F6B3A" stroke-width="1.2"/>
+    <circle cx="980" cy="244" r="12" fill="#1F6B3A"/><text x="980" y="249">11</text>
+    <line x1="210" y1="500" x2="236" y2="526" stroke="#1F6B3A" stroke-width="1.2"/>
+    <circle cx="246" cy="536" r="12" fill="#1F6B3A"/><text x="246" y="541">12</text>
+  </g>
+
+  <!-- leyenda -->
+  <g font-size="14" fill="#1E2A1F">
+    <text x="30" y="608"><tspan font-weight="700">1</tspan>  Winche eléctrico 220 V con freno, al costado del anclaje alto</text>
+    <text x="30" y="634"><tspan font-weight="700">2</tspan>  Anclaje alto: árbol, muerto enterrado o base fija</text>
+    <text x="30" y="660"><tspan font-weight="700">3</tspan>  Cable portante 5/8" (6x19 alma de acero)</text>
+    <text x="30" y="686"><tspan font-weight="700">4</tspan>  Carro de garruchas (dos poleas sobre el cable)</text>
+    <text x="30" y="712"><tspan font-weight="700">5</tspan>  Cable tractor 5/16" del carro al tambor del winche</text>
+    <text x="30" y="738"><tspan font-weight="700">6</tspan>  Carga: barril, panela, caña, sacos (hasta 300 kg)</text>
+    <text x="540" y="608"><tspan font-weight="700">7</tspan>  Tope del carro, a 3–5 m del anclaje</text>
+    <text x="540" y="634"><tspan font-weight="700">8</tspan>  Tensor: tecle de palanca 3 t y dinamómetro</text>
+    <text x="540" y="660"><tspan font-weight="700">9</tspan>  Anclaje bajo</text>
+    <text x="540" y="686"><tspan font-weight="700">10</tspan>  Tablero 220 V: breaker, diferencial, paro de emergencia</text>
+    <text x="540" y="712"><tspan font-weight="700">11</tspan>  Amarre trasero del winche (estacas o árbol)</text>
+    <text x="540" y="738"><tspan font-weight="700">12</tspan>  Plataforma de carga y descarga</text>
+  </g>
+</svg>
