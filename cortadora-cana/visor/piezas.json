@@ -1,0 +1,622 @@
+{
+ "piezas": [
+  {
+   "codigo": "P01",
+   "nombre": "Contracuchilla-gancho",
+   "material": "Acero SK5 / 65Mn templado 52-55 HRC",
+   "cantidad": 1,
+   "grupo": "Cabezal",
+   "masa_g": 376,
+   "plano": true,
+   "explosion": [
+    0,
+    0,
+    -60
+   ],
+   "color": [
+    0.42,
+    0.45,
+    0.49
+   ]
+  },
+  {
+   "codigo": "P02",
+   "nombre": "Cuchilla móvil",
+   "material": "Acero D2 o SK5 templado 56-58 HRC",
+   "cantidad": 1,
+   "grupo": "Cabezal",
+   "masa_g": 195,
+   "plano": true,
+   "explosion": [
+    0,
+    0,
+    70
+   ],
+   "color": [
+    0.74,
+    0.77,
+    0.8
+   ]
+  },
+  {
+   "codigo": "P03",
+   "nombre": "Uña de retención",
+   "material": "Acero inoxidable AISI 304, 3 mm",
+   "cantidad": 1,
+   "grupo": "Cabezal",
+   "masa_g": 68,
+   "plano": true,
+   "explosion": [
+    60,
+    -40,
+    40
+   ],
+   "color": [
+    0.8,
+    0.81,
+    0.83
+   ]
+  },
+  {
+   "codigo": "P04",
+   "nombre": "Torre del cabezal",
+   "material": "Aluminio 6061-T6 mecanizado, anodizado",
+   "cantidad": 1,
+   "grupo": "Cabezal",
+   "masa_g": 536,
+   "plano": true,
+   "explosion": [
+    -40,
+    70,
+    60
+   ],
+   "color": [
+    0.2,
+    0.36,
+    0.62
+   ]
+  },
+  {
+   "codigo": "P05",
+   "nombre": "Placa base (chasis)",
+   "material": "Aluminio 7075-T6, 10 mm, anodizado",
+   "cantidad": 1,
+   "grupo": "Cabezal",
+   "masa_g": 373,
+   "plano": true,
+   "explosion": [
+    0,
+    0,
+    -130
+   ],
+   "color": [
+    0.2,
+    0.36,
+    0.62
+   ]
+  },
+  {
+   "codigo": "P06",
+   "nombre": "Collar giratorio indexado",
+   "material": "Aluminio 6061-T6, anodizado",
+   "cantidad": 1,
+   "grupo": "Pértiga",
+   "masa_g": 97,
+   "plano": true,
+   "explosion": [
+    -114.9,
+    0.0,
+    96.4
+   ],
+   "color": [
+    0.7,
+    0.72,
+    0.75
+   ]
+  },
+  {
+   "codigo": "P07",
+   "nombre": "Patín de altura",
+   "material": "Suela UHMW-PE 6 mm + alas aluminio 5052 de 3 mm",
+   "cantidad": 1,
+   "grupo": "Cabezal",
+   "masa_g": 216,
+   "plano": true,
+   "explosion": [
+    0,
+    0,
+    -210
+   ],
+   "color": [
+    0.3,
+    0.31,
+    0.33
+   ]
+  },
+  {
+   "codigo": "P08",
+   "nombre": "Codo del cabezal",
+   "material": "Tubo aluminio 6061-T6 Ø32 x 3",
+   "cantidad": 1,
+   "grupo": "Cabezal",
+   "masa_g": 81,
+   "plano": true,
+   "explosion": [
+    -68.9,
+    0.0,
+    57.9
+   ],
+   "color": [
+    0.7,
+    0.72,
+    0.75
+   ]
+  },
+  {
+   "codigo": "P09",
+   "nombre": "Biela",
+   "material": "Acero SAE 1045, 8 mm",
+   "cantidad": 1,
+   "grupo": "Cabezal",
+   "masa_g": 73,
+   "plano": true,
+   "explosion": [
+    0,
+    0,
+    120
+   ],
+   "color": [
+    0.42,
+    0.45,
+    0.49
+   ]
+  },
+  {
+   "codigo": "P10",
+   "nombre": "Gancho trasero de arrastre",
+   "material": "Acero SAE 1045, 6 mm",
+   "cantidad": 1,
+   "grupo": "Cabezal",
+   "masa_g": 122,
+   "plano": true,
+   "explosion": [
+    -80,
+    60,
+    0
+   ],
+   "color": [
+    0.42,
+    0.45,
+    0.49
+   ]
+  },
+  {
+   "codigo": "P11",
+   "nombre": "Mástil de la guía",
+   "material": "Tubo de carbono Ø16 x 1.5",
+   "cantidad": 1,
+   "grupo": "Guía superior",
+   "masa_g": 58,
+   "plano": true,
+   "explosion": [
+    0,
+    -90,
+    0
+   ],
+   "color": [
+    0.1,
+    0.1,
+    0.11
+   ]
+  },
+  {
+   "codigo": "P11B",
+   "nombre": "Terminales del mástil",
+   "material": "Aluminio 6061-T6",
+   "cantidad": 2,
+   "grupo": "Guía superior",
+   "masa_g": 64,
+   "plano": true,
+   "explosion": [
+    0,
+    -90,
+    0
+   ],
+   "color": [
+    0.7,
+    0.72,
+    0.75
+   ]
+  },
+  {
+   "codigo": "P12",
+   "nombre": "Bisagra del mástil",
+   "material": "Aluminio 6061-T6",
+   "cantidad": 1,
+   "grupo": "Guía superior",
+   "masa_g": 47,
+   "plano": true,
+   "explosion": [
+    0,
+    -50,
+    -40
+   ],
+   "color": [
+    0.2,
+    0.36,
+    0.62
+   ]
+  },
+  {
+   "codigo": "P13",
+   "nombre": "Horquilla guía",
+   "material": "Aluminio 6061-T6, 6 mm, con forro UHMW",
+   "cantidad": 1,
+   "grupo": "Guía superior",
+   "masa_g": 51,
+   "plano": true,
+   "explosion": [
+    0,
+    -90,
+    60
+   ],
+   "color": [
+    0.2,
+    0.36,
+    0.62
+   ]
+  },
+  {
+   "codigo": "P14",
+   "nombre": "Compuerta de resorte",
+   "material": "Acero inoxidable AISI 301 templado, 3 mm",
+   "cantidad": 1,
+   "grupo": "Guía superior",
+   "masa_g": 17,
+   "plano": true,
+   "explosion": [
+    0,
+    -90,
+    110
+   ],
+   "color": [
+    0.8,
+    0.81,
+    0.83
+   ]
+  },
+  {
+   "codigo": "P15",
+   "nombre": "Palanca angular (balancín)",
+   "material": "Acero SAE 4140 bonificado, 10 mm",
+   "cantidad": 1,
+   "grupo": "Cabezal",
+   "masa_g": 86,
+   "plano": true,
+   "explosion": [
+    -40,
+    140,
+    60
+   ],
+   "color": [
+    0.42,
+    0.45,
+    0.49
+   ]
+  },
+  {
+   "codigo": "P16",
+   "nombre": "Tramo inferior de pértiga",
+   "material": "Tubo de carbono Ø32 x 2 (enrollado)",
+   "cantidad": 1,
+   "grupo": "Pértiga",
+   "masa_g": 131,
+   "plano": true,
+   "explosion": [
+    -176.2,
+    0.0,
+    147.8
+   ],
+   "color": [
+    0.1,
+    0.1,
+    0.11
+   ]
+  },
+  {
+   "codigo": "P17",
+   "nombre": "Funda protectora",
+   "material": "Poliuretano 2.5 mm",
+   "cantidad": 1,
+   "grupo": "Pértiga",
+   "masa_g": 72,
+   "plano": true,
+   "explosion": [
+    -131.2,
+    0.0,
+    201.5
+   ],
+   "color": [
+    0.98,
+    0.7,
+    0.1
+   ]
+  },
+  {
+   "codigo": "P18",
+   "nombre": "Acople rápido con seguro",
+   "material": "Aluminio 6061-T6 + leva de acero",
+   "cantidad": 1,
+   "grupo": "Pértiga",
+   "masa_g": 139,
+   "plano": true,
+   "explosion": [
+    -252.8,
+    0.0,
+    212.1
+   ],
+   "color": [
+    0.7,
+    0.72,
+    0.75
+   ]
+  },
+  {
+   "codigo": "P19",
+   "nombre": "Tramo superior de pértiga",
+   "material": "Tubo de carbono Ø32 x 2 (enrollado)",
+   "cantidad": 1,
+   "grupo": "Pértiga",
+   "masa_g": 96,
+   "plano": true,
+   "explosion": [
+    -329.4,
+    0.0,
+    276.4
+   ],
+   "color": [
+    0.1,
+    0.1,
+    0.11
+   ]
+  },
+  {
+   "codigo": "P20",
+   "nombre": "Empuñadura delantera con mandos",
+   "material": "Caucho EPDM + caja PA6-GF30",
+   "cantidad": 1,
+   "grupo": "Pértiga",
+   "masa_g": 120,
+   "plano": true,
+   "explosion": [
+    -271.5,
+    0.0,
+    345.3
+   ],
+   "color": [
+    0.16,
+    0.16,
+    0.17
+   ]
+  },
+  {
+   "codigo": "P21",
+   "nombre": "Anilla para arnés",
+   "material": "Acero inoxidable + PA6",
+   "cantidad": 1,
+   "grupo": "Pértiga",
+   "masa_g": 53,
+   "plano": true,
+   "explosion": [
+    -252.3,
+    0.0,
+    368.3
+   ],
+   "color": [
+    0.8,
+    0.81,
+    0.83
+   ]
+  },
+  {
+   "codigo": "P22",
+   "nombre": "Varilla de tracción",
+   "material": "Tubo aluminio 7075-T6 Ø10 x 1.5, en 2 tramos",
+   "cantidad": 1,
+   "grupo": "Accionamiento",
+   "masa_g": 116,
+   "plano": true,
+   "explosion": [
+    -96.4,
+    -0.0,
+    -114.9
+   ],
+   "color": [
+    0.74,
+    0.77,
+    0.8
+   ]
+  },
+  {
+   "codigo": "P23",
+   "nombre": "Carcasa de accionamiento",
+   "material": "PA6-GF30 inyectado (prototipo: impresión 3D PA-CF)",
+   "cantidad": 1,
+   "grupo": "Accionamiento",
+   "masa_g": 195,
+   "plano": true,
+   "explosion": [
+    -429.0,
+    0.0,
+    360.0
+   ],
+   "color": [
+    0.95,
+    0.45,
+    0.1
+   ]
+  },
+  {
+   "codigo": "P24",
+   "nombre": "Empuñadura trasera tipo pistola",
+   "material": "PA6-GF30 con sobremoldeo TPE",
+   "cantidad": 1,
+   "grupo": "Accionamiento",
+   "masa_g": 81,
+   "plano": true,
+   "explosion": [
+    -506.1,
+    0.0,
+    268.0
+   ],
+   "color": [
+    0.95,
+    0.45,
+    0.1
+   ]
+  },
+  {
+   "codigo": "P25",
+   "nombre": "Gatillo proporcional",
+   "material": "PA6-GF30",
+   "cantidad": 1,
+   "grupo": "Accionamiento",
+   "masa_g": 8,
+   "plano": true,
+   "explosion": [
+    -506.1,
+    0.0,
+    268.0
+   ],
+   "color": [
+    0.16,
+    0.16,
+    0.17
+   ]
+  },
+  {
+   "codigo": "C01",
+   "nombre": "Motor sin escobillas 400-500 W, 36 V",
+   "material": "Comercial",
+   "cantidad": 1,
+   "grupo": "Accionamiento",
+   "masa_g": 442,
+   "plano": false,
+   "explosion": [
+    -345.4,
+    0.0,
+    459.5
+   ],
+   "color": [
+    0.55,
+    0.55,
+    0.58
+   ]
+  },
+  {
+   "codigo": "C02",
+   "nombre": "Reductor planetario 15:1",
+   "material": "Comercial",
+   "cantidad": 1,
+   "grupo": "Accionamiento",
+   "masa_g": 342,
+   "plano": false,
+   "explosion": [
+    -345.4,
+    0.0,
+    459.5
+   ],
+   "color": [
+    0.45,
+    0.46,
+    0.5
+   ]
+  },
+  {
+   "codigo": "C03",
+   "nombre": "Husillo de bolas SFU1605",
+   "material": "Comercial",
+   "cantidad": 1,
+   "grupo": "Accionamiento",
+   "masa_g": 126,
+   "plano": false,
+   "explosion": [
+    -345.4,
+    0.0,
+    459.5
+   ],
+   "color": [
+    0.74,
+    0.77,
+    0.8
+   ]
+  },
+  {
+   "codigo": "C04",
+   "nombre": "Tuerca del husillo + horquilla de tiro",
+   "material": "Comercial",
+   "cantidad": 1,
+   "grupo": "Accionamiento",
+   "masa_g": 134,
+   "plano": false,
+   "explosion": [
+    -345.4,
+    0.0,
+    459.5
+   ],
+   "color": [
+    0.35,
+    0.36,
+    0.4
+   ]
+  },
+  {
+   "codigo": "C05",
+   "nombre": "Batería Li-ion 36 V 4 Ah al cinturón (IP65) + cable espiral",
+   "material": "Comercial",
+   "cantidad": 1,
+   "grupo": "Accionamiento",
+   "masa_g": 2092,
+   "plano": false,
+   "explosion": [
+    0,
+    0,
+    0
+   ],
+   "color": [
+    0.12,
+    0.12,
+    0.13
+   ]
+  }
+ ],
+ "moviles": [
+  "P02",
+  "P09",
+  "P15",
+  "P22"
+ ],
+ "cuadros": [
+  0,
+  10,
+  20,
+  31,
+  41,
+  52,
+  62
+ ],
+ "masa_modelo_g": 4514,
+ "tornilleria_cables_g": 250,
+ "pivote_mundo": [
+  -62.0,
+  -12.0,
+  22.0
+ ],
+ "altura_horquilla_mm": 622.0,
+ "empunadura_trasera_mundo": [
+  -1079.8,
+  33.0,
+  881.7
+ ],
+ "angulo_pertiga": 40.0
+}
