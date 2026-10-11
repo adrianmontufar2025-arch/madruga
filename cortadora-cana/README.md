@@ -1,5 +1,7 @@
 # Cortadora selectiva de caña en pértiga (Rev. A, conceptual)
 
+> **Versión más reciente:** para matas cerradas con retoños y cañas de hasta 6 cm, ver [`../tijera-antebrazo/`](../tijera-antebrazo/): tijera de una mano con apoyo de antebrazo y corte al ras.
+
 Esta carpeta trae el diseño conceptual de una herramienta para cortar caña tallo por tallo en ladera, pensada para la zona de Ramón Campaña y El Corazón (Pangua, Cotopaxi). Funciona como una tijera eléctrica montada en una pértiga de carbono. El cabezal **corta y sostiene**: después del corte, la caña de 3,5 m queda de pie en el gancho y en la guía superior, y su peso pasa al suelo a través del patín. El operario decide hacia dónde bajarla.
 
 > Es un diseño para fabricar y probar un prototipo, no para producción en serie. Antes de cortar acero hay que medir en campo la fuerza de corte, el diámetro y el peso de los tallos (ver "Siguiente paso").

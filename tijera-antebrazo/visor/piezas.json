@@ -1,0 +1,469 @@
+{
+ "piezas": [
+  {
+   "codigo": "P01",
+   "nombre": "Contracuchilla-gancho",
+   "material": "Acero SK5 / 65Mn templado 52-55 HRC, e = 8",
+   "cantidad": 1,
+   "grupo": "Cabezal",
+   "masa_g": 451,
+   "plano": true,
+   "explosion": [
+    0,
+    0,
+    -50
+   ],
+   "color": [
+    0.42,
+    0.45,
+    0.49
+   ]
+  },
+  {
+   "codigo": "P02",
+   "nombre": "Cuchilla móvil",
+   "material": "Acero D2 o SK5 templado 56-58 HRC, e = 5",
+   "cantidad": 1,
+   "grupo": "Cabezal",
+   "masa_g": 256,
+   "plano": true,
+   "explosion": [
+    0,
+    0,
+    60
+   ],
+   "color": [
+    0.74,
+    0.77,
+    0.8
+   ]
+  },
+  {
+   "codigo": "P03",
+   "nombre": "Placa base",
+   "material": "Aluminio 7075-T6, e = 8, anodizado",
+   "cantidad": 1,
+   "grupo": "Cabezal",
+   "masa_g": 296,
+   "plano": true,
+   "explosion": [
+    -60,
+    0,
+    -50
+   ],
+   "color": [
+    0.2,
+    0.36,
+    0.62
+   ]
+  },
+  {
+   "codigo": "P04",
+   "nombre": "Patín rasante",
+   "material": "UHMW-PE, e = 3",
+   "cantidad": 1,
+   "grupo": "Cabezal",
+   "masa_g": 60,
+   "plano": true,
+   "explosion": [
+    0,
+    0,
+    -120
+   ],
+   "color": [
+    0.92,
+    0.92,
+    0.88
+   ]
+  },
+  {
+   "codigo": "P05",
+   "nombre": "Torre del cabezal",
+   "material": "Aluminio 6061-T6 mecanizado, anodizado",
+   "cantidad": 1,
+   "grupo": "Cabezal",
+   "masa_g": 569,
+   "plano": true,
+   "explosion": [
+    -40,
+    70,
+    70
+   ],
+   "color": [
+    0.2,
+    0.36,
+    0.62
+   ]
+  },
+  {
+   "codigo": "P06",
+   "nombre": "Palanca angular (balancín)",
+   "material": "Acero SAE 4140 bonificado, e = 8",
+   "cantidad": 1,
+   "grupo": "Cabezal",
+   "masa_g": 96,
+   "plano": true,
+   "explosion": [
+    -40,
+    150,
+    70
+   ],
+   "color": [
+    0.42,
+    0.45,
+    0.49
+   ]
+  },
+  {
+   "codigo": "P07",
+   "nombre": "Biela",
+   "material": "Acero SAE 1045, pletina 16 x 6",
+   "cantidad": 1,
+   "grupo": "Cabezal",
+   "masa_g": 80,
+   "plano": true,
+   "explosion": [
+    0,
+    40,
+    110
+   ],
+   "color": [
+    0.42,
+    0.45,
+    0.49
+   ]
+  },
+  {
+   "codigo": "P08",
+   "nombre": "Tubo",
+   "material": "Tubo de carbono Ø30 x 2 (prototipo: aluminio 6061-T6)",
+   "cantidad": 1,
+   "grupo": "Brazo",
+   "masa_g": 134,
+   "plano": true,
+   "explosion": [
+    -77.8,
+    0.0,
+    77.8
+   ],
+   "color": [
+    0.1,
+    0.1,
+    0.11
+   ]
+  },
+  {
+   "codigo": "P09",
+   "nombre": "Varilla de tracción",
+   "material": "Tubo aluminio 7075-T6 Ø10 x 1,5",
+   "cantidad": 1,
+   "grupo": "Brazo",
+   "masa_g": 62,
+   "plano": true,
+   "explosion": [
+    -84.9,
+    0.0,
+    -84.9
+   ],
+   "color": [
+    0.74,
+    0.77,
+    0.8
+   ]
+  },
+  {
+   "codigo": "P10",
+   "nombre": "Carcasa de accionamiento",
+   "material": "PA6-GF30 (prototipo: impresión 3D PA-CF)",
+   "cantidad": 1,
+   "grupo": "Brazo",
+   "masa_g": 153,
+   "plano": true,
+   "explosion": [
+    -183.8,
+    0.0,
+    183.8
+   ],
+   "color": [
+    0.95,
+    0.45,
+    0.1
+   ]
+  },
+  {
+   "codigo": "P11",
+   "nombre": "Empuñadura con palanca de seguridad",
+   "material": "PA6-GF30 con sobremoldeo TPE",
+   "cantidad": 1,
+   "grupo": "Brazo",
+   "masa_g": 106,
+   "plano": true,
+   "explosion": [
+    -261.6,
+    0.0,
+    106.1
+   ],
+   "color": [
+    0.95,
+    0.45,
+    0.1
+   ]
+  },
+  {
+   "codigo": "P12",
+   "nombre": "Gatillo proporcional",
+   "material": "PA6-GF30",
+   "cantidad": 1,
+   "grupo": "Brazo",
+   "masa_g": 9,
+   "plano": true,
+   "explosion": [
+    -261.6,
+    0.0,
+    106.1
+   ],
+   "color": [
+    0.16,
+    0.16,
+    0.17
+   ]
+  },
+  {
+   "codigo": "P13",
+   "nombre": "Brazo del apoyo de antebrazo",
+   "material": "Aluminio 6061-T6, chapa 6 mm",
+   "cantidad": 1,
+   "grupo": "Apoyo de antebrazo",
+   "masa_g": 111,
+   "plano": true,
+   "explosion": [
+    -275.8,
+    0.0,
+    190.9
+   ],
+   "color": [
+    0.7,
+    0.72,
+    0.75
+   ]
+  },
+  {
+   "codigo": "P14",
+   "nombre": "Cuna de antebrazo",
+   "material": "PA6-GF30 (o aluminio 5052 plegado)",
+   "cantidad": 1,
+   "grupo": "Apoyo de antebrazo",
+   "masa_g": 75,
+   "plano": true,
+   "explosion": [
+    -367.7,
+    0.0,
+    198.0
+   ],
+   "color": [
+    0.95,
+    0.45,
+    0.1
+   ]
+  },
+  {
+   "codigo": "P15",
+   "nombre": "Almohadilla y correa",
+   "material": "EVA 5 mm + correa de velcro con hebilla de liberación",
+   "cantidad": 1,
+   "grupo": "Apoyo de antebrazo",
+   "masa_g": 11,
+   "plano": true,
+   "explosion": [
+    -311.1,
+    0.0,
+    254.6
+   ],
+   "color": [
+    0.22,
+    0.24,
+    0.26
+   ]
+  },
+  {
+   "codigo": "P16",
+   "nombre": "Anilla para correa de hombro",
+   "material": "Abrazadera PA6 + anilla inoxidable",
+   "cantidad": 1,
+   "grupo": "Brazo",
+   "masa_g": 24,
+   "plano": true,
+   "explosion": [
+    -14.1,
+    0.0,
+    141.4
+   ],
+   "color": [
+    0.8,
+    0.81,
+    0.83
+   ]
+  },
+  {
+   "codigo": "C01",
+   "nombre": "Motor sin escobillas 300-400 W, 36 V",
+   "material": "Comercial",
+   "cantidad": 1,
+   "grupo": "Accionamiento",
+   "masa_g": 353,
+   "plano": false,
+   "explosion": [
+    -106.1,
+    0.0,
+    261.6
+   ],
+   "color": [
+    0.55,
+    0.55,
+    0.58
+   ]
+  },
+  {
+   "codigo": "C02",
+   "nombre": "Reductor planetario 15:1",
+   "material": "Comercial",
+   "cantidad": 1,
+   "grupo": "Accionamiento",
+   "masa_g": 254,
+   "plano": false,
+   "explosion": [
+    -106.1,
+    0.0,
+    261.6
+   ],
+   "color": [
+    0.45,
+    0.46,
+    0.5
+   ]
+  },
+  {
+   "codigo": "C03",
+   "nombre": "Husillo de bolas SFU1605",
+   "material": "Comercial",
+   "cantidad": 1,
+   "grupo": "Accionamiento",
+   "masa_g": 126,
+   "plano": false,
+   "explosion": [
+    -106.1,
+    0.0,
+    261.6
+   ],
+   "color": [
+    0.74,
+    0.77,
+    0.8
+   ]
+  },
+  {
+   "codigo": "C04",
+   "nombre": "Tuerca del husillo + horquilla de tiro",
+   "material": "Comercial",
+   "cantidad": 1,
+   "grupo": "Accionamiento",
+   "masa_g": 134,
+   "plano": false,
+   "explosion": [
+    -106.1,
+    0.0,
+    261.6
+   ],
+   "color": [
+    0.35,
+    0.36,
+    0.4
+   ]
+  },
+  {
+   "codigo": "C06",
+   "nombre": "Perno pivote M12 con hombro + arandelas Belleville",
+   "material": "Comercial (ISO 7379)",
+   "cantidad": 1,
+   "grupo": "Cabezal",
+   "masa_g": 52,
+   "plano": false,
+   "explosion": [
+    0,
+    0,
+    150
+   ],
+   "color": [
+    0.6,
+    0.6,
+    0.62
+   ]
+  },
+  {
+   "codigo": "C05",
+   "nombre": "Batería Li-ion 36 V 2,5-4 Ah al cinturón + cable espiral",
+   "material": "Comercial",
+   "cantidad": 1,
+   "grupo": "Accionamiento",
+   "masa_g": 1459,
+   "plano": false,
+   "explosion": [
+    0,
+    0,
+    0
+   ],
+   "color": [
+    0.12,
+    0.12,
+    0.13
+   ]
+  }
+ ],
+ "moviles": [
+  "P02",
+  "P06",
+  "P07",
+  "P09"
+ ],
+ "cuadros": [
+  0,
+  10,
+  20,
+  31,
+  41,
+  52,
+  62
+ ],
+ "tornilleria_cables_g": 150,
+ "brazo": {
+  "muneca": [
+   -664.4390356105649,
+   36.0,
+   471.5655839020935
+  ],
+  "codo": [
+   -858.8934004368655,
+   36.0,
+   658.9488809165285
+  ],
+  "mano": [
+   -639.6902982690358,
+   36.0,
+   432.6747109368333
+  ],
+  "radio": 40.0
+ },
+ "altura_corte_mm": 11.0,
+ "capacidad_mm": 65.0,
+ "angulo_eje": 45.0,
+ "masa_total_g": 3562,
+ "cg_mundo": [
+  -369,
+  266
+ ],
+ "momento_muneca_Nm": 9.5,
+ "fuerza_cuna_kgf": 5.6,
+ "carga_mano_apoyado_g": 1585,
+ "altura_mano_mm": 433,
+ "distancia_mano_tallo_mm": 640
+}
