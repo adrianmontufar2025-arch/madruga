@@ -7,11 +7,16 @@ Diseño de un sistema para mover caña, panela, barriles de alcohol y cualquier 
 | Archivo | Para qué sirve |
 | --- | --- |
 | `README.md` | Este documento: diseño, cálculos, materiales, instalación, operación y mantenimiento. |
+| [`planos-y-materiales.pdf`](planos-y-materiales.pdf) | **Paquete para el ingeniero**: portada, criterios de diseño, láminas L2 a L8, lista de materiales y pruebas de entrega para firmar. 14 hojas A4 horizontales para imprimir. |
+| [`lista-de-materiales.xlsx`](lista-de-materiales.xlsx) | Lista de materiales para cotizar y comprar: 78 ítems, con columnas para proveedor, precio y si ya se compró. Suma sola los totales por grupo. |
 | [`calculadora.html`](calculadora.html) | Calculadora para cada sitio: tensión del cable, factor de seguridad, anclajes, tensado, motor y cable eléctrico. Ábrela en el navegador del celular; funciona sin internet. |
 | [`img/esquema-general.svg`](img/esquema-general.svg) | Esquema del cable aéreo. |
 | [`img/carro-garruchas.svg`](img/carro-garruchas.svg) | Plano del carro de garruchas para el taller. |
 | [`img/anclajes.svg`](img/anclajes.svg) | Los cuatro anclajes portátiles. |
 | [`img/arrastre-e-izaje.svg`](img/arrastre-e-izaje.svg) | Arrastre por el suelo e izaje con trípode. |
+| [`img/trineo-winche.svg`](img/trineo-winche.svg) | Plano del trineo del winche para el taller. |
+| [`img/detalles-amarre.svg`](img/detalles-amarre.svg) | Ojo con grapas, tensado en el anclaje bajo y base fija de hormigón. |
+| [`img/diagrama-electrico.svg`](img/diagrama-electrico.svg) | Diagrama eléctrico unifilar del tablero y el winche. |
 
 > **Antes de construir.** Este es un diseño preliminar. Un ingeniero mecánico o civil debe revisarlo y aprobar cada línea en su sitio. Cada anclaje debe pasar la prueba de carga antes del primer viaje. **El sistema es solo para carga. Nunca transporta personas.**
 
@@ -89,6 +94,10 @@ Cálculo: en la capa exterior (radio 0,16 m) el par para 500 kg es 500 × 9,81 �
 - Cuatro orejas de amarre de placa de 12 mm con agujero de 22 mm.
 - Techo de zinc para el motor y el tablero.
 
+El plano para el taller está en [`img/trineo-winche.svg`](img/trineo-winche.svg).
+
+![Trineo del winche](img/trineo-winche.svg)
+
 El trineo se amarra **hacia atrás**, en línea con el tiro, a un árbol o a dos grupos de estacas 3-2-1. Deja al menos 6 m rectos entre el tambor y la primera polea, con el cable llegando al centro del tambor, para que el cable se enrolle parejo.
 
 ### 3.2 Cable portante
@@ -127,6 +136,8 @@ Para tu sitio, usa la [calculadora](calculadora.html). Lo más importante que te
 | --- | --- | --- | --- |
 | 5/8" (portante) | 3, mejor 4 | 30 cm | 130 N·m (95 lb·pie) |
 | 5/16" (tractor) | 2, mejor 3 | 14 cm | 40 N·m (30 lb·pie) |
+
+![Detalles de amarre, tensado y base fija](img/detalles-amarre.svg)
 
 **Tensado.** En el anclaje bajo, entre el cable y el anclaje, van el tecle de palanca de 3 t, el dinamómetro y un agarre de cable para 5/8". Tensa hasta la lectura de la tabla. Luego cierra el ojo con guardacabo y grapas, y retira el tecle.
 
@@ -181,6 +192,8 @@ La carga de trabajo es la mitad de la resistencia de rotura estimada. El valor d
 
 Lo debe instalar un electricista calificado.
 
+![Diagrama eléctrico unifilar](img/diagrama-electrico.svg)
+
 - Caja de intemperie IP65 con breaker bipolar, **interruptor diferencial de 30 mA**, paro de emergencia de enclavamiento y luz piloto.
 - Tomacorriente industrial de 220 V para conectar el winche.
 - **Puesta a tierra**: varilla copperweld de 5/8" × 1,8 m, unida a la carcasa del winche y al trineo.
@@ -200,6 +213,8 @@ Lo debe instalar un electricista calificado.
 Para otros motores y distancias, usa la sección 3 de la calculadora. Si no hay red en el sitio, un generador de 220 V de **7 kVA o más** arranca el motor de 2,2 kW en directo; con variador de frecuencia basta uno de 4,5 kVA.
 
 ## 4. Lista de materiales del kit (línea de hasta 200 m a lo largo del cable)
+
+Esta es la lista resumida. La lista completa, con 78 ítems, especificación mínima, lámina y nota de compra, está en [`planos-y-materiales.pdf`](planos-y-materiales.pdf) (lámina L9) y en [`lista-de-materiales.xlsx`](lista-de-materiales.xlsx) para cotizar.
 
 | # | Material | Cantidad |
 | --- | --- | --- |

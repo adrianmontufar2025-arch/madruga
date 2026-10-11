@@ -1,0 +1,133 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 780" font-family="system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" role="img" aria-labelledby="titulo desc">
+  <title id="titulo">Diagrama eléctrico unifilar del winche</title>
+  <desc id="desc">Circuito de fuerza: red de 220 voltios, breaker bipolar de 25 amperios, interruptor diferencial de 30 miliamperios, contactor, tomacorriente industrial y cable hasta el winche, con conductor de tierra a una varilla. Circuito de mando: fusible, paro de emergencia, pulsador de marcha con contacto de retención y bobina del contactor con luz piloto.</desc>
+  <rect width="1000" height="780" fill="#FFFFFF"/>
+  <text x="30" y="40" font-size="22" font-weight="700" fill="#1E2A1F">Diagrama eléctrico unifilar</text>
+  <text x="30" y="64" font-size="14" fill="#55624F">220 V monofásico, 60 Hz. Valores para un winche de 2,2 kW con arranque directo. Lo instala un electricista calificado.</text>
+
+  <text x="30" y="108" font-size="16" font-weight="700" fill="#1E2A1F">Fuerza</text>
+  <g stroke="#1E2A1F" stroke-width="2.5" fill="none">
+    <!-- línea de fuerza -->
+    <line x1="140" y1="200" x2="205" y2="200"/>
+    <line x1="255" y1="200" x2="330" y2="200"/>
+    <line x1="395" y1="200" x2="470" y2="200"/>
+    <line x1="520" y1="200" x2="600" y2="200"/>
+    <line x1="636" y1="200" x2="840" y2="200"/>
+    <!-- marcas de 2 conductores -->
+    <line x1="160" y1="208" x2="170" y2="192"/><line x1="166" y1="208" x2="176" y2="192"/>
+    <line x1="720" y1="208" x2="730" y2="192"/><line x1="726" y1="208" x2="736" y2="192"/>
+    <!-- Q1 breaker -->
+    <line x1="205" y1="200" x2="250" y2="182"/>
+    <path d="M249,194 l12,12 M261,194 l-12,12"/>
+    <!-- ID diferencial -->
+    <line x1="345" y1="200" x2="388" y2="182"/>
+    <line x1="388" y1="200" x2="395" y2="200"/>
+    <ellipse cx="322" cy="200" rx="9" ry="16"/>
+    <!-- KM1 contactor -->
+    <line x1="470" y1="200" x2="513" y2="182"/>
+    <path d="M512,200 a8,8 0 0 1 8,-8"/>
+    <!-- X1 tomacorriente -->
+    <path d="M600,186 L612,186 L612,214 L600,214"/>
+    <path d="M636,184 a16,16 0 0 0 0,32"/>
+  </g>
+  <rect x="40" y="170" width="100" height="60" rx="4" fill="#EEF0EA" stroke="#1E2A1F" stroke-width="2"/>
+  <text x="90" y="196" font-size="13" font-weight="700" text-anchor="middle" fill="#1E2A1F">Red 220 V</text>
+  <text x="90" y="214" font-size="12" text-anchor="middle" fill="#55624F">medidor</text>
+  <rect x="840" y="150" width="130" height="150" rx="6" fill="#EEF0EA" stroke="#1E2A1F" stroke-width="2"/>
+  <circle cx="880" cy="200" r="22" fill="#FFFFFF" stroke="#1E2A1F" stroke-width="2.5"/>
+  <text x="880" y="206" font-size="18" font-weight="700" text-anchor="middle" fill="#1E2A1F">M</text>
+  <rect x="912" y="186" width="44" height="28" rx="3" fill="#FFFFFF" stroke="#1E2A1F" stroke-width="2"/>
+  <text x="934" y="205" font-size="11" font-weight="700" text-anchor="middle" fill="#1E2A1F">freno</text>
+  <text x="905" y="246" font-size="12" font-weight="700" text-anchor="middle" fill="#1E2A1F">Winche</text>
+  <g font-size="12" fill="#1E2A1F" text-anchor="middle">
+    <text x="230" y="240" font-weight="700">Q1</text>
+    <text x="230" y="256">Breaker bipolar</text>
+    <text x="230" y="271">25 A, curva C</text>
+    <text x="360" y="240" font-weight="700">ID</text>
+    <text x="360" y="256">Diferencial bipolar</text>
+    <text x="360" y="271">30 mA, 25 o 40 A</text>
+    <text x="495" y="240" font-weight="700">KM1</text>
+    <text x="495" y="256">Contactor 25 A AC-3</text>
+    <text x="495" y="271">bobina 220 V</text>
+    <text x="618" y="240" font-weight="700">X1</text>
+    <text x="618" y="256">Toma industrial</text>
+    <text x="618" y="271">2P+T 32 A IP67</text>
+    <text x="738" y="160" font-weight="700">Cable 3 × 8 AWG</text>
+    <text x="738" y="176">flexible, intemperie</text>
+    <text x="738" y="240">calibre según</text>
+    <text x="738" y="255">distancia (ver lista)</text>
+    <text x="905" y="268">botonera con paro</text>
+    <text x="905" y="284">y final de carrera</text>
+  </g>
+  <!-- tierra -->
+  <path d="M90,230 L90,330 L905,330 L905,300" fill="none" stroke="#1F7A3D" stroke-width="2.5" stroke-dasharray="10 5"/>
+  <text x="500" y="322" font-size="12" font-weight="700" text-anchor="middle" fill="#1F7A3D">PE · conductor de tierra (verde)</text>
+  <line x1="300" y1="330" x2="300" y2="372" stroke="#1F7A3D" stroke-width="2.5"/>
+  <g stroke="#1F7A3D" stroke-width="2.5"><line x1="282" y1="372" x2="318" y2="372"/><line x1="288" y1="380" x2="312" y2="380"/><line x1="294" y1="388" x2="306" y2="388"/></g>
+  <text x="330" y="372" font-size="12" fill="#1E2A1F"><tspan font-weight="700">Varilla copperweld 5/8" × 1,8 m.</tspan> Resistencia de 25 Ω o menos; si no, una segunda varilla a 1,8 m.</text>
+  <text x="330" y="388" font-size="12" fill="#1E2A1F">La tierra se une a la carcasa del winche y al trineo.</text>
+
+  <text x="30" y="440" font-size="16" font-weight="700" fill="#1E2A1F">Mando del contactor KM1</text>
+  <g stroke="#1E2A1F" stroke-width="2.5" fill="none">
+    <!-- rieles -->
+    <line x1="100" y1="470" x2="100" y2="620"/>
+    <line x1="900" y1="470" x2="900" y2="620"/>
+    <!-- peldaño 1 -->
+    <line x1="100" y1="500" x2="170" y2="500"/>
+    <rect x="170" y="490" width="40" height="20"/>
+    <line x1="210" y1="500" x2="290" y2="500"/>
+    <!-- S0 paro NC -->
+    <line x1="290" y1="500" x2="326" y2="510"/>
+    <line x1="290" y1="500" x2="290" y2="500"/>
+    <line x1="326" y1="500" x2="326" y2="514"/>
+    <line x1="326" y1="500" x2="420" y2="500"/>
+    <path d="M300,486 a10,6 0 0 1 20,0" fill="#B3261E" stroke="#B3261E"/>
+    <line x1="310" y1="486" x2="310" y2="506" stroke-dasharray="3 2"/>
+    <!-- S1 marcha NA con retención KM1 -->
+    <line x1="420" y1="500" x2="450" y2="500"/>
+    <line x1="450" y1="500" x2="486" y2="486"/>
+    <line x1="490" y1="500" x2="560" y2="500"/>
+    <path d="M460,474 l0,8 m-6,-8 l12,0" />
+    <line x1="420" y1="500" x2="420" y2="560"/>
+    <line x1="420" y1="560" x2="450" y2="560"/>
+    <line x1="450" y1="560" x2="486" y2="546"/>
+    <line x1="490" y1="560" x2="560" y2="560"/>
+    <line x1="560" y1="560" x2="560" y2="500"/>
+    <line x1="560" y1="500" x2="660" y2="500"/>
+    <!-- bobina KM1 -->
+    <rect x="660" y="488" width="44" height="24" fill="#EEF0EA"/>
+    <line x1="704" y1="500" x2="900" y2="500"/>
+    <!-- H1 luz piloto -->
+    <line x1="620" y1="500" x2="620" y2="600"/>
+    <line x1="620" y1="600" x2="668" y2="600"/>
+    <circle cx="682" cy="600" r="14" fill="#FFFFFF"/>
+    <path d="M672,590 l20,20 M692,590 l-20,20"/>
+    <line x1="696" y1="600" x2="900" y2="600"/>
+  </g>
+  <g fill="#1E2A1F"><circle cx="420" cy="500" r="4"/><circle cx="560" cy="500" r="4"/><circle cx="620" cy="500" r="4"/></g>
+  <g font-size="12" fill="#1E2A1F" text-anchor="middle">
+    <text x="100" y="462" font-weight="700">L1</text>
+    <text x="900" y="462" font-weight="700">L2</text>
+    <text x="190" y="532" font-weight="700">F2</text>
+    <text x="190" y="547">fusible 2 A</text>
+    <text x="310" y="532" font-weight="700">S0</text>
+    <text x="310" y="547">paro de emergencia</text>
+    <text x="310" y="562">con enclavamiento</text>
+    <text x="470" y="464" font-weight="700">S1</text>
+    <text x="520" y="474">marcha</text>
+    <text x="470" y="582" font-weight="700">KM1</text>
+    <text x="470" y="597">retención</text>
+    <text x="682" y="478" font-weight="700">KM1</text>
+    <text x="682" y="532">bobina</text>
+    <text x="682" y="632" font-weight="700">H1</text>
+    <text x="760" y="618">luz piloto</text>
+  </g>
+
+  <line x1="20" y1="664" x2="980" y2="664" stroke="#CFD3C4" stroke-width="1.5"/>
+  <g font-size="13" fill="#1E2A1F">
+    <text x="30" y="692"><tspan font-weight="700">Cable portante:</tspan> cada extremo a su propia varilla copperweld de 5/8" × 1,8 m con cable de cobre 8 AWG, por los rayos.</text>
+    <text x="30" y="714"><tspan font-weight="700">Control remoto para grúa (opcional):</tspan> su contacto de paro va en serie con S0.</text>
+    <text x="30" y="736"><tspan font-weight="700">Tablero:</tspan> caja IP65 bajo techo, a 10 m o más de los barriles de alcohol. Prueba el diferencial con su botón cada día.</text>
+    <text x="30" y="758"><tspan font-weight="700">Otros motores o distancias:</tspan> breaker y cable según la sección 3 de la calculadora.</text>
+  </g>
+</svg>

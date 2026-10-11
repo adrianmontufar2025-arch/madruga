@@ -1,0 +1,159 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 1080" font-family="system-ui, -apple-system, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif" role="img" aria-labelledby="titulo desc">
+  <title id="titulo">Trineo del winche: planta y vista lateral</title>
+  <desc id="desc">Base de tubo rectangular de 2000 por 900 milímetros con cuatro travesaños, placa base de 10 milímetros para atornillar el winche, cuatro orejas de amarre, guía de rodillos adelante, postes con techo de zinc y una brida trasera de dos estrobos que se une con un grillete al anclaje trasero.</desc>
+  <defs>
+    <marker id="cota" viewBox="0 0 10 10" refX="10" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+      <path d="M0,1 L10,5 L0,9 z" fill="#1E2A1F"/>
+    </marker>
+    <marker id="tiro" viewBox="0 0 10 10" refX="10" refY="5" markerWidth="8" markerHeight="8" orient="auto">
+      <path d="M0,1 L10,5 L0,9 z" fill="#C2410C"/>
+    </marker>
+  </defs>
+  <rect width="1000" height="1080" fill="#FFFFFF"/>
+  <text x="30" y="40" font-size="22" font-weight="700" fill="#1E2A1F">Trineo del winche</text>
+  <text x="30" y="64" font-size="14" fill="#55624F">Medidas en milímetros. Acero estructural soldado, con pintura anticorrosiva. Peso del trineo sin winche: unos 110 kg.</text>
+
+  <text x="30" y="104" font-size="16" font-weight="700" fill="#1E2A1F">Vista en planta</text>
+  <!-- planta: 1 mm = 0,3 px, origen (90, 150) -->
+  <g transform="translate(90 150) scale(0.3)" stroke="#1E2A1F" stroke-width="2" vector-effect="non-scaling-stroke">
+    <!-- brida trasera -->
+    <path d="M2060,25 L2420,450 L2060,875" fill="none" stroke="#1F6B3A" stroke-width="2.5" vector-effect="non-scaling-stroke"/>
+    <circle cx="2450" cy="450" r="30" fill="#FFFFFF" stroke="#1E2A1F" stroke-width="2.5" vector-effect="non-scaling-stroke"/>
+    <line x1="2480" y1="450" x2="2660" y2="450" stroke="#1E2A1F" stroke-width="3" vector-effect="non-scaling-stroke"/>
+    <line x1="2560" y1="380" x2="2700" y2="380" stroke="#C2410C" stroke-width="2.5" vector-effect="non-scaling-stroke" marker-end="url(#tiro)"/>
+    <!-- cable tractor hacia la línea -->
+    <line x1="-60" y1="450" x2="-250" y2="450" stroke="#C2410C" stroke-width="2.5" vector-effect="non-scaling-stroke" marker-end="url(#tiro)"/>
+    <!-- orejas -->
+    <g fill="#B7C0AE" vector-effect="non-scaling-stroke">
+      <path d="M0,5 L-60,5 A20,20 0 0 0 -60,45 L0,45 Z" vector-effect="non-scaling-stroke"/>
+      <path d="M0,855 L-60,855 A20,20 0 0 0 -60,895 L0,895 Z" vector-effect="non-scaling-stroke"/>
+      <path d="M2000,5 L2060,5 A20,20 0 0 1 2060,45 L2000,45 Z" vector-effect="non-scaling-stroke"/>
+      <path d="M2000,855 L2060,855 A20,20 0 0 1 2060,895 L2000,895 Z" vector-effect="non-scaling-stroke"/>
+    </g>
+    <!-- largueros y travesaños -->
+    <g fill="#DDE3D6">
+      <rect x="0" y="0" width="2000" height="50" vector-effect="non-scaling-stroke"/>
+      <rect x="0" y="850" width="2000" height="50" vector-effect="non-scaling-stroke"/>
+      <rect x="0" y="50" width="50" height="800" vector-effect="non-scaling-stroke"/>
+      <rect x="650" y="50" width="50" height="800" vector-effect="non-scaling-stroke"/>
+      <rect x="1250" y="50" width="50" height="800" vector-effect="non-scaling-stroke"/>
+      <rect x="1950" y="50" width="50" height="800" vector-effect="non-scaling-stroke"/>
+    </g>
+    <!-- placa base -->
+    <rect x="625" y="150" width="700" height="600" fill="#C9D1C0" fill-opacity=".85" vector-effect="non-scaling-stroke"/>
+    <!-- winche (referencial) -->
+    <rect x="690" y="215" width="570" height="470" rx="20" fill="none" stroke-dasharray="14 8" vector-effect="non-scaling-stroke"/>
+    <rect x="740" y="280" width="140" height="340" fill="none" stroke-dasharray="14 8" vector-effect="non-scaling-stroke"/>
+    <!-- postes -->
+    <g fill="#4A4F47">
+      <rect x="560" y="5" width="40" height="40" vector-effect="non-scaling-stroke"/>
+      <rect x="1350" y="5" width="40" height="40" vector-effect="non-scaling-stroke"/>
+      <rect x="560" y="855" width="40" height="40" vector-effect="non-scaling-stroke"/>
+      <rect x="1350" y="855" width="40" height="40" vector-effect="non-scaling-stroke"/>
+    </g>
+    <!-- guía de rodillos -->
+    <rect x="-50" y="390" width="50" height="120" fill="#B7C0AE" vector-effect="non-scaling-stroke"/>
+    <circle cx="-25" cy="425" r="16" fill="#FFFFFF" vector-effect="non-scaling-stroke"/>
+    <circle cx="-25" cy="475" r="16" fill="#FFFFFF" vector-effect="non-scaling-stroke"/>
+    <!-- eje del tambor -->
+    <line x1="-80" y1="450" x2="1400" y2="450" stroke="#55624F" stroke-dasharray="40 10 6 10" vector-effect="non-scaling-stroke"/>
+    <!-- cotas -->
+    <g stroke-width="1.2" vector-effect="non-scaling-stroke">
+      <line x1="0" y1="-20" x2="0" y2="-120" vector-effect="non-scaling-stroke"/>
+      <line x1="2000" y1="-20" x2="2000" y2="-120" vector-effect="non-scaling-stroke"/>
+      <line x1="0" y1="-90" x2="2000" y2="-90" marker-start="url(#cota)" marker-end="url(#cota)" vector-effect="non-scaling-stroke"/>
+      <line x1="-90" y1="0" x2="-200" y2="0" vector-effect="non-scaling-stroke"/>
+      <line x1="-90" y1="900" x2="-200" y2="900" vector-effect="non-scaling-stroke"/>
+      <line x1="-170" y1="0" x2="-170" y2="900" marker-start="url(#cota)" marker-end="url(#cota)" vector-effect="non-scaling-stroke"/>
+      <line x1="625" y1="760" x2="625" y2="1010" vector-effect="non-scaling-stroke"/>
+      <line x1="1325" y1="760" x2="1325" y2="1010" vector-effect="non-scaling-stroke"/>
+      <line x1="625" y1="990" x2="1325" y2="990" marker-start="url(#cota)" marker-end="url(#cota)" vector-effect="non-scaling-stroke"/>
+    </g>
+  </g>
+  <g font-size="13" font-weight="600" fill="#1E2A1F" text-anchor="middle">
+    <text x="390" y="117">2000</text>
+    <text x="30" y="285" transform="rotate(-90 30 285)">900</text>
+    <text x="390" y="440">placa 700 × 600</text>
+  </g>
+  <g font-size="13" fill="#1E2A1F">
+    <text x="70" y="456" fill="#C2410C" font-weight="700">← a la línea</text>
+    <text x="858" y="304" fill="#C2410C" font-weight="700">al anclaje</text>
+    <text x="858" y="320" fill="#C2410C" font-weight="700">trasero</text>
+    <text x="330" y="232" fill="#55624F">winche (línea punteada)</text>
+  </g>
+
+  <text x="30" y="504" font-size="16" font-weight="700" fill="#1E2A1F">Vista lateral</text>
+  <!-- lateral: 1 mm = 0,3 px, suelo en y = 880 -->
+  <rect x="30" y="880" width="900" height="16" fill="#EDE6D8"/>
+  <line x1="30" y1="880" x2="930" y2="880" stroke="#8B6B4A" stroke-width="2"/>
+  <g transform="translate(90 880) scale(0.3)" stroke="#1E2A1F" stroke-width="2">
+    <!-- techo y postes -->
+    <path d="M450,-1250 L1550,-1190" fill="none" stroke="#55624F" stroke-width="5" vector-effect="non-scaling-stroke"/>
+    <rect x="560" y="-1230" width="40" height="1120" fill="#4A4F47" vector-effect="non-scaling-stroke"/>
+    <rect x="1350" y="-1190" width="40" height="1080" fill="#4A4F47" vector-effect="non-scaling-stroke"/>
+    <!-- winche referencial -->
+    <circle cx="810" cy="-330" r="190" fill="none" stroke-dasharray="14 8" vector-effect="non-scaling-stroke"/>
+    <rect x="1000" y="-430" width="280" height="300" rx="20" fill="none" stroke-dasharray="14 8" vector-effect="non-scaling-stroke"/>
+    <rect x="700" y="-140" width="560" height="30" fill="none" stroke-dasharray="14 8" vector-effect="non-scaling-stroke"/>
+    <!-- placa base -->
+    <rect x="625" y="-110" width="700" height="10" fill="#C9D1C0" vector-effect="non-scaling-stroke"/>
+    <!-- larguero con patín curvo -->
+    <path d="M2000,-100 L160,-100 Q40,-100 -70,-170 L-100,-120 Q20,-10 160,0 L2000,0 Z" fill="#DDE3D6" vector-effect="non-scaling-stroke"/>
+    <!-- orejas -->
+    <path d="M2000,-80 L2060,-80 A20,20 0 0 1 2060,-40 L2000,-40 Z" fill="#B7C0AE" vector-effect="non-scaling-stroke"/>
+    <circle cx="2060" cy="-60" r="11" fill="#FFFFFF" vector-effect="non-scaling-stroke"/>
+    <!-- guía de rodillos -->
+    <rect x="-40" y="-260" width="50" height="160" fill="#B7C0AE" vector-effect="non-scaling-stroke"/>
+    <circle cx="-15" cy="-180" r="16" fill="#FFFFFF" vector-effect="non-scaling-stroke"/>
+    <!-- cable tractor -->
+    <path d="M810,-140 L10,-180 L-220,-195" fill="none" stroke="#C2410C" stroke-width="2.5" vector-effect="non-scaling-stroke"/>
+    <!-- cota altura postes -->
+    <g stroke-width="1.2">
+      <line x1="1400" y1="-110" x2="1720" y2="-110" vector-effect="non-scaling-stroke"/>
+      <line x1="1400" y1="-1190" x2="1720" y2="-1190" vector-effect="non-scaling-stroke"/>
+      <line x1="1680" y1="-110" x2="1680" y2="-1190" marker-start="url(#cota)" marker-end="url(#cota)" vector-effect="non-scaling-stroke"/>
+      <line x1="2100" y1="0" x2="2300" y2="0" vector-effect="non-scaling-stroke"/>
+      <line x1="2100" y1="-100" x2="2300" y2="-100" vector-effect="non-scaling-stroke"/>
+      <line x1="2250" y1="-300" x2="2250" y2="-100" marker-end="url(#cota)" vector-effect="non-scaling-stroke"/>
+      <line x1="2250" y1="200" x2="2250" y2="0" marker-end="url(#cota)" vector-effect="non-scaling-stroke"/>
+    </g>
+  </g>
+  <g font-size="13" font-weight="600" fill="#1E2A1F">
+    <text x="606" y="700" text-anchor="middle" transform="rotate(-90 606 700)">1100</text>
+    <text x="772" y="828">100</text>
+  </g>
+
+  <!-- llamadas -->
+  <g font-size="13" font-weight="700" fill="#FFFFFF" text-anchor="middle">
+    <line x1="250" y1="160" x2="250" y2="140" stroke="#1F6B3A" stroke-width="1.2"/>
+    <circle cx="250" cy="132" r="11" fill="#1F6B3A"/><text x="250" y="137">1</text>
+    <line x1="472" y1="300" x2="520" y2="300" stroke="#1F6B3A" stroke-width="1.2"/>
+    <circle cx="531" cy="300" r="11" fill="#1F6B3A"/><text x="531" y="305">2</text>
+    <line x1="440" y1="350" x2="520" y2="350" stroke="#1F6B3A" stroke-width="1.2"/>
+    <circle cx="531" cy="350" r="11" fill="#1F6B3A"/><text x="531" y="355">3</text>
+    <line x1="76" y1="160" x2="60" y2="140" stroke="#1F6B3A" stroke-width="1.2"/>
+    <circle cx="54" cy="132" r="11" fill="#1F6B3A"/><text x="54" y="137">4</text>
+    <line x1="80" y1="290" x2="62" y2="330" stroke="#1F6B3A" stroke-width="1.2"/>
+    <circle cx="58" cy="342" r="11" fill="#1F6B3A"/><text x="58" y="347">5</text>
+    <line x1="270" y1="512" x2="248" y2="512" stroke="#1F6B3A" stroke-width="1.2"/>
+    <circle cx="236" cy="512" r="11" fill="#1F6B3A"/><text x="236" y="517">6</text>
+    <line x1="760" y1="260" x2="780" y2="300" stroke="#1F6B3A" stroke-width="1.2"/>
+    <circle cx="786" cy="312" r="11" fill="#1F6B3A"/><text x="786" y="317">7</text>
+    <line x1="72" y1="860" x2="56" y2="822" stroke="#1F6B3A" stroke-width="1.2"/>
+    <circle cx="52" cy="810" r="11" fill="#1F6B3A"/><text x="52" y="815">8</text>
+  </g>
+
+  <!-- leyenda -->
+  <g font-size="14" fill="#1E2A1F">
+    <text x="30" y="930"><tspan font-weight="700">1</tspan>  Largueros: tubo rectangular 100 × 50 × 3 mm, 2000 mm (2)</text>
+    <text x="30" y="954"><tspan font-weight="700">2</tspan>  Travesaños: tubo 100 × 50 × 3 mm, 800 mm (4)</text>
+    <text x="30" y="978"><tspan font-weight="700">3</tspan>  Placa base de 10 mm, 700 × 600; agujeros según el winche</text>
+    <text x="30" y="1002"><tspan font-weight="700">4</tspan>  Orejas de amarre: placa de 12 mm, agujero Ø 22 (4)</text>
+    <text x="520" y="930"><tspan font-weight="700">5</tspan>  Guía de rodillos para 5/16", al centro del tambor</text>
+    <text x="520" y="954"><tspan font-weight="700">6</tspan>  Postes: tubo 40 × 40 × 2 mm (4); techo de zinc 1,2 × 1,1 m</text>
+    <text x="520" y="978"><tspan font-weight="700">7</tspan>  Brida: 2 estrobos 1/2" × 1,5 m y grillete 3/4"</text>
+    <text x="520" y="1002"><tspan font-weight="700">8</tspan>  Patín curvo para arrastrar el trineo</text>
+    <text x="30" y="1036" fill="#55624F">Soldadura de filete de 6 mm en todo el contorno de orejas y uniones.</text>
+    <text x="30" y="1056" fill="#55624F">El trineo se amarra hacia atrás, en línea con el tiro, sobre suelo nivelado y calzado.</text>
+  </g>
+</svg>
