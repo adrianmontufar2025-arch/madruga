@@ -135,6 +135,7 @@ ol.lista{list-style:none;margin:0;padding:0;display:flex;flex-direction:column}
           <button type="button" data-vista="despiece" aria-pressed="false">Despiece</button>
           <button type="button" data-vista="mata" aria-pressed="false">En la mata</button>
           <button type="button" data-vista="reposo" aria-pressed="false">Reposo</button>
+          <button type="button" data-vista="motor" aria-pressed="false">Motor</button>
         </div>
       </section>
       <section>
@@ -159,6 +160,7 @@ ol.lista{list-style:none;margin:0;padding:0;display:flex;flex-direction:column}
         <label class="check"><input type="checkbox" id="ver-cana" checked> Caña de referencia (Ø60)</label>
         <label class="check"><input type="checkbox" id="ver-brazo" checked> Brazo del operario (referencia)</label>
         <label class="check"><input type="checkbox" id="ver-cotas"> Cotas de uso</label>
+        <label class="check"><input type="checkbox" id="ver-motor"> Carcasa transparente (ver el motor)</label>
       </section>
       <section>
         <h2>Piezas</h2>
@@ -324,7 +326,21 @@ function lineaCota(a, b) {
 // ---------------------------------------------------------------- modelo
 const nodos = new Map();     // nombre -> Object3D
 const base = new Map();      // nombre -> posición base
-let datos, piezaSel = null, explode = 0, cuadro = 0, dedoAbierto = false, pataAbajo = false;
+let datos, piezaSel = null, explode = 0, cuadro = 0, dedoAbierto = false, pataAbajo = false, verMotor = false;
+const NOMBRES_MOTOR = { C01: 'Motor 36 V', C02: 'Reductor 15:1', C03: 'Husillo de bolas', C04: 'Tuerca que tira', P09: 'Varilla al cabezal' };
+function aplicarCarcasa() {
+  for (const [n, o] of nodos) {
+    if (n !== 'P10') continue;
+    o.traverse((m) => {
+      if (!m.isMesh) return;
+      m.material.transparent = verMotor; m.material.opacity = verMotor ? 0.14 : 1; m.material.depthWrite = !verMotor;
+      m.material.side = verMotor ? THREE.FrontSide : m.material.side; m.material.needsUpdate = true;
+      m.renderOrder = verMotor ? 2 : 0;
+      m.children.forEach((c) => { if (c.userData.borde) c.visible = true; });
+    });
+  }
+  pedirRender();
+}
 const escenaParcial = [], escenaReposo = [];
 
 function materialPara(p) {
@@ -464,6 +480,7 @@ function construirBrazo() {
   const correa = new THREE.Mesh(new THREE.BoxGeometry(0.025, f.distanceTo(h), 0.003), matCorrea);
   correa.position.copy(f.clone().add(h).multiplyScalar(0.5));
   correa.quaternion.setFromUnitVectors(new THREE.Vector3(0, 1, 0), h.clone().sub(f).normalize());
+  correa.userData.correa = true;
   brazoRef.add(correa);
   const libre = new THREE.Mesh(new THREE.SphereGeometry(0.045, 24, 16), matPiel);
   libre.position.set(0.0, 0.0, 0.78);
@@ -502,6 +519,7 @@ function construirLista(porCodigo) {
 
 function seleccionar(cod) {
   piezaSel = cod;
+  if (!cod) queueMicrotask(aplicarCarcasa);
   document.querySelectorAll('.pieza').forEach((b) => b.setAttribute('aria-pressed', String(b.dataset.codigo === cod)));
   for (const o of nodos.values()) {
     o.traverse((m) => {
@@ -576,6 +594,9 @@ const VISTAS = {
               t: 'Corte parcial en mata apretada', p: '' },
   mata:     { cam: V(1.05, 1.75, 0.95), obj: V(-0.28, 0.03, 0.42), exp: 0, cana: false, mata: true, cotas: false, brazo: true,
               t: 'En la mata', p: 'La mano libre sostiene la caña y decide hacia dónde cae; la tijera corta al ras entre retoños.' },
+  motor:    { cam: V(-0.40, 0.78, 0.86), obj: V(-0.62, 0.03, 0.50), exp: 0, cana: false, mata: false, cotas: false, brazo: true, motor: true,
+              t: 'Dónde va el motor',
+              p: 'Dentro de la carcasa naranja, encima de la muñeca y entre la mano y la cuna. El motor gira el reductor, el reductor gira el husillo y la tuerca tira de la varilla, que baja por dentro del tubo hasta el balancín del cabezal. Como el accionamiento queda casi sobre la muñeca, sus 0,9 kg casi no cargan la muñeca. La batería va al cinturón.' },
   reposo:   { cam: V(0.48, 1.68, 0.80), obj: V(-0.30, 0.03, 0.28), exp: 0, cana: false, mata: false, cotas: false, brazo: false, pata: true,
               t: 'Reposo: parada sola junto a la mata', p: '' },
 };
@@ -594,9 +615,11 @@ function ponerVista(nombre, instantaneo = false) {
   escenaReposo.forEach((o) => { o.visible = !!v.pata; });
   dedoAbierto = !!v.dedo; document.getElementById('dedo-abierto').checked = dedoAbierto;
   pataAbajo = !!v.pata; document.getElementById('pata-abajo').checked = pataAbajo;
+  verMotor = !!v.motor; document.getElementById('ver-motor').checked = verMotor;
+  if (datos) aplicarCarcasa();
   cuadro = v.apertura ?? 0;
   brazoRef.visible = !!v.brazo && document.getElementById('ver-brazo').checked;
-  brazoRef.children.forEach((c) => { if (c.userData.libre) c.visible = v.mata; });
+  brazoRef.children.forEach((c) => { if (c.userData.libre) c.visible = v.mata; if (c.userData.correa) c.visible = !v.motor; });
   document.getElementById('ver-cotas').checked = v.cotas;
   if (datos) { aplicarExplosion(v.exp); aplicarCuadro(cuadro); }
   document.getElementById('rotulo-t').textContent = v.t;
@@ -629,6 +652,20 @@ function ponerTags() {
       if (z > 1) continue;
       const t = document.createElement('span'); t.className = 'tag'; t.textContent = cod;
       t.style.left = x + 'px'; t.style.top = y + 'px'; capaTags.appendChild(t);
+    }
+  }
+  if (verMotor && datos && explode < 0.5) {
+    for (const [n, o] of nodos) {
+      const cod = n.split('@')[0];
+      if (!NOMBRES_MOTOR[cod] || !o.visible) continue;
+      const caja = new THREE.Box3().setFromObject(o);
+      const c = caja.getCenter(new THREE.Vector3());
+      if (cod === 'P09') c.set(caja.min.x * 0.7 + caja.max.x * 0.3, c.y, caja.max.z * 0.7 + caja.min.z * 0.3);
+      const [x, y, z] = proyectar(c);
+      if (z > 1) continue;
+      const [dx, dy] = { C03: [-70, 30], C04: [40, -6] }[cod] || [0, 0];
+      const t = document.createElement('span'); t.className = 'tag'; t.textContent = NOMBRES_MOTOR[cod];
+      t.style.left = (x + dx) + 'px'; t.style.top = (y + dy) + 'px'; capaTags.appendChild(t);
     }
   }
   if (cotas.visible && datos) {
@@ -693,6 +730,7 @@ document.getElementById('ver-cana').addEventListener('change', (e) => { canaRef.
 document.getElementById('ver-cotas').addEventListener('change', (e) => { cotas.visible = e.target.checked; pedirRender(); });
 document.getElementById('dedo-abierto').addEventListener('change', (e) => { dedoAbierto = e.target.checked; aplicarCuadro(cuadro); });
 document.getElementById('pata-abajo').addEventListener('change', (e) => { pataAbajo = e.target.checked; aplicarCuadro(cuadro); });
+document.getElementById('ver-motor').addEventListener('change', (e) => { verMotor = e.target.checked; aplicarCarcasa(); });
 document.getElementById('ver-brazo').addEventListener('change', (e) => { brazoRef.visible = e.target.checked && !!VISTAS[vistaActual].brazo; pedirRender(); });
 
 window.__ponerVista = (n, extra = {}) => {

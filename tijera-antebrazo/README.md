@@ -42,6 +42,7 @@ El rango depende del ángulo con que entra la caña (45° a 60°). Después del 
 | Batería | 36 V al cinturón, con cable espiral (no pesa en el brazo) |
 | Postura | mano a 0,43 m del suelo y a 0,64 m del tallo, parecida a la del machete |
 | Accionamiento | motor 300–400 W, reductor 15:1, husillo de bolas SFU1605, balancín y biela |
+| Dónde va el motor | dentro de la carcasa P10, encima de la muñeca, entre la mano y la cuna. Sus 0,9 kg (motor, reductor, husillo y tuerca) quedan casi sobre la muñeca y le suman solo 0,25 N·m. En el cabezal le sumarían unos 4,8 N·m |
 
 ### Cuánto carga el brazo
 
@@ -124,7 +125,7 @@ En laderas más empinadas que 27° hay que dejarla colgada de la correa de hombr
 
 | Carpeta / archivo | Qué es | Con qué se abre |
 |---|---|---|
-| `imagenes/` | Vistas 3D: armada, cabezal cerrado y abierto, planta, corte parcial, mango, lateral con medidas, despiece, en la mata, en reposo | Cualquier visor de imágenes |
+| `imagenes/` | Vistas 3D: armada, cabezal cerrado y abierto, planta, corte parcial, mango, lateral con medidas, despiece, en la mata, en reposo, motor por dentro | Cualquier visor de imágenes |
 | `planos_cortadora.pdf` | Los 20 planos en un PDF a escala | Cualquier lector de PDF |
 | `lista_de_materiales.xlsx` | Lista de materiales: material, cantidad, masa, cómo se fabrica cada pieza o qué comprar, y el archivo DXF/STEP de cada una | Excel, LibreOffice Calc, Google Sheets |
 | `planos_dxf/` | Un DXF por pieza (P01…P19) y el conjunto `00` con la lista de materiales (incluye los comerciales C01…C09) | AutoCAD (Guardar como → DWG), DraftSight, LibreCAD, QCAD |
