@@ -38,7 +38,7 @@ El rango depende del ángulo con que entra la caña (45° a 60°). Después del 
 |---|---|
 | Capacidad de corte | tallos de hasta Ø65 mm |
 | Altura de corte | 11 mm sobre el suelo |
-| Masa sin batería | ≈ 3,7 kg (incluye 0,15 kg estimados de tornillería y cables) |
+| Masa sin batería | ≈ 3,8 kg (incluye 0,15 kg estimados de tornillería y cables) |
 | Batería | 36 V al cinturón, con cable espiral (no pesa en el brazo) |
 | Postura | mano a 0,43 m del suelo y a 0,64 m del tallo, parecida a la del machete |
 | Accionamiento | motor 300–400 W, reductor 15:1, husillo de bolas SFU1605, balancín y biela |
@@ -47,19 +47,21 @@ El rango depende del ángulo con que entra la caña (45° a 60°). Después del 
 
 | Situación | Mano | Dedos | Cuna (antebrazo) | Muñeca |
 |---|---|---|---|---|
-| En el aire, **sin** apoyo | 3,7 kg | — | — | ≈ 10,7 N·m: más de lo que una muñeca aguanta todo un día |
-| En el aire, con la cuna | 7,1 kg | 2,6 kg | 4,0 kg | ≈ 2,7 N·m |
-| En el aire, con la cuna y la correa de hombro | 4,7 kg en el tope del mango | 0 kg | 2,4 kg | ≈ 2,1 N·m |
+| En el aire, **sin** apoyo | 3,8 kg | — | — | ≈ 11,1 N·m: más de lo que una muñeca aguanta todo un día |
+| En el aire, con la cuna | 7,4 kg | 2,7 kg | 4,2 kg | ≈ 2,8 N·m |
+| En el aire, con la cuna y la correa de hombro | 4,9 kg en el tope del mango | 0 kg | 2,5 kg | ≈ 2,1 N·m |
 | Cortando, con el patín apoyado | 1,7 kg | — | — | ≈ 0,4 N·m |
 | Caminando, colgada de la correa | solo guía | 0 kg | — | ≈ 0 |
+| Parada sola, con la pata abajo | 0 kg | 0 kg | — | 0 |
 
-"En el aire" es cuando se lleva la herramienta de una caña a la otra, con el tubo a 45°. La cuna solo puede empujar de costado al antebrazo. Lo que la herramienta tira hacia la punta (2,6 kg) lo aguantan los dedos, salvo que lo tome la correa. En la postura de corte, la correa queda casi en línea con el tubo y toma justo esa parte (unos 2,9 kg de tensión). Las cifras salen del modelo (`fuente/exportar_3d.py`, función `balance`) y cambian con la postura de cada operario.
+"En el aire" es cuando se lleva la herramienta de una caña a la otra, con el tubo a 45°. La cuna solo puede empujar de costado al antebrazo. Lo que la herramienta tira hacia la punta (2,7 kg) lo aguantan los dedos, salvo que lo tome la correa. En la postura de corte, la correa queda casi en línea con el tubo y toma justo esa parte (unos 3,0 kg de tensión). Las cifras salen del modelo (`fuente/exportar_3d.py`, función `balance`) y cambian con la postura de cada operario.
 
-La herramienta pesa bastante más que un machete. Por eso lleva cuatro cosas:
+La herramienta pesa bastante más que un machete. Por eso lleva cinco cosas:
 - La cuna, que se lleva el momento del cabezal.
 - El patín, que apoya el cabezal en la tierra mientras corta.
 - La anilla (P16) justo sobre el centro de gravedad, donde se engancha la correa de hombro C08. Es un arnés simple de rozadora, cruzado al hombro izquierdo. Colgada de la anilla, la herramienta queda horizontal.
 - El tope del mango, donde la mano levanta la herramienta sin usar los dedos.
+- La pata plegable (P19), para que la herramienta se quede parada sola mientras las dos manos se ocupan de la caña.
 
 ## Mango ergonómico
 
@@ -77,18 +79,41 @@ En la rozadora la mano va arriba y los dedos aprietan el gatillo por debajo. Eso
 
 | | Mango arriba (como la rozadora) | Pistola con gatillo de 4 dedos (este diseño) |
 |---|---|---|
-| Quién levanta la herramienta en el aire | los dedos que están sobre el gatillo: unos 7 kg, o 4,7 kg con la correa | el arco entre pulgar e índice, en el tope del mango |
-| Peso sobre el gatillo en el aire, con la correa | 4,7 kg: la cuchilla se cerraría sola al mover la herramienta | 0 kg |
+| Quién levanta la herramienta en el aire | los dedos que están sobre el gatillo: unos 7 kg, o 4,9 kg con la correa | el arco entre pulgar e índice, en el tope del mango |
+| Peso sobre el gatillo en el aire, con la correa | 4,9 kg: la cuchilla se cerraría sola al mover la herramienta | 0 kg |
 | Postura de la mano con el antebrazo en la cuna | palma hacia abajo (antebrazo girado) o muñeca doblada | como al dar la mano: la postura más fuerte y que menos cansa |
 | Movimiento de los dedos para cortar | cerrar los 4 dedos | cerrar los 4 dedos (igual) |
 
 De la rozadora se toman el gatillo largo de cuatro dedos y la correa de hombro. La pistola se queda porque separa las dos tareas: el tope del mango levanta y los dedos solo cortan.
 
-**Lo que hay que probar:** sin la correa, en el aire los dedos aguantan 2,6 kg sobre el gatillo y podrían cerrarlo sin querer. Hay dos maneras de evitarlo: usar siempre la correa, o subir el resorte del gatillo a unos 30 N. Esto también le pasaba al gatillo de tres dedos de la versión anterior.
+**Lo que hay que probar:** sin la correa, en el aire los dedos aguantan 2,7 kg sobre el gatillo y podrían cerrarlo sin querer. Hay dos maneras de evitarlo: usar siempre la correa, o subir el resorte del gatillo a unos 30 N. Esto también le pasaba al gatillo de tres dedos de la versión anterior.
+
+## Mientras se baja la caña: la tijera parada sola
+
+Después del corte, las dos manos quedan libres para bajar la caña y llevarla al pilo. La tijera se queda parada en el mismo lugar, con el mango a la misma altura para retomarla sin agacharse más:
+
+1. Antes de soltar el mango, el pulgar aprieta el botón de la pata (C09). Las dos patas (P19) bajan y sus **puntas de acero se clavan en la tierra**. Basta con un leve empujón hacia abajo al soltar.
+2. La tijera queda apoyada en tres lugares: el patín, el gancho alrededor del tocón recién cortado y las dos puntas clavadas. El patín de UHMW resbala a propósito, así que las puntas y el tocón son los que impiden que se deslice cuesta abajo.
+3. Al quitar la mano del mango, el controlador **cierra la cuchilla y bloquea el motor** (modo reposo). Para volver a cortar hay que poner la mano y apretar el gatillo de nuevo.
+4. El antebrazo sale de la cuna por arriba, porque la cuna es abierta. La correa de hombro se desengancha del mosquetón para alejarse hasta el pilo.
+5. Al volver, se toma el mango y se levanta la tijera. Las puntas salen de la tierra y un resorte recoge las patas solas.
+
+| Concepto | Valor |
+|---|---|
+| Patas | 2 de tubo de aluminio Ø12 x 1, de 311 mm, con bisagra en una abrazadera sobre el tubo, detrás de la torre |
+| Pies | punta de acero templado Ø8 x 25 mm y disco de caucho Ø28 de tope (en piedra apoya el disco) |
+| Masa de la pata | ≈ 140 g |
+| Pendiente máxima parada sola | se vuelca recién a los **27°** (51 %) hacia el operario; hacia los costados aguanta más |
+| Plegada | las patas quedan a los costados del tubo y las puntas, 65 mm delante del guardamonte, lejos de los dedos |
+
+En laderas más empinadas que 27° hay que dejarla colgada de la correa de hombro, o acostada de través en la pendiente.
+
+**Para probar:** si se baja la pata *antes* de cortar, la tijera se sostiene sola también durante el corte y la mano solo aprieta el gatillo. Conviene probarlo en la mata. El riesgo es que las patas se enganchen en los retoños al acomodar el cabezal.
 
 ## Seguridad
 
 - **Mano en el mango:** la cuchilla solo cierra si el sensor detecta la mano en la empuñadura y se aprieta el gatillo o la palanca de pulgar.
+- **Modo reposo:** al quitar la mano del mango, la cuchilla se cierra y el motor queda bloqueado mientras la tijera está parada sola.
 - **Correa puesta:** con la correa, el peso no carga sobre el gatillo cuando se lleva la herramienta en el aire (ver "Cuánto carga el brazo").
 - **Correa con liberación rápida:** el mosquetón de la anilla se suelta con una mano.
 - **Freno eléctrico:** al soltar el gatillo, la cuchilla se detiene y vuelve a abrir.
@@ -99,9 +124,9 @@ De la rozadora se toman el gatillo largo de cuatro dedos y la correa de hombro. 
 
 | Carpeta / archivo | Qué es | Con qué se abre |
 |---|---|---|
-| `imagenes/` | Vistas 3D: armada, cabezal cerrado y abierto, planta, corte parcial, mango, lateral con medidas, despiece, en la mata | Cualquier visor de imágenes |
-| `planos_cortadora.pdf` | Los 19 planos en un PDF a escala | Cualquier lector de PDF |
-| `planos_dxf/` | Un DXF por pieza (P01…P18) y el conjunto `00` con la lista de materiales (incluye los comerciales C01…C08) | AutoCAD (Guardar como → DWG), DraftSight, LibreCAD, QCAD |
+| `imagenes/` | Vistas 3D: armada, cabezal cerrado y abierto, planta, corte parcial, mango, lateral con medidas, despiece, en la mata, en reposo | Cualquier visor de imágenes |
+| `planos_cortadora.pdf` | Los 20 planos en un PDF a escala | Cualquier lector de PDF |
+| `planos_dxf/` | Un DXF por pieza (P01…P19) y el conjunto `00` con la lista de materiales (incluye los comerciales C01…C09) | AutoCAD (Guardar como → DWG), DraftSight, LibreCAD, QCAD |
 | `modelo_3d/tijera_conjunto.step` y `piezas_step/` | Modelo 3D del conjunto y de cada pieza | FreeCAD, Fusion 360, SolidWorks |
 | `modelo_3d/tijera.glb` | Modelo 3D liviano con colores | Visor 3D de Windows, Blender |
 | `visor/` | Visor 3D interactivo (HTML) | Navegador, servido por HTTP |
@@ -114,7 +139,8 @@ En los DXF, la geometría está a escala real 1:1. El contorno de las piezas de 
 1. Medir la fuerza de corte en las cañas de 6 cm, con una gata hidráulica y una celda de carga. El diseño supone entre 3 y 3,5 kN.
 2. Primero armar el cabezal (P01 a P07) y la cuna, y probar el corte y la postura en la mata, aunque el accionamiento sea provisional.
 3. Imprimir en 3D el mango P11 con el gatillo P12 y probarlo con guantes, con y sin la correa de hombro. Comprobar que al levantar la herramienta los dedos no aprietan el gatillo.
-4. Con los datos reales, ajustar `fuente/modelo.py` y regenerar todo.
+4. Probar la pata P19 en la ladera: en tierra suelta, en tierra mojada y con piedras. Comprobar que no se enganche en los retoños.
+5. Con los datos reales, ajustar `fuente/modelo.py` y regenerar todo.
 
 ## Regenerar todo
 

@@ -22,7 +22,7 @@ from dataclasses import dataclass
 from build123d import (
     Align, Axis, Box, CenterArc, Circle, Color, Cone, Cylinder, Face, Line, Location,
     Plane, Polygon, Pos, Rectangle, RectangleRounded, Rot, SlotCenterToCenter, Spline,
-    Wire, extrude, fillet,
+    Vector, Wire, extrude, fillet,
 )
 
 # ---------------------------------------------------------------------------
@@ -569,6 +569,65 @@ def c08_correa():
     return mosqueton + correa
 
 
+# Pata de apoyo plegable (bípode): la tijera se queda parada sola sobre el patín y dos patas
+S_PATA = 100.0                  # abrazadera sobre el tubo, justo detrás de la torre
+PATA_BISAGRA = (12.0, 28.0, -8.0)   # bisagra de cada pata (local: a lo largo del eje, ±costado, hacia N_ARRIBA)
+PATA_PIE_X = -470.0             # pies en el suelo, detrás del centro de gravedad (mundo)
+PATA_ABERTURA = 200.0           # separación de cada pie respecto del eje de la herramienta (mundo, ±y)
+PIE_D, PIE_H = 28.0, 6.0        # disco de tope (caucho) sobre la punta de anclaje
+PUNTA_L, PUNTA_D = 25.0, 8.0    # punta de acero que se clava en la tierra
+PATA_D = 12.0                   # tubo de aluminio Ø12 x 1
+
+
+def _a_mundo_pata():
+    return a_mundo() * Location(plano_eje(S_PATA))
+
+
+def pata_bisagras_mundo():
+    t = _a_mundo_pata()
+    bx, by, bz = PATA_BISAGRA
+    return [(t * Pos(bx, s * by, bz)).position for s in (1, -1)]
+
+
+def pata_pies_mundo():
+    y0 = Y_EJE + H_A_MUNDO[1]
+    return [Vector(PATA_PIE_X, y0 + s * PATA_ABERTURA, PIE_H) for s in (-1, 1)]
+
+
+def p19_pata(desplegada=True):
+    """Bípode bajo el tubo. Plegado: las patas quedan a los costados del tubo, con las puntas delante del guardamonte.
+    Desplegado: las puntas de acero se clavan en la tierra detrás del centro de gravedad y la tijera se queda
+    parada sola, sin resbalar en la ladera."""
+    T = _a_mundo_pata()
+    abraz = tubo(24, 40, D_TUBO)
+    bx, by, bz = PATA_BISAGRA
+    for s in (1, -1):
+        abraz = abraz + Pos(bx, s * (by - 2), bz) * Box(20, 14, 16)
+    pieza = abraz
+    u_mundo = Vector(*U)
+    for h, f in zip(pata_bisagras_mundo(), pata_pies_mundo()):
+        d = f - h
+        largo = d.length
+        d = d.normalized()
+        pl = Plane(origin=h, z_dir=d)
+        pata = pl * (Cylinder(PATA_D / 2, largo, align=(Align.CENTER, Align.CENTER, Align.MIN))
+                     - Cylinder(PATA_D / 2 - 1, largo, align=(Align.CENTER, Align.CENTER, Align.MIN)))
+        pie = Pos(f.X, f.Y, 0) * Cylinder(PIE_D / 2, PIE_H, align=(Align.CENTER, Align.CENTER, Align.MIN))
+        pie = pie + Pos(f.X, f.Y, 0) * Cone(0.5, PUNTA_D / 2, PUNTA_L, align=(Align.CENTER, Align.CENTER, Align.MAX))
+        pata_mundo = pata + pie
+        if not desplegada:
+            eje_giro = d.cross(u_mundo).normalized()
+            ang = math.degrees(math.acos(max(-1.0, min(1.0, d.dot(u_mundo)))))
+            pata_mundo = Pos(h) * Location((0, 0, 0), tuple(eje_giro), ang) * Pos(-h) * pata_mundo
+        pieza = pieza + T.inverse() * pata_mundo
+    return pieza
+
+
+def largo_pata():
+    h, f = pata_bisagras_mundo()[0], pata_pies_mundo()[0]
+    return (f - h).length
+
+
 def interior_motor():
     h = Pos(10, 0, 0) * tubo(80, 16, 0)
     t = Pos(28, 0, 0) * tubo(38, 30, 0)
@@ -669,6 +728,8 @@ def construir(theta=0.0):
               densidad=0.15),
         Pieza("P17", "Punta envolvente con resorte", "Acero inoxidable 17-4PH o SAE 4140 pavonado, e = 6", 1,
               p17_dedo(False), ident, ACERO_FILO, "Cabezal", explosion=(30, 0, 90)),
+        Pieza("P19", "Pata de apoyo plegable (bípode)", "Tubo aluminio 6061 Ø12 x 1, abrazadera PA6-GF30, tacos de caucho",
+              1, p19_pata(False), en_eje(S_PATA), (0.30, 0.32, 0.36), "Brazo", explosion=_ex(60, -150), densidad=2.7),
         Pieza("P16", "Anilla para correa de hombro", "Abrazadera PA6 + anilla inoxidable", 1, p16_anilla(),
               en_eje(S_ANILLA), (0.80, 0.81, 0.83), "Brazo", explosion=_ex(110, 90), densidad=2.0),
     ]

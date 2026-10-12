@@ -170,18 +170,25 @@ def main():
         filas.append([p.codigo, p.nombre[:40], p.material[:46], str(p.cantidad), f"{p.masa():.0f}",
                       p.codigo if p.plano else "comercial"])
     filas.append(["C05", "Batería 36 V 2,5-4 Ah al cinturón + cable", "Comercial", "1", "900", "comercial"])
+    filas.append(["C09", "Botón de pulgar + cable de la pata P19", "Comercial (cable de freno de bicicleta)", "1", "—",
+                  "comercial"])
     filas.append(["", "Tornillería, cables, electrónica (estimado)", "", "", "150", ""])
     cols = [("Cód.", 11), ("Denominación", 60), ("Material", 72), ("Cant.", 10), ("Masa g", 14), ("Plano", 22)]
     xt = W - 10 - sum(w for _, w in cols)
     h.tabla(xt, 64 + 6.0 * (len(filas) + 1) + 2, cols, filas, titulo="LISTA DE MATERIALES", h=2.0, fila_h=6.0)
+    import exportar_3d as EX
+    bal = EX.balance(piezas)
+    coma = lambda x: str(x).replace(".", ",")  # noqa: E731
     notas = [
         f"Masa sin batería: {(total + 150) / 1000:.1f} kg (con 0,15 kg estimados de tornillería y cables).".replace(".", ",", 1),
-        "Muñeca en el aire: 10,7 N·m sin apoyo, 2,7 N·m con la cuna P14; 0,4 N·m apoyado.",
+        f"Muñeca en el aire: {coma(bal['momento_muneca_Nm'])} N·m sin apoyo, {coma(bal['aire_cuna']['muneca_Nm'])} N·m con la cuna P14;"
+        f" {coma(bal['apoyado']['muneca_Nm'])} N·m apoyado.",
         "Correa C08 en la anilla P16: en el aire los dedos no cargan peso, solo el gatillo.",
         "Corte de tallos hasta %%c65, a 11 mm del suelo (fondo plano del cabezal).",
         "Gatillo de 4 dedos tipo rozadora (10-12 N), palanca de pulgar opcional, sensor de mano.",
         "Fuerza de corte estimada 3-3,5 kN: confirmar con ensayo en tallos de Pangua.",
         "Caña apretada: la punta P17 cede y la mordida parcial corta más de la mitad del diámetro.",
+        "Pata P19 abajo: puntas clavadas, la tijera queda parada sola con la cuchilla cerrada.",
     ]
     y = 104
     h.texto("NOTAS", 262, y, 3.0)

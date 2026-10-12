@@ -355,7 +355,29 @@ def p17():
                  ], [], origen="centro de la garganta", tratamiento="H1025 o pavonado")
 
 
-TODOS = [p01, p02, p03, p04, p05, p06, p07, p08, p09, p10, p11, p12, p13, p14, p15, p16, p17, p18]
+def p19():
+    import exportar_3d as EX
+    rp = EX.reposo(list(PIEZAS.values()))
+    f = MD.p19_pata(True)
+    b = bb(f)
+    cot = [L("alzado", (b.min.X, 0, b.min.Z), (b.max.X, 0, b.min.Z), -14),
+           L("alzado", (b.max.X, 0, b.min.Z), (b.max.X, 0, b.max.Z), 14, 90),
+           Cota("lin", "perfil", (0, b.max.Y, b.min.Z), (0, b.min.Y, b.min.Z), dist=-14, angulo=0)]
+    return Plano("P19", "Pata de apoyo plegable (bípode)", "Patas: tubo aluminio 6061 Ø12 x 1. Abrazadera: PA6-GF30", 1,
+                 masa("P19"), f, ["alzado", "perfil"], cot, [
+                     "Dibujada desplegada, en el sistema del tubo (x a lo largo del eje). Plegada, cada pata queda a un",
+                     "   costado del tubo y la punta queda 65 mm delante del guardamonte, lejos de los dedos.",
+                     f"Patas de {rp['largo_pata_mm']} mm. Pie: punta de acero templado Ø8 x {int(MD.PUNTA_L)} mm que se clava en la tierra,",
+                     "   con disco de caucho Ø28 de tope (en piedra o suelo duro apoya el disco).",
+                     "Bisagras con pasador Ø5 y tope que fija el ángulo de la pata abierta.",
+                     "Se baja con el botón de pulgar de la carcasa (cable de freno de bicicleta, C09). Un resorte la",
+                     "   recoge sola cuando deja de cargar peso, al levantar la tijera.",
+                     f"Parada sola, con las puntas clavadas, se vuelca recién en una pendiente de {rp['pendiente_max_grados']}°"
+                     f" ({rp['pendiente_max_pct']} %).",
+                 ], [], origen="eje de la herramienta")
+
+
+TODOS = [p01, p02, p03, p04, p05, p06, p07, p08, p09, p10, p11, p12, p13, p14, p15, p16, p17, p18, p19]
 
 
 def main(solo=None):

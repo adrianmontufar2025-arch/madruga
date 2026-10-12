@@ -99,6 +99,67 @@ def balance(piezas):
                 anilla_sobre_cg_mm=round(sr - sg), altura_mano_mm=round(mano[2]), distancia_mano_tallo_mm=round(-mano[0]))
 
 
+def _envolvente(pts):
+    pts = sorted(set(pts))
+    def giro(o, a, b):
+        return (a[0] - o[0]) * (b[1] - o[1]) - (a[1] - o[1]) * (b[0] - o[0])
+    abajo, arriba = [], []
+    for p in pts:
+        while len(abajo) >= 2 and giro(abajo[-2], abajo[-1], p) <= 0:
+            abajo.pop()
+        abajo.append(p)
+    for p in reversed(pts):
+        while len(arriba) >= 2 and giro(arriba[-2], arriba[-1], p) <= 0:
+            arriba.pop()
+        arriba.append(p)
+    return abajo[:-1] + arriba[:-1]
+
+
+def reposo(piezas):
+    """Tijera parada sola sobre el patín y la pata desplegada: margen del centro de gravedad y pendiente máxima."""
+    mundo = MD.a_mundo()
+    tot = mx = my = mz = 0.0
+    for p in piezas:
+        if p.codigo == "C08":
+            continue                      # la correa se desengancha al dejar la tijera parada
+        g = MD._a_mundo_pata() * MD.p19_pata(True) if p.codigo == "P19" else mundo * p.ubicacion * p.geometria
+        c = g.center()
+        m = p.masa()
+        tot += m
+        mx += m * c.X
+        my += m * c.Y
+        mz += m * c.Z
+    cg = (mx / tot, my / tot, mz / tot)
+    patin = mundo * next(p for p in piezas if p.codigo == "P04").geometria
+    pts = [(round(v.X, 2), round(v.Y, 2)) for v in patin.vertices() if v.Z < -MD.ESP_PATIN + 3 + 0.5]
+    for f in MD.pata_pies_mundo():
+        for k in range(16):
+            a = 2 * math.pi * k / 16
+            pts.append((round(f.X + MD.PIE_D / 2 * math.cos(a), 2), round(f.Y + MD.PIE_D / 2 * math.sin(a), 2)))
+    hull = _envolvente(pts)
+
+    def hasta_borde(dx, dy):
+        mejor = None
+        for (x0, y0), (x1, y1) in zip(hull, hull[1:] + hull[:1]):
+            ex, ey = x1 - x0, y1 - y0
+            den = dx * ey - dy * ex
+            if abs(den) < 1e-9:
+                continue
+            t = ((x0 - cg[0]) * ey - (y0 - cg[1]) * ex) / den
+            s = ((x0 - cg[0]) * dy - (y0 - cg[1]) * dx) / den
+            if t > 0 and -1e-9 <= s <= 1 + 1e-9:
+                mejor = t if mejor is None else min(mejor, t)
+        return mejor
+
+    h = cg[2]
+    lados = {"hacia_el_cabezal": (1, 0), "hacia_el_operario": (-1, 0), "izquierda": (0, 1), "derecha": (0, -1)}
+    margen = {k: round(hasta_borde(*d)) for k, d in lados.items()}
+    peor = min(margen.values())
+    return dict(cg_mm=[round(v) for v in cg], margen_mm=margen,
+                pendiente_max_grados=round(math.degrees(math.atan(peor / h))),
+                pendiente_max_pct=round(100 * peor / h), largo_pata_mm=round(MD.largo_pata()))
+
+
 def corte_parcial(a_dir=50.0, d=35.0, D=60.0):
     """Caña Ø60 que entra solo una parte (centro a d mm afuera del centro de la garganta).
 
@@ -155,13 +216,21 @@ def main():
         g.label = f"P17@{k}"
         g.color = Color(*MD.ACERO_FILO)
         nodos.append(g)
-    nodos = [n for n in nodos if n.label != "P17"]
+    for k, abierta in enumerate((False, True)):
+        g = mundo * Location(MD.plano_eje(MD.S_PATA)) * MD.p19_pata(abierta)
+        g.label = f"P19@{k}"
+        g.color = Color(0.30, 0.32, 0.36)
+        nodos.append(g)
+    nodos = [n for n in nodos if n.label not in ("P17", "P19")]
     # escena de corte parcial (solo para la vista "Corte parcial")
     cp = corte_parcial()
     zc = cp["zc"]
     extra = [("XCORTE", cp["corte"], (0.95, 0.45, 0.10)),
              ("XRESTO", cp["resto"], (0.55, 0.64, 0.27)),
              ("XTOCON", Pos(cp["centro"][0], cp["centro"][1], -MD.ESP_PATIN) * extrude(Circle(cp["D"] / 2), zc + MD.ESP_PATIN), (0.62, 0.66, 0.30))]
+    # tocón de la caña recién cortada, en la garganta (vista "Reposo")
+    extra.append(("XTOCONR", Pos(MD.C_GARGANTA[0], MD.C_GARGANTA[1], -MD.ESP_PATIN) * extrude(Circle(30), MD.ALTURA_CORTE - 0.3),
+                  (0.62, 0.66, 0.30)))
     for i, ((x, y), r) in enumerate(cp["vecinas"]):
         extra.append((f"XVECINA{i + 1}", Pos(x, y, -MD.ESP_PATIN) * extrude(Circle(r), 120), (0.62, 0.66, 0.30)))
     for nombre, forma, color in extra:
@@ -188,10 +257,10 @@ def main():
                 tornilleria_cables_g=TORNILLERIA_G, brazo=MD.antebrazo_mundo(), altura_corte_mm=MD.ALTURA_CORTE,
                 capacidad_mm=MD.D_TALLO_MAX, angulo_eje=MD.ANG_EJE,
                 corte_parcial={k: v for k, v in cp.items() if k in ("profundidad_pct", "area_pct", "D", "d", "a_dir")},
-                **bal)
+                reposo=reposo(piezas), **bal)
     with open(os.path.join(DVIS, "piezas.json"), "w", encoding="utf-8") as f:
         json.dump(info, f, ensure_ascii=False, indent=1)
-    print(json.dumps(bal), info["corte_parcial"])
+    print(json.dumps(bal), info["corte_parcial"], info["reposo"])
 
 
 if __name__ == "__main__":

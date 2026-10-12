@@ -134,6 +134,7 @@ ol.lista{list-style:none;margin:0;padding:0;display:flex;flex-direction:column}
           <button type="button" data-vista="mango" aria-pressed="false">Mango</button>
           <button type="button" data-vista="despiece" aria-pressed="false">Despiece</button>
           <button type="button" data-vista="mata" aria-pressed="false">En la mata</button>
+          <button type="button" data-vista="reposo" aria-pressed="false">Reposo</button>
         </div>
       </section>
       <section>
@@ -142,6 +143,7 @@ ol.lista{list-style:none;margin:0;padding:0;display:flex;flex-direction:column}
         <input type="range" id="apertura" min="0" max="6" step="1" value="0">
         <button type="button" class="boton" id="simular">Simular un corte</button>
         <label class="check"><input type="checkbox" id="dedo-abierto"> Punta envolvente abierta (caña apretada)</label>
+        <label class="check"><input type="checkbox" id="pata-abajo"> Pata de apoyo abajo (tijera parada sola)</label>
         <p class="nota">El motor tira de la varilla (P09), la varilla gira el balancín (P06), el balancín empuja la biela (P07) y la biela cierra la cuchilla (P02) contra el gancho (P01).</p>
       </section>
       <section>
@@ -322,8 +324,8 @@ function lineaCota(a, b) {
 // ---------------------------------------------------------------- modelo
 const nodos = new Map();     // nombre -> Object3D
 const base = new Map();      // nombre -> posición base
-let datos, piezaSel = null, explode = 0, cuadro = 0, dedoAbierto = false;
-const escenaParcial = [];
+let datos, piezaSel = null, explode = 0, cuadro = 0, dedoAbierto = false, pataAbajo = false;
+const escenaParcial = [], escenaReposo = [];
 
 function materialPara(p) {
   const c = new THREE.Color().setRGB(p.color[0], p.color[1], p.color[2], THREE.SRGBColorSpace);
@@ -391,14 +393,14 @@ async function cargar() {
     }
   });
   scene.add(raiz);
-  const colores = { XCORTE: [0.95, 0.45, 0.10], XRESTO: [0.45, 0.62, 0.22], XTOCON: [0.62, 0.66, 0.30], XVECINA1: [0.62, 0.66, 0.30], XVECINA2: [0.62, 0.66, 0.30] };
+  const colores = { XCORTE: [0.95, 0.45, 0.10], XRESTO: [0.45, 0.62, 0.22], XTOCON: [0.62, 0.66, 0.30], XVECINA1: [0.62, 0.66, 0.30], XVECINA2: [0.62, 0.66, 0.30], XTOCONR: [0.62, 0.66, 0.30] };
   for (const [n, c] of Object.entries(colores)) {
     const o = raiz.getObjectByName(n);
     if (!o) continue;
     fusionar(o);
     o.traverse((m) => { if (m.isMesh) { m.material = new THREE.MeshStandardMaterial({ color: new THREE.Color().setRGB(...c, THREE.SRGBColorSpace), roughness: 0.6 }); m.castShadow = true; } });
     o.visible = false;
-    escenaParcial.push(o);
+    (n === 'XTOCONR' ? escenaReposo : escenaParcial).push(o);
   }
   document.getElementById('c-masa').textContent = '≈' + fmtKg(datos.masa_total_g) + ' sin batería';
   const coma = (x) => String(x).replace('.', ',');
@@ -412,6 +414,10 @@ async function cargar() {
     `Los dedos quedan libres para el gatillo y el peso pasa al tope entre pulgar e índice (${coma(ar.mano_kgf)} kg). ` +
     `Al cortar, el patín se apoya en el suelo: la mano carga ${coma(ap.mano_kgf)} kg y la muñeca ${coma(ap.muneca_Nm)} N·m.`;
   construirBrazo();
+  const rp = datos.reposo;
+  VISTAS.reposo.p = `Mientras las dos manos bajan la caña y la llevan al pilo, la tijera queda parada sola: patín, gancho alrededor del tocón ` +
+    `y las dos puntas de la pata clavadas en la tierra, así no resbala en la ladera. Cuchilla cerrada y bloqueada; el mango queda a la misma altura ` +
+    `para retomarla. Se vuelca recién en una pendiente de ${rp.pendiente_max_grados}° (${rp.pendiente_max_pct} %).`;
   const cp = datos.corte_parcial;
   VISTAS.parcial.p = `Caña Ø${cp.D} con más de la mitad afuera de la garganta: la cuchilla corta ${cp.profundidad_pct} % del diámetro (naranja). ` +
     'El resto (verde) se parte con un leve tirón hacia afuera del corte.';
@@ -524,10 +530,14 @@ function aplicarCuadro(i) {
   const ang = datos.cuadros[i];
   for (const [n, o] of nodos) {
     const [cod, a] = n.split('@');
-    if (a !== undefined) o.visible = cod === 'P17' ? Number(a) === (dedoAbierto ? 1 : 0) : Number(a) === ang;
+    if (a === undefined) continue;
+    if (cod === 'P17') o.visible = Number(a) === (dedoAbierto ? 1 : 0);
+    else if (cod === 'P19') o.visible = Number(a) === (pataAbajo ? 1 : 0);
+    else o.visible = Number(a) === ang;
   }
   canaEntera.visible = ang > 0; canaCortada.visible = ang === 0;
   const bat = nodos.get('C05'); if (bat) bat.visible = false;   // la batería va al cinturón; no se dibuja
+  const correa = nodos.get('C08'); if (correa) correa.visible = !pataAbajo;   // parada sola: la correa se desengancha
   document.getElementById('apertura').value = String(i);
   document.getElementById('apertura-v').textContent = ang + '°';
   pedirRender();
@@ -566,6 +576,8 @@ const VISTAS = {
               t: 'Corte parcial en mata apretada', p: '' },
   mata:     { cam: V(1.05, 1.75, 0.95), obj: V(-0.28, 0.03, 0.42), exp: 0, cana: false, mata: true, cotas: false, brazo: true,
               t: 'En la mata', p: 'La mano libre sostiene la caña y decide hacia dónde cae; la tijera corta al ras entre retoños.' },
+  reposo:   { cam: V(0.48, 1.68, 0.80), obj: V(-0.30, 0.03, 0.28), exp: 0, cana: false, mata: false, cotas: false, brazo: false, pata: true,
+              t: 'Reposo: parada sola junto a la mata', p: '' },
 };
 let vistaActual = 'armada';
 function ponerVista(nombre, instantaneo = false) {
@@ -579,7 +591,9 @@ function ponerVista(nombre, instantaneo = false) {
   cotas.visible = v.cotas;
   aro.visible = !!v.aro;
   escenaParcial.forEach((o) => { o.visible = !!v.parcial; });
+  escenaReposo.forEach((o) => { o.visible = !!v.pata; });
   dedoAbierto = !!v.dedo; document.getElementById('dedo-abierto').checked = dedoAbierto;
+  pataAbajo = !!v.pata; document.getElementById('pata-abajo').checked = pataAbajo;
   cuadro = v.apertura ?? 0;
   brazoRef.visible = !!v.brazo && document.getElementById('ver-brazo').checked;
   brazoRef.children.forEach((c) => { if (c.userData.libre) c.visible = v.mata; });
@@ -678,6 +692,7 @@ document.getElementById('simular').addEventListener('click', () => { if (datos) 
 document.getElementById('ver-cana').addEventListener('change', (e) => { canaRef.visible = e.target.checked && VISTAS[vistaActual].cana; pedirRender(); });
 document.getElementById('ver-cotas').addEventListener('change', (e) => { cotas.visible = e.target.checked; pedirRender(); });
 document.getElementById('dedo-abierto').addEventListener('change', (e) => { dedoAbierto = e.target.checked; aplicarCuadro(cuadro); });
+document.getElementById('pata-abajo').addEventListener('change', (e) => { pataAbajo = e.target.checked; aplicarCuadro(cuadro); });
 document.getElementById('ver-brazo').addEventListener('change', (e) => { brazoRef.visible = e.target.checked && !!VISTAS[vistaActual].brazo; pedirRender(); });
 
 window.__ponerVista = (n, extra = {}) => {

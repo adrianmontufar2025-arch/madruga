@@ -324,6 +324,25 @@
    ]
   },
   {
+   "codigo": "P19",
+   "nombre": "Pata de apoyo plegable (bípode)",
+   "material": "Tubo aluminio 6061 Ø12 x 1, abrazadera PA6-GF30, tacos de caucho",
+   "cantidad": 1,
+   "grupo": "Brazo",
+   "masa_g": 138,
+   "plano": true,
+   "explosion": [
+    -148.5,
+    0.0,
+    -63.6
+   ],
+   "color": [
+    0.3,
+    0.32,
+    0.36
+   ]
+  },
+  {
    "codigo": "P16",
    "nombre": "Anilla para correa de hombro",
    "material": "Abrazadera PA6 + anilla inoxidable",
@@ -554,23 +573,39 @@
   "d": 35.0,
   "a_dir": 50.0
  },
- "masa_total_g": 3712,
+ "reposo": {
+  "cg_mm": [
+   -358,
+   22,
+   249
+  ],
+  "margen_mm": {
+   "hacia_el_cabezal": 282,
+   "hacia_el_operario": 126,
+   "izquierda": 172,
+   "derecha": 166
+  },
+  "pendiente_max_grados": 27,
+  "pendiente_max_pct": 51,
+  "largo_pata_mm": 311
+ },
+ "masa_total_g": 3849,
  "cg_mundo": [
-  -370,
+  -369,
   266
  ],
- "momento_muneca_Nm": 10.7,
+ "momento_muneca_Nm": 11.1,
  "aire_cuna": {
-  "mano_kgf": 7.1,
-  "dedos_kgf": 2.6,
-  "cuna_kgf": 4.0,
-  "muneca_Nm": 2.7
+  "mano_kgf": 7.4,
+  "dedos_kgf": 2.7,
+  "cuna_kgf": 4.2,
+  "muneca_Nm": 2.8
  },
  "aire_correa": {
-  "mano_kgf": 4.7,
+  "mano_kgf": 4.9,
   "dedos_kgf": 0.0,
-  "cuna_kgf": 2.4,
-  "correa_kgf": 2.9,
+  "cuna_kgf": 2.5,
+  "correa_kgf": 3.0,
   "lateral_kgf": 1.3,
   "muneca_Nm": 2.1
  },
@@ -578,8 +613,8 @@
   "mano_kgf": 1.7,
   "muneca_Nm": 0.4
  },
- "fuerza_cuna_kgf": 4.0,
- "carga_mano_apoyado_g": 1657,
+ "fuerza_cuna_kgf": 4.2,
+ "carga_mano_apoyado_g": 1714,
  "anilla_sobre_cg_mm": 0,
  "altura_mano_mm": 433,
  "distancia_mano_tallo_mm": 640
