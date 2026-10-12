@@ -12,7 +12,7 @@ El antebrazo descansa en una **cuna (P14)**, así que la muñeca no carga el pes
    - **Si hay espacio:** la punta envolvente con resorte (P17) rodea la caña sola y la deja centrada en la garganta.
    - **Si la caña está apretada entre otras:** la punta cede hacia afuera y la tijera muerde solo la parte de la caña que alcanza (ver "Corte parcial").
 2. El cabezal se apoya en el suelo sobre el patín de UHMW (P04). Gancho y placa base forman un fondo plano, y el corte queda a **11 mm del suelo**.
-3. Se aprieta la palanca de seguridad con la palma y luego el gatillo (P12). El motor tira de la varilla (P09), la varilla gira el balancín (P06) y la biela (P07) cierra la cuchilla (P02) contra el gancho.
+3. Con la mano en el mango (el sensor de presencia lo detecta), se aprieta el gatillo de tres dedos (P12) o la palanca de pulgar (P18). El motor tira de la varilla (P09), la varilla gira el balancín (P06) y la biela (P07) cierra la cuchilla (P02) contra el gancho.
 4. La mano libre sostiene la caña cortada y la baja hacia la calle.
 5. Para una caña virada, se gira el antebrazo y el cabezal queda de canto.
 
@@ -38,7 +38,7 @@ El rango depende del ángulo con que entra la caña (45° a 60°). Después del 
 |---|---|
 | Capacidad de corte | tallos de hasta Ø65 mm |
 | Altura de corte | 11 mm sobre el suelo |
-| Masa sin batería | ≈ 3,6 kg (incluye 0,15 kg estimados de tornillería y cables) |
+| Masa sin batería | ≈ 3,7 kg (incluye 0,15 kg estimados de tornillería y cables) |
 | Batería | 36 V al cinturón, con cable espiral (no pesa en el brazo) |
 | Momento sobre la muñeca **sin** apoyo | ≈ 9,8 N·m: más de lo que una muñeca aguanta todo un día |
 | Con la cuna de antebrazo | el antebrazo recibe ≈ 5,8 kg de presión y la muñeca solo guía |
@@ -51,9 +51,18 @@ La herramienta pesa bastante más que un machete. Por eso lleva tres cosas:
 - El patín, que apoya el cabezal en la tierra mientras corta.
 - Una anilla (P16) en el centro de gravedad para colgarla de una correa de hombro entre corte y corte.
 
+## Mango ergonómico
+
+Para que la mano no se canse en una jornada de cientos de cortes:
+- **Gatillo de tres dedos (P12):** índice, medio y anular reparten el esfuerzo, en vez de cargar un solo dedo. Empieza justo debajo de la carcasa, así que el índice queda arriba. Fuerza de 6 a 8 N y recorrido de 8 mm.
+- **Palanca de pulgar arriba (P18, opcional):** trabaja en paralelo con el gatillo. Sirve para alternar dedos y pulgar y descansar la mano. No conviene usarla como único mando: el pulgar sufre más que los dedos con cientos de pulsaciones al día.
+- **Sensor de presencia en lugar de la palanca de palma:** antes había que mantener apretada una palanca en cada corte. Ahora basta con tener la mano puesta en el mango.
+- **Empuñadura (P11):** sección de 44 x 32 mm (equivale a Ø38), inclinada 15° para que la muñeca quede recta con el antebrazo en la cuna, y con tope inferior.
+- **Guardamonte:** evita que las hojas o ramas accionen el gatillo.
+
 ## Seguridad
 
-- **Dos mandos:** la cuchilla solo cierra si están apretados a la vez la palanca de palma y el gatillo.
+- **Mano en el mango:** la cuchilla solo cierra si el sensor detecta la mano en la empuñadura y se aprieta el gatillo o la palanca de pulgar.
 - **Freno eléctrico:** al soltar el gatillo, la cuchilla se detiene y vuelve a abrir.
 - **Cuna abierta arriba con hebilla de liberación rápida:** si el operario resbala en la ladera, el brazo sale de un tirón.
 - **Regla de trabajo:** la mano que sostiene la caña siempre a unos 40 cm o más por encima del corte, y usar botas o canilleras.
@@ -62,9 +71,9 @@ La herramienta pesa bastante más que un machete. Por eso lleva tres cosas:
 
 | Carpeta / archivo | Qué es | Con qué se abre |
 |---|---|---|
-| `imagenes/` | Vistas 3D: armada, cabezal cerrado y abierto, planta, corte parcial, lateral con medidas, despiece, en la mata | Cualquier visor de imágenes |
-| `planos_cortadora.pdf` | Los 18 planos en un PDF a escala | Cualquier lector de PDF |
-| `planos_dxf/` | Un DXF por pieza (P01…P17) y el conjunto `00` con la lista de materiales | AutoCAD (Guardar como → DWG), DraftSight, LibreCAD, QCAD |
+| `imagenes/` | Vistas 3D: armada, cabezal cerrado y abierto, planta, corte parcial, mango, lateral con medidas, despiece, en la mata | Cualquier visor de imágenes |
+| `planos_cortadora.pdf` | Los 19 planos en un PDF a escala | Cualquier lector de PDF |
+| `planos_dxf/` | Un DXF por pieza (P01…P18) y el conjunto `00` con la lista de materiales | AutoCAD (Guardar como → DWG), DraftSight, LibreCAD, QCAD |
 | `modelo_3d/tijera_conjunto.step` y `piezas_step/` | Modelo 3D del conjunto y de cada pieza | FreeCAD, Fusion 360, SolidWorks |
 | `modelo_3d/tijera.glb` | Modelo 3D liviano con colores | Visor 3D de Windows, Blender |
 | `visor/` | Visor 3D interactivo (HTML) | Navegador, servido por HTTP |

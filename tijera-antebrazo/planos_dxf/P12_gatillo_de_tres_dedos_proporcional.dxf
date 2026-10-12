@@ -81,7 +81,7 @@ $MIRRTEXT
   9
 $LTSCALE
  40
-0.5
+1.0
   9
 $ATTMODE
  70
@@ -493,7 +493,7 @@ $SKPOLY
   9
 $TDCREATE
  40
-2461326.017303241
+2461326.1070138887
   9
 $TDUCREATE
  40
@@ -501,7 +501,7 @@ $TDUCREATE
   9
 $TDUPDATE
  40
-2461326.017303241
+2461326.1070138887
   9
 $TDUUPDATE
  40
@@ -553,7 +553,7 @@ $SPLINESEGS
   9
 $HANDSEED
   5
-B3
+DD
   9
 $SURFTAB1
  70
@@ -933,11 +933,11 @@ $PSTYLEMODE
   9
 $FINGERPRINTGUID
   2
-{46EDF788-79A8-40EF-B083-4F0D71C727BE}
+{990A6E63-63D4-41E1-94B4-3FD0473FDBF2}
   9
 $VERSIONGUID
   2
-{A4BCB4DB-2324-4041-8E27-06BB98B1830D}
+{1C82C59F-8C7A-4E01-B469-BC7F71883A50}
   9
 $EXTNAMES
 290
@@ -1377,7 +1377,7 @@ AcDbSymbolTable
   0
 VPORT
   5
-AF
+D9
 330
 8
 100
@@ -1397,9 +1397,9 @@ AcDbViewportTableRecord
  21
 1.0
  12
-105.0
+210.0
  22
-74.25
+148.5
  13
 0.0
  23
@@ -1425,7 +1425,7 @@ AcDbViewportTableRecord
  37
 0.0
  40
-148.5
+297.0
  41
 1.34
  42
@@ -1937,7 +1937,7 @@ ACAD
   0
 APPID
   5
-B0
+DA
 330
 3
 100
@@ -1951,7 +1951,7 @@ HATCHBACKGROUNDCOLOR
   0
 APPID
   5
-B1
+DB
 330
 3
 100
@@ -2117,7 +2117,7 @@ Standard
   0
 DIMSTYLE
 105
-89
+A2
 330
 4
 100
@@ -2129,7 +2129,7 @@ ISO25
  70
 0
  40
-0.5
+1.0
  41
 2.5
  42
@@ -2265,7 +2265,7 @@ BLOCK_RECORD
 100
 AcDbSymbolTable
  70
-5
+6
   0
 BLOCK_RECORD
   5
@@ -2309,7 +2309,7 @@ AcDbBlockTableRecord
   0
 BLOCK_RECORD
   5
-8B
+A4
 330
 9
 100
@@ -2329,7 +2329,7 @@ AcDbBlockTableRecord
   0
 BLOCK_RECORD
   5
-90
+A9
 330
 9
 100
@@ -2349,7 +2349,7 @@ _CLOSEDFILLED
   0
 BLOCK_RECORD
   5
-9E
+B7
 330
 9
 100
@@ -2358,6 +2358,26 @@ AcDbSymbolTableRecord
 AcDbBlockTableRecord
   2
 *D2
+340
+0
+ 70
+0
+280
+1
+281
+0
+  0
+BLOCK_RECORD
+  5
+C6
+330
+9
+100
+AcDbSymbolTableRecord
+100
+AcDbBlockTableRecord
+  2
+*D3
 340
 0
  70
@@ -2453,9 +2473,9 @@ AcDbBlockEnd
   0
 BLOCK
   5
-8C
+A5
 330
-8B
+A4
 100
 AcDbEntity
   8
@@ -2479,9 +2499,9 @@ AcDbBlockBegin
   0
 LINE
   5
-8E
+A7
 330
-8B
+A4
 100
 AcDbEntity
   8
@@ -2491,23 +2511,23 @@ AcDbEntity
 100
 AcDbLine
  10
-97.5
+203.0
  20
-87.85
+180.7
  30
 0.0
  11
-97.5
+203.0
  21
-80.625
+166.25
  31
 0.0
   0
 LINE
   5
-8F
+A8
 330
-8B
+A4
 100
 AcDbEntity
   8
@@ -2517,23 +2537,23 @@ AcDbEntity
 100
 AcDbLine
  10
-117.5
+227.0
  20
-87.85
+180.7
  30
 0.0
  11
-117.5
+227.0
  21
-80.625
+166.25
  31
 0.0
   0
 INSERT
   5
-94
+AD
 330
-8B
+A4
 100
 AcDbEntity
   8
@@ -2545,23 +2565,23 @@ AcDbBlockReference
   2
 _CLOSEDFILLED
  10
-97.5
+203.0
  20
-81.25
+167.5
  30
 0.0
  41
-1.25
+2.5
  42
-1.25
+2.5
  50
 180.0
   0
 INSERT
   5
-96
+AF
 330
-8B
+A4
 100
 AcDbEntity
   8
@@ -2573,21 +2593,21 @@ AcDbBlockReference
   2
 _CLOSEDFILLED
  10
-117.5
+227.0
  20
-81.25
+167.5
  30
 0.0
  41
-1.25
+2.5
  42
-1.25
+2.5
   0
 LINE
   5
-98
+B1
 330
-8B
+A4
 100
 AcDbEntity
   8
@@ -2597,23 +2617,23 @@ AcDbEntity
 100
 AcDbLine
  10
-98.75
+205.5
  20
-81.25
+167.5
  30
 0.0
  11
-116.25
+224.5
  21
-81.25
+167.5
  31
 0.0
   0
 MTEXT
   5
-99
+B2
 330
-8B
+A4
 100
 AcDbEntity
   8
@@ -2623,23 +2643,23 @@ COTAS
 100
 AcDbMText
  10
-107.5
+215.0
  20
-82.275
+169.55
  30
 0.0
  40
-1.25
+2.5
  71
 5
   1
-20
+24
   0
 POINT
   5
-9A
+B3
 330
-8B
+A4
 100
 AcDbEntity
   8
@@ -2647,17 +2667,17 @@ Defpoints
 100
 AcDbPoint
  10
-97.5
+203.0
  20
-81.25
+167.5
  30
 0.0
   0
 POINT
   5
-9B
+B4
 330
-8B
+A4
 100
 AcDbEntity
   8
@@ -2665,17 +2685,17 @@ Defpoints
 100
 AcDbPoint
  10
-97.5
+203.0
  20
-88.25
+181.5
  30
 0.0
   0
 POINT
   5
-9C
+B5
 330
-8B
+A4
 100
 AcDbEntity
   8
@@ -2683,17 +2703,17 @@ Defpoints
 100
 AcDbPoint
  10
-117.5
+227.0
  20
-88.25
+181.5
  30
 0.0
   0
 ENDBLK
   5
-8D
+A6
 330
-8B
+A4
 100
 AcDbEntity
   8
@@ -2703,9 +2723,9 @@ AcDbBlockEnd
   0
 BLOCK
   5
-91
+AA
 330
-90
+A9
 100
 AcDbEntity
   8
@@ -2729,9 +2749,9 @@ _CLOSEDFILLED
   0
 SOLID
   5
-93
+AC
 330
-90
+A9
 100
 AcDbEntity
   8
@@ -2769,9 +2789,9 @@ AcDbTrace
   0
 ENDBLK
   5
-92
+AB
 330
-90
+A9
 100
 AcDbEntity
   8
@@ -2781,9 +2801,9 @@ AcDbBlockEnd
   0
 BLOCK
   5
-9F
+B8
 330
-9E
+B7
 100
 AcDbEntity
   8
@@ -2807,9 +2827,9 @@ AcDbBlockBegin
   0
 LINE
   5
-A1
+BA
 330
-9E
+B7
 100
 AcDbEntity
   8
@@ -2819,23 +2839,23 @@ AcDbEntity
 100
 AcDbLine
  10
-97.1
+202.2
  20
-88.25
+181.5
  30
 0.0
  11
-89.875
+187.75
  21
-88.25
+181.5
  31
 0.0
   0
 LINE
   5
-A2
+BB
 330
-9E
+B7
 100
 AcDbEntity
   8
@@ -2845,23 +2865,23 @@ AcDbEntity
 100
 AcDbLine
  10
-97.1
+202.2
  20
-132.25
+255.5
  30
 0.0
  11
-89.875
+187.75
  21
-132.25
+255.5
  31
 0.0
   0
 INSERT
   5
-A3
+BC
 330
-9E
+B7
 100
 AcDbEntity
   8
@@ -2873,23 +2893,23 @@ AcDbBlockReference
   2
 _CLOSEDFILLED
  10
-90.5
+189.0
  20
-88.25
+181.5
  30
 0.0
  41
-1.25
+2.5
  42
-1.25
+2.5
  50
 270.0
   0
 INSERT
   5
-A5
+BE
 330
-9E
+B7
 100
 AcDbEntity
   8
@@ -2901,23 +2921,23 @@ AcDbBlockReference
   2
 _CLOSEDFILLED
  10
-90.5
+189.0
  20
-132.25
+255.5
  30
 0.0
  41
-1.25
+2.5
  42
-1.25
+2.5
  50
 90.0
   0
 LINE
   5
-A7
+C0
 330
-9E
+B7
 100
 AcDbEntity
   8
@@ -2927,23 +2947,23 @@ AcDbEntity
 100
 AcDbLine
  10
-90.5
+189.0
  20
-89.5
+184.0
  30
 0.0
  11
-90.5
+189.0
  21
-131.0
+253.0
  31
 0.0
   0
 MTEXT
   5
-A8
+C1
 330
-9E
+B7
 100
 AcDbEntity
   8
@@ -2953,25 +2973,25 @@ COTAS
 100
 AcDbMText
  10
-89.475
+186.95
  20
-110.25
+218.5
  30
 0.0
  40
-1.25
+2.5
  71
 5
   1
-44
+74
  50
 90.0
   0
 POINT
   5
-A9
+C2
 330
-9E
+B7
 100
 AcDbEntity
   8
@@ -2979,17 +2999,17 @@ Defpoints
 100
 AcDbPoint
  10
-90.5
+189.0
  20
-88.25
+181.5
  30
 0.0
   0
 POINT
   5
-AA
+C3
 330
-9E
+B7
 100
 AcDbEntity
   8
@@ -2997,17 +3017,17 @@ Defpoints
 100
 AcDbPoint
  10
-97.5
+203.0
  20
-88.25
+181.5
  30
 0.0
   0
 POINT
   5
-AB
+C4
 330
-9E
+B7
 100
 AcDbEntity
   8
@@ -3015,17 +3035,271 @@ Defpoints
 100
 AcDbPoint
  10
-97.5
+203.0
  20
-132.25
+255.5
  30
 0.0
   0
 ENDBLK
   5
-A0
+B9
 330
-9E
+B7
+100
+AcDbEntity
+  8
+0
+100
+AcDbBlockEnd
+  0
+BLOCK
+  5
+C7
+330
+C6
+100
+AcDbEntity
+  8
+0
+100
+AcDbBlockBegin
+  2
+*D3
+ 70
+1
+ 10
+0.0
+ 20
+0.0
+ 30
+0.0
+  3
+*D3
+  1
+
+  0
+LINE
+  5
+C9
+330
+C6
+100
+AcDbEntity
+  8
+0
+ 62
+4
+100
+AcDbLine
+ 10
+202.2
+ 20
+121.5
+ 30
+0.0
+ 11
+189.75
+ 21
+121.5
+ 31
+0.0
+  0
+LINE
+  5
+CA
+330
+C6
+100
+AcDbEntity
+  8
+0
+ 62
+4
+100
+AcDbLine
+ 10
+202.2
+ 20
+141.5
+ 30
+0.0
+ 11
+189.75
+ 21
+141.5
+ 31
+0.0
+  0
+INSERT
+  5
+CB
+330
+C6
+100
+AcDbEntity
+  8
+COTAS
+ 62
+4
+100
+AcDbBlockReference
+  2
+_CLOSEDFILLED
+ 10
+191.0
+ 20
+121.5
+ 30
+0.0
+ 41
+2.5
+ 42
+2.5
+ 50
+270.0
+  0
+INSERT
+  5
+CD
+330
+C6
+100
+AcDbEntity
+  8
+COTAS
+ 62
+4
+100
+AcDbBlockReference
+  2
+_CLOSEDFILLED
+ 10
+191.0
+ 20
+141.5
+ 30
+0.0
+ 41
+2.5
+ 42
+2.5
+ 50
+90.0
+  0
+LINE
+  5
+CF
+330
+C6
+100
+AcDbEntity
+  8
+0
+ 62
+4
+100
+AcDbLine
+ 10
+191.0
+ 20
+124.0
+ 30
+0.0
+ 11
+191.0
+ 21
+139.0
+ 31
+0.0
+  0
+MTEXT
+  5
+D0
+330
+C6
+100
+AcDbEntity
+  8
+COTAS
+ 62
+7
+100
+AcDbMText
+ 10
+188.95
+ 20
+131.5
+ 30
+0.0
+ 40
+2.5
+ 71
+5
+  1
+20
+ 50
+90.0
+  0
+POINT
+  5
+D1
+330
+C6
+100
+AcDbEntity
+  8
+Defpoints
+100
+AcDbPoint
+ 10
+191.0
+ 20
+121.5
+ 30
+0.0
+  0
+POINT
+  5
+D2
+330
+C6
+100
+AcDbEntity
+  8
+Defpoints
+100
+AcDbPoint
+ 10
+203.0
+ 20
+121.5
+ 30
+0.0
+  0
+POINT
+  5
+D3
+330
+C6
+100
+AcDbEntity
+  8
+Defpoints
+100
+AcDbPoint
+ 10
+203.0
+ 20
+141.5
+ 30
+0.0
+  0
+ENDBLK
+  5
+C8
+330
+C6
 100
 AcDbEntity
   8
@@ -3051,15 +3325,15 @@ VISIBLE
 100
 AcDbLine
  10
-117.5
+218.0
  20
-132.25
+255.5
  30
 0.0
  11
-103.5
+207.0
  21
-128.25
+253.5
  31
 0.0
   0
@@ -3075,15 +3349,15 @@ VISIBLE
 100
 AcDbLine
  10
-115.5
+218.0
  20
-114.25
+255.5
  30
 0.0
  11
-117.5
+224.0
  21
-132.25
+211.5
  31
 0.0
   0
@@ -3099,15 +3373,15 @@ VISIBLE
 100
 AcDbLine
  10
-109.5
+227.0
  20
-88.25
+185.5
  30
 0.0
  11
-115.5
+224.0
  21
-114.25
+211.5
  31
 0.0
   0
@@ -3123,15 +3397,15 @@ VISIBLE
 100
 AcDbLine
  10
-101.5
+219.0
  20
-90.25
+181.5
  30
 0.0
  11
-109.5
+227.0
  21
-88.25
+185.5
  31
 0.0
   0
@@ -3147,15 +3421,15 @@ VISIBLE
 100
 AcDbLine
  10
-97.5
+210.0
  20
-114.25
+185.5
  30
 0.0
  11
-101.5
+219.0
  21
-90.25
+181.5
  31
 0.0
   0
@@ -3171,15 +3445,15 @@ VISIBLE
 100
 AcDbLine
  10
-103.5
+204.0
  20
-128.25
+199.5
  30
 0.0
  11
-97.5
+210.0
  21
-114.25
+185.5
  31
 0.0
   0
@@ -3191,19 +3465,19 @@ LINE
 100
 AcDbEntity
   8
-OCULTAS
+VISIBLE
 100
 AcDbLine
  10
-117.5
+206.0
  20
-132.25
+211.5
  30
 0.0
  11
-103.5
+204.0
  21
-128.25
+199.5
  31
 0.0
   0
@@ -3215,19 +3489,19 @@ LINE
 100
 AcDbEntity
   8
-OCULTAS
+VISIBLE
 100
 AcDbLine
  10
-115.5
+203.0
  20
-114.25
+219.5
  30
 0.0
  11
-117.5
+206.0
  21
-132.25
+211.5
  31
 0.0
   0
@@ -3239,19 +3513,19 @@ LINE
 100
 AcDbEntity
   8
-OCULTAS
+VISIBLE
 100
 AcDbLine
  10
-109.5
+206.0
  20
-88.25
+231.5
  30
 0.0
  11
-115.5
+203.0
  21
-114.25
+219.5
  31
 0.0
   0
@@ -3263,19 +3537,19 @@ LINE
 100
 AcDbEntity
   8
-OCULTAS
+VISIBLE
 100
 AcDbLine
  10
-101.5
+203.0
  20
-90.25
+239.5
  30
 0.0
  11
-109.5
+206.0
  21
-88.25
+231.5
  31
 0.0
   0
@@ -3287,19 +3561,19 @@ LINE
 100
 AcDbEntity
   8
-OCULTAS
+VISIBLE
 100
 AcDbLine
  10
-97.5
+207.0
  20
-114.25
+253.5
  30
 0.0
  11
-101.5
+203.0
  21
-90.25
+239.5
  31
 0.0
   0
@@ -3315,19 +3589,19 @@ OCULTAS
 100
 AcDbLine
  10
-103.5
+218.0
  20
-128.25
+255.5
  30
 0.0
  11
-97.5
+207.0
  21
-114.25
+253.5
  31
 0.0
   0
-TEXT
+LINE
   5
 43
 330
@@ -3335,31 +3609,21 @@ TEXT
 100
 AcDbEntity
   8
-TEXTO
+OCULTAS
 100
-AcDbText
+AcDbLine
  10
-107.5
+224.0
  20
-74.75
+211.5
  30
 0.0
- 40
-1.75
-  1
-ALZADO
- 72
-1
  11
-107.5
+218.0
  21
-74.75
+255.5
  31
 0.0
-100
-AcDbText
- 73
-3
   0
 LINE
   5
@@ -3369,19 +3633,19 @@ LINE
 100
 AcDbEntity
   8
-VISIBLE
+OCULTAS
 100
 AcDbLine
  10
-117.5
+227.0
  20
-68.25
+185.5
  30
 0.0
  11
-103.5
+224.0
  21
-68.25
+211.5
  31
 0.0
   0
@@ -3393,19 +3657,19 @@ LINE
 100
 AcDbEntity
   8
-VISIBLE
+OCULTAS
 100
 AcDbLine
  10
-103.5
+219.0
  20
-68.25
+181.5
  30
 0.0
  11
-103.5
+227.0
  21
-56.25
+185.5
  31
 0.0
   0
@@ -3417,19 +3681,19 @@ LINE
 100
 AcDbEntity
   8
-VISIBLE
+OCULTAS
 100
 AcDbLine
  10
-117.5
+210.0
  20
-56.25
+185.5
  30
 0.0
  11
-103.5
+219.0
  21
-56.25
+181.5
  31
 0.0
   0
@@ -3441,19 +3705,19 @@ LINE
 100
 AcDbEntity
   8
-VISIBLE
+OCULTAS
 100
 AcDbLine
  10
-117.5
+204.0
  20
-56.25
+199.5
  30
 0.0
  11
-117.5
+210.0
  21
-68.25
+185.5
  31
 0.0
   0
@@ -3465,19 +3729,19 @@ LINE
 100
 AcDbEntity
   8
-VISIBLE
+OCULTAS
 100
 AcDbLine
  10
-97.5
+206.0
  20
-68.25
+211.5
  30
 0.0
  11
-97.5
+204.0
  21
-56.25
+199.5
  31
 0.0
   0
@@ -3489,19 +3753,19 @@ LINE
 100
 AcDbEntity
   8
-VISIBLE
+OCULTAS
 100
 AcDbLine
  10
-103.5
+203.0
  20
-56.25
+219.5
  30
 0.0
  11
-97.5
+206.0
  21
-56.25
+211.5
  31
 0.0
   0
@@ -3513,19 +3777,19 @@ LINE
 100
 AcDbEntity
   8
-VISIBLE
+OCULTAS
 100
 AcDbLine
  10
-103.5
+206.0
  20
-68.25
+231.5
  30
 0.0
  11
-97.5
+203.0
  21
-68.25
+219.5
  31
 0.0
   0
@@ -3541,15 +3805,15 @@ OCULTAS
 100
 AcDbLine
  10
-115.5
+203.0
  20
-68.25
+239.5
  30
 0.0
  11
-117.5
+206.0
  21
-68.25
+231.5
  31
 0.0
   0
@@ -3565,19 +3829,19 @@ OCULTAS
 100
 AcDbLine
  10
-115.5
+207.0
  20
-56.25
+253.5
  30
 0.0
  11
-117.5
+203.0
  21
-56.25
+239.5
  31
 0.0
   0
-LINE
+TEXT
   5
 4D
 330
@@ -3585,21 +3849,31 @@ LINE
 100
 AcDbEntity
   8
-OCULTAS
+TEXTO
 100
-AcDbLine
+AcDbText
  10
-115.5
+215.0
  20
-56.25
+154.5
  30
 0.0
+ 40
+3.5
+  1
+ALZADO
+ 72
+1
  11
-115.5
+215.0
  21
-68.25
+154.5
  31
 0.0
+100
+AcDbText
+ 73
+3
   0
 LINE
   5
@@ -3609,19 +3883,19 @@ LINE
 100
 AcDbEntity
   8
-OCULTAS
+VISIBLE
 100
 AcDbLine
  10
-109.5
+218.0
  20
-68.25
+141.5
  30
 0.0
  11
-115.5
+207.0
  21
-68.25
+141.5
  31
 0.0
   0
@@ -3633,19 +3907,19 @@ LINE
 100
 AcDbEntity
   8
-OCULTAS
+VISIBLE
 100
 AcDbLine
  10
-109.5
+207.0
  20
-56.25
+141.5
  30
 0.0
  11
-115.5
+207.0
  21
-56.25
+121.5
  31
 0.0
   0
@@ -3657,19 +3931,19 @@ LINE
 100
 AcDbEntity
   8
-OCULTAS
+VISIBLE
 100
 AcDbLine
  10
-109.5
+218.0
  20
-56.25
+121.5
  30
 0.0
  11
-109.5
+207.0
  21
-68.25
+121.5
  31
 0.0
   0
@@ -3681,19 +3955,19 @@ LINE
 100
 AcDbEntity
   8
-OCULTAS
+VISIBLE
 100
 AcDbLine
  10
-101.5
+218.0
  20
-68.25
+121.5
  30
 0.0
  11
-101.5
+218.0
  21
-56.25
+141.5
  31
 0.0
   0
@@ -3705,19 +3979,19 @@ LINE
 100
 AcDbEntity
   8
-OCULTAS
+VISIBLE
 100
 AcDbLine
  10
-101.5
+218.0
  20
-68.25
+121.5
  30
 0.0
  11
-109.5
+224.0
  21
-68.25
+121.5
  31
 0.0
   0
@@ -3729,19 +4003,19 @@ LINE
 100
 AcDbEntity
   8
-OCULTAS
+VISIBLE
 100
 AcDbLine
  10
-101.5
+224.0
  20
-56.25
+121.5
  30
 0.0
  11
-109.5
+224.0
  21
-56.25
+141.5
  31
 0.0
   0
@@ -3753,19 +4027,19 @@ LINE
 100
 AcDbEntity
   8
-OCULTAS
+VISIBLE
 100
 AcDbLine
  10
-97.5
+224.0
  20
-68.25
+141.5
  30
 0.0
  11
-101.5
+218.0
  21
-68.25
+141.5
  31
 0.0
   0
@@ -3777,23 +4051,23 @@ LINE
 100
 AcDbEntity
   8
-OCULTAS
+VISIBLE
 100
 AcDbLine
  10
-97.5
+227.0
  20
-56.25
+141.5
  30
 0.0
  11
-101.5
+227.0
  21
-56.25
+121.5
  31
 0.0
   0
-TEXT
+LINE
   5
 56
 330
@@ -3801,31 +4075,21 @@ TEXT
 100
 AcDbEntity
   8
-TEXTO
+VISIBLE
 100
-AcDbText
+AcDbLine
  10
-107.5
+227.0
  20
-42.75
+141.5
  30
 0.0
- 40
-1.75
-  1
-PLANTA
- 72
-1
  11
-107.5
+224.0
  21
-42.75
+141.5
  31
 0.0
-100
-AcDbText
- 73
-3
   0
 LINE
   5
@@ -3835,19 +4099,19 @@ LINE
 100
 AcDbEntity
   8
-TEXTO
+VISIBLE
 100
 AcDbLine
  10
-0.0
+227.0
  20
-0.0
+121.5
  30
 0.0
  11
-210.0
+224.0
  21
-0.0
+121.5
  31
 0.0
   0
@@ -3859,19 +4123,19 @@ LINE
 100
 AcDbEntity
   8
-TEXTO
+VISIBLE
 100
 AcDbLine
  10
-210.0
+203.0
  20
-0.0
+141.5
  30
 0.0
  11
-210.0
+203.0
  21
-148.5
+121.5
  31
 0.0
   0
@@ -3883,19 +4147,19 @@ LINE
 100
 AcDbEntity
   8
-TEXTO
+VISIBLE
 100
 AcDbLine
  10
-210.0
+207.0
  20
-148.5
+121.5
  30
 0.0
  11
-0.0
+203.0
  21
-148.5
+121.5
  31
 0.0
   0
@@ -3907,19 +4171,19 @@ LINE
 100
 AcDbEntity
   8
-TEXTO
+VISIBLE
 100
 AcDbLine
  10
-0.0
+207.0
  20
-148.5
+141.5
  30
 0.0
  11
-0.0
+203.0
  21
-0.0
+141.5
  31
 0.0
   0
@@ -3931,19 +4195,19 @@ LINE
 100
 AcDbEntity
   8
-MARCO
+OCULTAS
 100
 AcDbLine
  10
-10.0
+219.0
  20
-5.0
+141.5
  30
 0.0
  11
-205.0
+219.0
  21
-5.0
+121.5
  31
 0.0
   0
@@ -3955,19 +4219,19 @@ LINE
 100
 AcDbEntity
   8
-MARCO
+OCULTAS
 100
 AcDbLine
  10
-205.0
+219.0
  20
-5.0
+141.5
  30
 0.0
  11
-205.0
+227.0
  21
-143.5
+141.5
  31
 0.0
   0
@@ -3979,19 +4243,19 @@ LINE
 100
 AcDbEntity
   8
-MARCO
+OCULTAS
 100
 AcDbLine
  10
-205.0
+219.0
  20
-143.5
+121.5
  30
 0.0
  11
-10.0
+227.0
  21
-143.5
+121.5
  31
 0.0
   0
@@ -4003,23 +4267,23 @@ LINE
 100
 AcDbEntity
   8
-MARCO
+OCULTAS
 100
 AcDbLine
  10
-10.0
+210.0
  20
-143.5
+141.5
  30
 0.0
  11
-10.0
+210.0
  21
-5.0
+121.5
  31
 0.0
   0
-TEXT
+LINE
   5
 5F
 330
@@ -4027,27 +4291,21 @@ TEXT
 100
 AcDbEntity
   8
-TEXTO
+OCULTAS
 100
-AcDbText
+AcDbLine
  10
-11.0
+210.0
  20
-144.75
+141.5
  30
 0.0
- 40
-1.1
-  1
-Diseño conceptual para prototipo. Validar fuerzas y medidas con ensayos de campo antes de fabricar en serie.
  11
-11.0
+219.0
  21
-144.75
+141.5
  31
 0.0
-100
-AcDbText
   0
 LINE
   5
@@ -4057,19 +4315,19 @@ LINE
 100
 AcDbEntity
   8
-MARCO
+OCULTAS
 100
 AcDbLine
  10
-115.0
+210.0
  20
-5.0
+121.5
  30
 0.0
  11
-205.0
+219.0
  21
-5.0
+121.5
  31
 0.0
   0
@@ -4081,19 +4339,19 @@ LINE
 100
 AcDbEntity
   8
-MARCO
+OCULTAS
 100
 AcDbLine
  10
-205.0
+204.0
  20
-5.0
+141.5
  30
 0.0
  11
-205.0
+204.0
  21
-29.0
+121.5
  31
 0.0
   0
@@ -4105,19 +4363,19 @@ LINE
 100
 AcDbEntity
   8
-MARCO
+OCULTAS
 100
 AcDbLine
  10
-205.0
+204.0
  20
-29.0
+141.5
  30
 0.0
  11
-115.0
+210.0
  21
-29.0
+141.5
  31
 0.0
   0
@@ -4129,19 +4387,19 @@ LINE
 100
 AcDbEntity
   8
-MARCO
+OCULTAS
 100
 AcDbLine
  10
-115.0
+204.0
  20
-29.0
+121.5
  30
 0.0
  11
-115.0
+210.0
  21
-5.0
+121.5
  31
 0.0
   0
@@ -4153,19 +4411,19 @@ LINE
 100
 AcDbEntity
   8
-TEXTO
+OCULTAS
 100
 AcDbLine
  10
-115.0
+206.0
  20
-9.0
+141.5
  30
 0.0
  11
-205.0
+206.0
  21
-9.0
+121.5
  31
 0.0
   0
@@ -4177,19 +4435,19 @@ LINE
 100
 AcDbEntity
   8
-TEXTO
+OCULTAS
 100
 AcDbLine
  10
-115.0
+206.0
  20
-13.0
+141.5
  30
 0.0
  11
-205.0
+204.0
  21
-13.0
+141.5
  31
 0.0
   0
@@ -4201,19 +4459,19 @@ LINE
 100
 AcDbEntity
   8
-TEXTO
+OCULTAS
 100
 AcDbLine
  10
-115.0
+206.0
  20
-17.0
+121.5
  30
 0.0
  11
-205.0
+204.0
  21
-17.0
+121.5
  31
 0.0
   0
@@ -4225,19 +4483,19 @@ LINE
 100
 AcDbEntity
   8
-TEXTO
+OCULTAS
 100
 AcDbLine
  10
-115.0
+203.0
  20
-22.0
+141.5
  30
 0.0
  11
-205.0
+203.0
  21
-22.0
+121.5
  31
 0.0
   0
@@ -4249,19 +4507,19 @@ LINE
 100
 AcDbEntity
   8
-TEXTO
+OCULTAS
 100
 AcDbLine
  10
-160.0
+203.0
  20
-5.0
+141.5
  30
 0.0
  11
-160.0
+206.0
  21
-17.0
+141.5
  31
 0.0
   0
@@ -4273,19 +4531,19 @@ LINE
 100
 AcDbEntity
   8
-TEXTO
+OCULTAS
 100
 AcDbLine
  10
-182.5
+203.0
  20
-5.0
+121.5
  30
 0.0
  11
-182.5
+206.0
  21
-17.0
+121.5
  31
 0.0
   0
@@ -4297,23 +4555,23 @@ LINE
 100
 AcDbEntity
   8
-TEXTO
+OCULTAS
 100
 AcDbLine
  10
-182.5
+206.0
  20
-22.0
+141.5
  30
 0.0
  11
-182.5
+206.0
  21
-29.0
+121.5
  31
 0.0
   0
-TEXT
+LINE
   5
 6B
 330
@@ -4321,29 +4579,23 @@ TEXT
 100
 AcDbEntity
   8
-TEXTO
+OCULTAS
 100
-AcDbText
+AcDbLine
  10
-116.0
+206.0
  20
-26.0
+141.5
  30
 0.0
- 40
-1.5
-  1
-Tijera de caña con apoyo de antebrazo
  11
-116.0
+203.0
  21
-26.0
+141.5
  31
 0.0
-100
-AcDbText
   0
-TEXT
+LINE
   5
 6C
 330
@@ -4351,29 +4603,23 @@ TEXT
 100
 AcDbEntity
   8
-TEXTO
+OCULTAS
 100
-AcDbText
+AcDbLine
  10
-116.0
+206.0
  20
-23.0
+121.5
  30
 0.0
- 40
-2.1
-  1
-Gatillo proporcional
  11
-116.0
+203.0
  21
-23.0
+121.5
  31
 0.0
-100
-AcDbText
   0
-TEXT
+LINE
   5
 6D
 330
@@ -4381,29 +4627,23 @@ TEXT
 100
 AcDbEntity
   8
-TEXTO
+OCULTAS
 100
-AcDbText
+AcDbLine
  10
-183.1
+203.0
  20
-24.8
+141.5
  30
 0.0
- 40
-0.9
-  1
-PLANO N.º
  11
-183.1
+206.0
  21
-24.8
+141.5
  31
 0.0
-100
-AcDbText
   0
-TEXT
+LINE
   5
 6E
 330
@@ -4411,27 +4651,21 @@ TEXT
 100
 AcDbEntity
   8
-TEXTO
+OCULTAS
 100
-AcDbText
+AcDbLine
  10
-183.1
+203.0
  20
-22.65
+121.5
  30
 0.0
- 40
-2.0
-  1
-P12
  11
-183.1
+206.0
  21
-22.65
+121.5
  31
 0.0
-100
-AcDbText
   0
 TEXT
   5
@@ -4445,25 +4679,29 @@ TEXTO
 100
 AcDbText
  10
-115.6
+215.0
  20
-20.3
+94.5
  30
 0.0
  40
-0.9
+3.5
   1
-Material
+PLANTA
+ 72
+1
  11
-115.6
+215.0
  21
-20.3
+94.5
  31
 0.0
 100
 AcDbText
+ 73
+3
   0
-TEXT
+LINE
   5
 70
 330
@@ -4473,27 +4711,21 @@ AcDbEntity
   8
 TEXTO
 100
-AcDbText
+AcDbLine
  10
-115.6
+0.0
  20
-18.0
+0.0
  30
 0.0
- 40
-1.2
-  1
-PA6-GF30
  11
-115.6
+420.0
  21
-18.0
+0.0
  31
 0.0
-100
-AcDbText
   0
-TEXT
+LINE
   5
 71
 330
@@ -4503,27 +4735,21 @@ AcDbEntity
   8
 TEXTO
 100
-AcDbText
+AcDbLine
  10
-115.6
+420.0
  20
-15.8
+0.0
  30
 0.0
- 40
-0.9
-  1
-Tratamiento / acabado
  11
-115.6
+420.0
  21
-15.8
+297.0
  31
 0.0
-100
-AcDbText
   0
-TEXT
+LINE
   5
 72
 330
@@ -4533,27 +4759,21 @@ AcDbEntity
   8
 TEXTO
 100
-AcDbText
+AcDbLine
  10
-115.6
+420.0
  20
-13.65
+297.0
  30
 0.0
- 40
-1.1
-  1
-—
  11
-115.6
+0.0
  21
-13.65
+297.0
  31
 0.0
-100
-AcDbText
   0
-TEXT
+LINE
   5
 73
 330
@@ -4563,27 +4783,21 @@ AcDbEntity
   8
 TEXTO
 100
-AcDbText
+AcDbLine
  10
-160.6
+0.0
  20
-15.8
+297.0
  30
 0.0
- 40
-0.9
-  1
-Cantidad
  11
-160.6
+0.0
  21
-15.8
+0.0
  31
 0.0
-100
-AcDbText
   0
-TEXT
+LINE
   5
 74
 330
@@ -4591,29 +4805,23 @@ TEXT
 100
 AcDbEntity
   8
-TEXTO
+MARCO
 100
-AcDbText
+AcDbLine
  10
-160.6
+20.0
  20
-13.65
+10.0
  30
 0.0
- 40
-1.3
-  1
-1
  11
-160.6
+410.0
  21
-13.65
+10.0
  31
 0.0
-100
-AcDbText
   0
-TEXT
+LINE
   5
 75
 330
@@ -4621,29 +4829,23 @@ TEXT
 100
 AcDbEntity
   8
-TEXTO
+MARCO
 100
-AcDbText
+AcDbLine
  10
-183.1
+410.0
  20
-15.8
+10.0
  30
 0.0
- 40
-0.9
-  1
-Masa aprox.
  11
-183.1
+410.0
  21
-15.8
+287.0
  31
 0.0
-100
-AcDbText
   0
-TEXT
+LINE
   5
 76
 330
@@ -4651,29 +4853,23 @@ TEXT
 100
 AcDbEntity
   8
-TEXTO
+MARCO
 100
-AcDbText
+AcDbLine
  10
-183.1
+410.0
  20
-13.65
+287.0
  30
 0.0
- 40
-1.3
-  1
-9 g
  11
-183.1
+20.0
  21
-13.65
+287.0
  31
 0.0
-100
-AcDbText
   0
-TEXT
+LINE
   5
 77
 330
@@ -4681,27 +4877,21 @@ TEXT
 100
 AcDbEntity
   8
-TEXTO
+MARCO
 100
-AcDbText
+AcDbLine
  10
-115.6
+20.0
  20
-11.8
+287.0
  30
 0.0
- 40
-0.9
-  1
-Tolerancias generales
  11
-115.6
+20.0
  21
-11.8
+10.0
  31
 0.0
-100
-AcDbText
   0
 TEXT
   5
@@ -4715,25 +4905,25 @@ TEXTO
 100
 AcDbText
  10
-115.6
+22.0
  20
-9.65
+289.5
  30
 0.0
  40
-1.1
+2.2
   1
-ISO 2768-mK · medidas en mm
+Diseño conceptual para prototipo. Validar fuerzas y medidas con ensayos de campo antes de fabricar en serie.
  11
-115.6
+22.0
  21
-9.65
+289.5
  31
 0.0
 100
 AcDbText
   0
-TEXT
+LINE
   5
 79
 330
@@ -4741,29 +4931,23 @@ TEXT
 100
 AcDbEntity
   8
-TEXTO
+MARCO
 100
-AcDbText
+AcDbLine
  10
-160.6
+230.0
  20
-11.8
+10.0
  30
 0.0
- 40
-0.9
-  1
-Escala
  11
-160.6
+410.0
  21
-11.8
+10.0
  31
 0.0
-100
-AcDbText
   0
-TEXT
+LINE
   5
 7A
 330
@@ -4771,29 +4955,23 @@ TEXT
 100
 AcDbEntity
   8
-TEXTO
+MARCO
 100
-AcDbText
+AcDbLine
  10
-160.6
+410.0
  20
-9.65
+10.0
  30
 0.0
- 40
-1.3
-  1
-2:1
  11
-160.6
+410.0
  21
-9.65
+58.0
  31
 0.0
-100
-AcDbText
   0
-TEXT
+LINE
   5
 7B
 330
@@ -4801,29 +4979,23 @@ TEXT
 100
 AcDbEntity
   8
-TEXTO
+MARCO
 100
-AcDbText
+AcDbLine
  10
-183.1
+410.0
  20
-11.8
+58.0
  30
 0.0
- 40
-0.9
-  1
-Hoja
  11
-183.1
+230.0
  21
-11.8
+58.0
  31
 0.0
-100
-AcDbText
   0
-TEXT
+LINE
   5
 7C
 330
@@ -4831,29 +5003,23 @@ TEXT
 100
 AcDbEntity
   8
-TEXTO
+MARCO
 100
-AcDbText
+AcDbLine
  10
-183.1
+230.0
  20
-9.65
+58.0
  30
 0.0
- 40
-1.3
-  1
-A3
  11
-183.1
+230.0
  21
-9.65
+10.0
  31
 0.0
-100
-AcDbText
   0
-TEXT
+LINE
   5
 7D
 330
@@ -4863,27 +5029,21 @@ AcDbEntity
   8
 TEXTO
 100
-AcDbText
+AcDbLine
  10
-115.6
+230.0
  20
-7.8
+18.0
  30
 0.0
- 40
-0.9
-  1
-Dibujó / Fecha
  11
-115.6
+410.0
  21
-7.8
+18.0
  31
 0.0
-100
-AcDbText
   0
-TEXT
+LINE
   5
 7E
 330
@@ -4893,27 +5053,21 @@ AcDbEntity
   8
 TEXTO
 100
-AcDbText
+AcDbLine
  10
-115.6
+230.0
  20
-5.65
+26.0
  30
 0.0
- 40
-1.1
-  1
-Claude (asistente IA) · 2026-10-11
  11
-115.6
+410.0
  21
-5.65
+26.0
  31
 0.0
-100
-AcDbText
   0
-TEXT
+LINE
   5
 7F
 330
@@ -4923,27 +5077,21 @@ AcDbEntity
   8
 TEXTO
 100
-AcDbText
+AcDbLine
  10
-160.6
+230.0
  20
-7.8
+34.0
  30
 0.0
- 40
-0.9
-  1
-Proyección
  11
-160.6
+410.0
  21
-7.8
+34.0
  31
 0.0
-100
-AcDbText
   0
-TEXT
+LINE
   5
 80
 330
@@ -4953,27 +5101,21 @@ AcDbEntity
   8
 TEXTO
 100
-AcDbText
+AcDbLine
  10
-160.6
+230.0
  20
-5.65
+44.0
  30
 0.0
- 40
-1.1
-  1
-ISO-E (europea)
  11
-160.6
+410.0
  21
-5.65
+44.0
  31
 0.0
-100
-AcDbText
   0
-TEXT
+LINE
   5
 81
 330
@@ -4983,27 +5125,21 @@ AcDbEntity
   8
 TEXTO
 100
-AcDbText
+AcDbLine
  10
-183.1
+320.0
  20
-7.8
+10.0
  30
 0.0
- 40
-0.9
-  1
-Revisión
  11
-183.1
+320.0
  21
-7.8
+34.0
  31
 0.0
-100
-AcDbText
   0
-TEXT
+LINE
   5
 82
 330
@@ -5013,25 +5149,19 @@ AcDbEntity
   8
 TEXTO
 100
-AcDbText
+AcDbLine
  10
-183.1
+365.0
  20
-5.65
+10.0
  30
 0.0
- 40
-1.1
-  1
-B · conceptual
  11
-183.1
+365.0
  21
-5.65
+34.0
  31
 0.0
-100
-AcDbText
   0
 LINE
   5
@@ -5045,19 +5175,19 @@ TEXTO
 100
 AcDbLine
  10
-170.5
+365.0
  20
-18.75
+44.0
  30
 0.0
  11
-170.5
+365.0
  21
-21.25
+58.0
  31
 0.0
   0
-LINE
+TEXT
   5
 84
 330
@@ -5067,21 +5197,27 @@ AcDbEntity
   8
 TEXTO
 100
-AcDbLine
+AcDbText
  10
-170.5
+232.0
  20
-21.25
+52.0
  30
 0.0
+ 40
+3.0
+  1
+Tijera de caña con apoyo de antebrazo
  11
-173.5
+232.0
  21
-22.0
+52.0
  31
 0.0
+100
+AcDbText
   0
-LINE
+TEXT
   5
 85
 330
@@ -5091,21 +5227,27 @@ AcDbEntity
   8
 TEXTO
 100
-AcDbLine
+AcDbText
  10
-173.5
+232.0
  20
-22.0
+46.0
  30
 0.0
+ 40
+4.2
+  1
+Gatillo de tres dedos (proporcional)
  11
-173.5
+232.0
  21
-18.0
+46.0
  31
 0.0
+100
+AcDbText
   0
-LINE
+TEXT
   5
 86
 330
@@ -5115,21 +5257,27 @@ AcDbEntity
   8
 TEXTO
 100
-AcDbLine
+AcDbText
  10
-173.5
+366.2
  20
-18.0
+49.6
  30
 0.0
+ 40
+1.8
+  1
+PLANO N.º
  11
-170.5
+366.2
  21
-18.75
+49.6
  31
 0.0
+100
+AcDbText
   0
-CIRCLE
+TEXT
   5
 87
 330
@@ -5139,17 +5287,27 @@ AcDbEntity
   8
 TEXTO
 100
-AcDbCircle
+AcDbText
  10
-177.0
+366.2
  20
-20.0
+45.3
  30
 0.0
  40
-1.75
+4.0
+  1
+P12
+ 11
+366.2
+ 21
+45.3
+ 31
+0.0
+100
+AcDbText
   0
-CIRCLE
+TEXT
   5
 88
 330
@@ -5159,19 +5317,735 @@ AcDbEntity
   8
 TEXTO
 100
-AcDbCircle
+AcDbText
  10
-177.0
+231.2
  20
-20.0
+40.6
  30
 0.0
  40
-0.75
+1.8
+  1
+Material
+ 11
+231.2
+ 21
+40.6
+ 31
+0.0
+100
+AcDbText
+  0
+TEXT
+  5
+89
+330
+17
+100
+AcDbEntity
+  8
+TEXTO
+100
+AcDbText
+ 10
+231.2
+ 20
+36.0
+ 30
+0.0
+ 40
+2.4
+  1
+PA6-GF30
+ 11
+231.2
+ 21
+36.0
+ 31
+0.0
+100
+AcDbText
+  0
+TEXT
+  5
+8A
+330
+17
+100
+AcDbEntity
+  8
+TEXTO
+100
+AcDbText
+ 10
+231.2
+ 20
+31.6
+ 30
+0.0
+ 40
+1.8
+  1
+Tratamiento / acabado
+ 11
+231.2
+ 21
+31.6
+ 31
+0.0
+100
+AcDbText
+  0
+TEXT
+  5
+8B
+330
+17
+100
+AcDbEntity
+  8
+TEXTO
+100
+AcDbText
+ 10
+231.2
+ 20
+27.3
+ 30
+0.0
+ 40
+2.2
+  1
+—
+ 11
+231.2
+ 21
+27.3
+ 31
+0.0
+100
+AcDbText
+  0
+TEXT
+  5
+8C
+330
+17
+100
+AcDbEntity
+  8
+TEXTO
+100
+AcDbText
+ 10
+321.2
+ 20
+31.6
+ 30
+0.0
+ 40
+1.8
+  1
+Cantidad
+ 11
+321.2
+ 21
+31.6
+ 31
+0.0
+100
+AcDbText
+  0
+TEXT
+  5
+8D
+330
+17
+100
+AcDbEntity
+  8
+TEXTO
+100
+AcDbText
+ 10
+321.2
+ 20
+27.3
+ 30
+0.0
+ 40
+2.6
+  1
+1
+ 11
+321.2
+ 21
+27.3
+ 31
+0.0
+100
+AcDbText
+  0
+TEXT
+  5
+8E
+330
+17
+100
+AcDbEntity
+  8
+TEXTO
+100
+AcDbText
+ 10
+366.2
+ 20
+31.6
+ 30
+0.0
+ 40
+1.8
+  1
+Masa aprox.
+ 11
+366.2
+ 21
+31.6
+ 31
+0.0
+100
+AcDbText
+  0
+TEXT
+  5
+8F
+330
+17
+100
+AcDbEntity
+  8
+TEXTO
+100
+AcDbText
+ 10
+366.2
+ 20
+27.3
+ 30
+0.0
+ 40
+2.6
+  1
+34 g
+ 11
+366.2
+ 21
+27.3
+ 31
+0.0
+100
+AcDbText
+  0
+TEXT
+  5
+90
+330
+17
+100
+AcDbEntity
+  8
+TEXTO
+100
+AcDbText
+ 10
+231.2
+ 20
+23.6
+ 30
+0.0
+ 40
+1.8
+  1
+Tolerancias generales
+ 11
+231.2
+ 21
+23.6
+ 31
+0.0
+100
+AcDbText
+  0
+TEXT
+  5
+91
+330
+17
+100
+AcDbEntity
+  8
+TEXTO
+100
+AcDbText
+ 10
+231.2
+ 20
+19.3
+ 30
+0.0
+ 40
+2.2
+  1
+ISO 2768-mK · medidas en mm
+ 11
+231.2
+ 21
+19.3
+ 31
+0.0
+100
+AcDbText
+  0
+TEXT
+  5
+92
+330
+17
+100
+AcDbEntity
+  8
+TEXTO
+100
+AcDbText
+ 10
+321.2
+ 20
+23.6
+ 30
+0.0
+ 40
+1.8
+  1
+Escala
+ 11
+321.2
+ 21
+23.6
+ 31
+0.0
+100
+AcDbText
+  0
+TEXT
+  5
+93
+330
+17
+100
+AcDbEntity
+  8
+TEXTO
+100
+AcDbText
+ 10
+321.2
+ 20
+19.3
+ 30
+0.0
+ 40
+2.6
+  1
+1:1
+ 11
+321.2
+ 21
+19.3
+ 31
+0.0
+100
+AcDbText
+  0
+TEXT
+  5
+94
+330
+17
+100
+AcDbEntity
+  8
+TEXTO
+100
+AcDbText
+ 10
+366.2
+ 20
+23.6
+ 30
+0.0
+ 40
+1.8
+  1
+Hoja
+ 11
+366.2
+ 21
+23.6
+ 31
+0.0
+100
+AcDbText
+  0
+TEXT
+  5
+95
+330
+17
+100
+AcDbEntity
+  8
+TEXTO
+100
+AcDbText
+ 10
+366.2
+ 20
+19.3
+ 30
+0.0
+ 40
+2.6
+  1
+A3
+ 11
+366.2
+ 21
+19.3
+ 31
+0.0
+100
+AcDbText
+  0
+TEXT
+  5
+96
+330
+17
+100
+AcDbEntity
+  8
+TEXTO
+100
+AcDbText
+ 10
+231.2
+ 20
+15.6
+ 30
+0.0
+ 40
+1.8
+  1
+Dibujó / Fecha
+ 11
+231.2
+ 21
+15.6
+ 31
+0.0
+100
+AcDbText
+  0
+TEXT
+  5
+97
+330
+17
+100
+AcDbEntity
+  8
+TEXTO
+100
+AcDbText
+ 10
+231.2
+ 20
+11.3
+ 30
+0.0
+ 40
+2.2
+  1
+Claude (asistente IA) · 2026-10-11
+ 11
+231.2
+ 21
+11.3
+ 31
+0.0
+100
+AcDbText
+  0
+TEXT
+  5
+98
+330
+17
+100
+AcDbEntity
+  8
+TEXTO
+100
+AcDbText
+ 10
+321.2
+ 20
+15.6
+ 30
+0.0
+ 40
+1.8
+  1
+Proyección
+ 11
+321.2
+ 21
+15.6
+ 31
+0.0
+100
+AcDbText
+  0
+TEXT
+  5
+99
+330
+17
+100
+AcDbEntity
+  8
+TEXTO
+100
+AcDbText
+ 10
+321.2
+ 20
+11.3
+ 30
+0.0
+ 40
+2.2
+  1
+ISO-E (europea)
+ 11
+321.2
+ 21
+11.3
+ 31
+0.0
+100
+AcDbText
+  0
+TEXT
+  5
+9A
+330
+17
+100
+AcDbEntity
+  8
+TEXTO
+100
+AcDbText
+ 10
+366.2
+ 20
+15.6
+ 30
+0.0
+ 40
+1.8
+  1
+Revisión
+ 11
+366.2
+ 21
+15.6
+ 31
+0.0
+100
+AcDbText
+  0
+TEXT
+  5
+9B
+330
+17
+100
+AcDbEntity
+  8
+TEXTO
+100
+AcDbText
+ 10
+366.2
+ 20
+11.3
+ 30
+0.0
+ 40
+2.2
+  1
+B · conceptual
+ 11
+366.2
+ 21
+11.3
+ 31
+0.0
+100
+AcDbText
+  0
+LINE
+  5
+9C
+330
+17
+100
+AcDbEntity
+  8
+TEXTO
+100
+AcDbLine
+ 10
+341.0
+ 20
+37.5
+ 30
+0.0
+ 11
+341.0
+ 21
+42.5
+ 31
+0.0
+  0
+LINE
+  5
+9D
+330
+17
+100
+AcDbEntity
+  8
+TEXTO
+100
+AcDbLine
+ 10
+341.0
+ 20
+42.5
+ 30
+0.0
+ 11
+347.0
+ 21
+44.0
+ 31
+0.0
+  0
+LINE
+  5
+9E
+330
+17
+100
+AcDbEntity
+  8
+TEXTO
+100
+AcDbLine
+ 10
+347.0
+ 20
+44.0
+ 30
+0.0
+ 11
+347.0
+ 21
+36.0
+ 31
+0.0
+  0
+LINE
+  5
+9F
+330
+17
+100
+AcDbEntity
+  8
+TEXTO
+100
+AcDbLine
+ 10
+347.0
+ 20
+36.0
+ 30
+0.0
+ 11
+341.0
+ 21
+37.5
+ 31
+0.0
+  0
+CIRCLE
+  5
+A0
+330
+17
+100
+AcDbEntity
+  8
+TEXTO
+100
+AcDbCircle
+ 10
+354.0
+ 20
+40.0
+ 30
+0.0
+ 40
+3.5
+  0
+CIRCLE
+  5
+A1
+330
+17
+100
+AcDbEntity
+  8
+TEXTO
+100
+AcDbCircle
+ 10
+354.0
+ 20
+40.0
+ 30
+0.0
+ 40
+1.5
   0
 DIMENSION
   5
-8A
+A3
 330
 17
 100
@@ -5187,15 +6061,15 @@ AcDbDimension
   3
 ISO25
  10
-97.5
+203.0
  20
-81.25
+167.5
  30
 0.0
  11
-107.5
+215.0
  21
-82.275
+169.55
  31
 0.0
  70
@@ -5207,15 +6081,15 @@ ISO25
 100
 AcDbAlignedDimension
  13
-97.5
+203.0
  23
-88.25
+181.5
  33
 0.0
  14
-117.5
+227.0
  24
-88.25
+181.5
  34
 0.0
  50
@@ -5225,7 +6099,7 @@ AcDbRotatedDimension
   0
 DIMENSION
   5
-9D
+B6
 330
 17
 100
@@ -5241,15 +6115,15 @@ AcDbDimension
   3
 ISO25
  10
-90.5
+189.0
  20
-88.25
+181.5
  30
 0.0
  11
-89.475
+186.95
  21
-110.25
+218.5
  31
 0.0
  70
@@ -5261,15 +6135,69 @@ ISO25
 100
 AcDbAlignedDimension
  13
-97.5
+203.0
  23
-88.25
+181.5
  33
 0.0
  14
-97.5
+203.0
  24
-132.25
+255.5
+ 34
+0.0
+ 50
+90.0
+100
+AcDbRotatedDimension
+  0
+DIMENSION
+  5
+C5
+330
+17
+100
+AcDbEntity
+  8
+COTAS
+100
+AcDbDimension
+280
+0
+  2
+*D3
+  3
+ISO25
+ 10
+191.0
+ 20
+121.5
+ 30
+0.0
+ 11
+188.95
+ 21
+131.5
+ 31
+0.0
+ 70
+32
+ 71
+5
+  1
+<>
+100
+AcDbAlignedDimension
+ 13
+203.0
+ 23
+121.5
+ 33
+0.0
+ 14
+203.0
+ 24
+141.5
  34
 0.0
  50
@@ -5279,7 +6207,7 @@ AcDbRotatedDimension
   0
 TEXT
   5
-AC
+D4
 330
 17
 100
@@ -5289,19 +6217,19 @@ TEXTO
 100
 AcDbText
  10
-12.0
+24.0
  20
-28.0
+56.0
  30
 0.0
  40
-1.5
+3.0
   1
 NOTAS
  11
-12.0
+24.0
  21
-28.0
+56.0
  31
 0.0
 100
@@ -5309,7 +6237,7 @@ AcDbText
   0
 TEXT
   5
-AD
+D5
 330
 17
 100
@@ -5319,19 +6247,19 @@ TEXTO
 100
 AcDbText
  10
-12.0
+24.0
  20
-25.4
+50.8
  30
 0.0
  40
-1.2
+2.4
   1
-1. Con imán para sensor Hall: la cuchilla sigue al gatillo (corte proporcional).
+1. Gatillo largo para índice, medio y anular: reparte el esfuerzo y evita el "dedo en gatillo".
  11
-12.0
+24.0
  21
-25.4
+50.8
  31
 0.0
 100
@@ -5339,7 +6267,7 @@ AcDbText
   0
 TEXT
   5
-AE
+D6
 330
 17
 100
@@ -5349,19 +6277,79 @@ TEXTO
 100
 AcDbText
  10
-12.0
+24.0
  20
-22.799999999999997
+45.599999999999994
  30
 0.0
  40
-1.2
+2.4
   1
-2. Al soltarlo, freno eléctrico y la cuchilla vuelve a abrir.
+2. Empieza justo debajo de la carcasa: el índice queda arriba, donde descansa naturalmente.
  11
-12.0
+24.0
  21
-22.799999999999997
+45.599999999999994
+ 31
+0.0
+100
+AcDbText
+  0
+TEXT
+  5
+D7
+330
+17
+100
+AcDbEntity
+  8
+TEXTO
+100
+AcDbText
+ 10
+24.0
+ 20
+40.39999999999999
+ 30
+0.0
+ 40
+2.4
+  1
+3. Fuerza de accionamiento 6-8 N, recorrido 8 mm. Imán para sensor Hall: la cuchilla sigue al gatillo.
+ 11
+24.0
+ 21
+40.39999999999999
+ 31
+0.0
+100
+AcDbText
+  0
+TEXT
+  5
+D8
+330
+17
+100
+AcDbEntity
+  8
+TEXTO
+100
+AcDbText
+ 10
+24.0
+ 20
+35.19999999999999
+ 30
+0.0
+ 40
+2.4
+  1
+4. Al soltarlo, freno eléctrico y la cuchilla vuelve a abrir.
+ 11
+24.0
+ 21
+35.19999999999999
  31
 0.0
 100
@@ -6357,7 +7345,7 @@ CREATED_BY_EZDXF
   3
 WRITTEN_BY_EZDXF
 350
-B2
+DC
   0
 DICTIONARYVAR
   5
@@ -6369,11 +7357,11 @@ DictionaryVariables
 280
 0
   1
-1.4.4 @ 2026-10-12T00:24:55.050094+00:00
+1.4.4 @ 2026-10-12T02:34:06.418321+00:00
   0
 DICTIONARYVAR
   5
-B2
+DC
 330
 2D
 100
@@ -6381,7 +7369,7 @@ DictionaryVariables
 280
 0
   1
-1.4.4 @ 2026-10-12T00:24:55.069144+00:00
+1.4.4 @ 2026-10-12T02:34:06.440868+00:00
   0
 ENDSEC
   0

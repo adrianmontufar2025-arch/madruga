@@ -192,11 +192,11 @@
   },
   {
    "codigo": "P11",
-   "nombre": "Empuñadura con palanca de seguridad",
+   "nombre": "Empuñadura ergonómica con guardamonte",
    "material": "PA6-GF30 con sobremoldeo TPE",
    "cantidad": 1,
    "grupo": "Brazo",
-   "masa_g": 106,
+   "masa_g": 119,
    "plano": true,
    "explosion": [
     -261.6,
@@ -211,11 +211,30 @@
   },
   {
    "codigo": "P12",
-   "nombre": "Gatillo proporcional",
+   "nombre": "Gatillo de tres dedos (proporcional)",
    "material": "PA6-GF30",
    "cantidad": 1,
    "grupo": "Brazo",
-   "masa_g": 9,
+   "masa_g": 34,
+   "plano": true,
+   "explosion": [
+    -261.6,
+    0.0,
+    106.1
+   ],
+   "color": [
+    0.16,
+    0.16,
+    0.17
+   ]
+  },
+  {
+   "codigo": "P18",
+   "nombre": "Palanca de pulgar (opcional)",
+   "material": "PA6-GF30 con TPE",
+   "cantidad": 1,
+   "grupo": "Brazo",
+   "masa_g": 4,
    "plano": true,
    "explosion": [
     -261.6,
@@ -501,14 +520,14 @@
   "d": 35.0,
   "a_dir": 50.0
  },
- "masa_total_g": 3614,
+ "masa_total_g": 3656,
  "cg_mundo": [
-  -363,
-  262
+  -366,
+  264
  ],
  "momento_muneca_Nm": 9.8,
  "fuerza_cuna_kgf": 5.8,
- "carga_mano_apoyado_g": 1567,
+ "carga_mano_apoyado_g": 1607,
  "altura_mano_mm": 433,
  "distancia_mano_tallo_mm": 640
 }

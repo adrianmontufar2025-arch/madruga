@@ -179,7 +179,7 @@ def main():
         "Sin el apoyo de antebrazo la muñeca cargaría unos 9,5 N·m; con la cuna P14 solo guía.",
         "Con el patín P04 apoyado en el suelo, la mano carga unos 1,6 kg.",
         "Corte de tallos hasta %%c65, a 11 mm del suelo (fondo plano del cabezal).",
-        "Motor 36 V 300-400 W + reductor 15:1 + husillo SFU1605 + balancín P06 + biela P07.",
+        "Mango ergonómico: gatillo de 3 dedos (6-8 N), palanca de pulgar opcional y sensor de presencia.",
         "Fuerza de corte estimada 3-3,5 kN: confirmar con ensayo en tallos de Pangua.",
         "Caña apretada: la punta P17 cede y la mordida parcial corta más de la mitad del diámetro.",
     ]

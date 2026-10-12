@@ -400,21 +400,52 @@ def p10_carcasa():
     return c
 
 
+def _trazo(puntos, ancho):
+    """Barra de ancho constante que sigue una poligonal (plano XZ local)."""
+    pieza = None
+    for (x0, z0), (x1, z1) in zip(puntos[:-1], puntos[1:]):
+        L = math.hypot(x1 - x0, z1 - z0)
+        ang = math.degrees(math.atan2(z1 - z0, x1 - x0))
+        seg = Pos((x0 + x1) / 2, (z0 + z1) / 2) * Rot(0, 0, ang) * Rectangle(L, ancho)
+        pieza = seg if pieza is None else pieza + seg
+    for x, z in puntos:
+        pieza = pieza + circ(x, z, ancho / 2)
+    return pieza
+
+
+GUARDAMONTE = [(-10.0, -134.0), (-64.0, -128.0), (-68.0, -66.0), (-40.0, -20.0)]
+
+
 def p11_empunadura():
-    """Empuñadura tipo pistola con palanca de seguridad de palma (plano XZ local)."""
+    """Empuñadura ergonómica tipo pistola con guardamonte (plano XZ local; el frente mira al cabezal, -X).
+
+    Sección ovalada de 44 x 32 mm (equivale a Ø38: agarre de fuerza con guante), inclinada 15° hacia
+    atrás para que la muñeca quede neutra con el antebrazo en la cuna, y tope inferior para que la mano
+    no resbale. La seguridad es un sensor capacitivo de presencia en la cara trasera: no hay que apretar nada."""
     pl = Plane.XZ
-    pts = [(-26, -18), (30, -18), (38, -45), (42, -128), (34, -142), (0, -142), (-8, -130), (-20, -45)]
-    sol = pl * extrude(poly(*pts), 15, both=True)
-    sol = safe_fillet(sol, sol.edges().filter_by(Axis.Y, reverse=True), 7)
-    palanca = pl * extrude(poly((40, -50), (47, -52), (50, -110), (44, -112)), 9, both=True)
-    guarda = pl * extrude(poly((-20, -100), (-46, -96), (-50, -102), (-22, -108)), 6, both=True)
-    return sol + palanca + guarda
+    pts = [(-24, -20), (30, -20), (36, -45), (40, -120), (47, -131), (42, -146), (-8, -146), (-13, -134),
+           (-8, -122), (-20, -45)]
+    sol = pl * extrude(poly(*pts), 16, both=True)
+    sol = safe_fillet(sol, sol.edges().filter_by(Axis.Y, reverse=True), 8)
+    guarda = pl * extrude(_trazo(GUARDAMONTE, 8), 6, both=True)
+    return sol + guarda
 
 
 def p12_gatillo():
+    """Gatillo largo de tres dedos (índice, medio y anular): reparte el esfuerzo en vez de cargar un solo dedo."""
     pl = Plane.XZ
-    pts = [(-22, -46), (-36, -50), (-42, -64), (-38, -88), (-30, -90), (-24, -64)]
-    return pl * extrude(poly(*pts), 6, both=True)
+    pts = [(-23, -36), (-34, -38), (-38, -52), (-35, -60), (-38, -72), (-35, -80), (-37, -92), (-31, -106),
+           (-22, -110), (-14, -106), (-17, -80), (-20, -58)]
+    return pl * extrude(poly(*pts), 10, both=True)
+
+
+def p18_pulgar():
+    """Palanca de pulgar arriba, en el costado izquierdo de la empuñadura (opcional, trabaja en paralelo con el
+    gatillo): el operario puede alternar dedos y pulgar durante la jornada."""
+    paleta = Pos(4, -25, -26) * Box(30, 7, 12, align=(Align.CENTER, Align.CENTER, Align.CENTER))
+    paleta = safe_fillet(paleta, paleta.edges(), 2.5)
+    eje = Pos(-10, -20, -26) * Rot(90, 0, 0) * Cylinder(4, 10)
+    return paleta + eje
 
 
 def p13_brazo_apoyo():
@@ -550,10 +581,12 @@ def construir(theta=0.0):
               ACERO_FILO, "Brazo", explosion=_ex(0, -120), densidad=2.81),
         Pieza("P10", "Carcasa de accionamiento", "PA6-GF30 (prototipo: impresión 3D PA-CF)", 1, p10_carcasa(),
               en_eje(S_CARCASA[0]), NARANJA, "Brazo", explosion=_ex(260), densidad=1.36, cascara=2.5),
-        Pieza("P11", "Empuñadura con palanca de seguridad", "PA6-GF30 con sobremoldeo TPE", 1, p11_empunadura(),
+        Pieza("P11", "Empuñadura ergonómica con guardamonte", "PA6-GF30 con sobremoldeo TPE", 1, p11_empunadura(),
               en_eje(S_EMP), NARANJA, "Brazo", explosion=_ex(260, -110), densidad=1.36, cascara=3.0),
-        Pieza("P12", "Gatillo proporcional", "PA6-GF30", 1, p12_gatillo(), en_eje(S_EMP), CAUCHO, "Brazo",
+        Pieza("P12", "Gatillo de tres dedos (proporcional)", "PA6-GF30", 1, p12_gatillo(), en_eje(S_EMP), CAUCHO, "Brazo",
               explosion=_ex(260, -110), densidad=1.36),
+        Pieza("P18", "Palanca de pulgar (opcional)", "PA6-GF30 con TPE", 1, p18_pulgar(), en_eje(S_EMP), CAUCHO,
+              "Brazo", explosion=_ex(260, -110), densidad=1.36),
         Pieza("P13", "Brazo del apoyo de antebrazo", "Aluminio 6061-T6, chapa 6 mm", 1, p13_brazo_apoyo(),
               en_eje(S_CARCASA[0]), ALUMINIO, "Apoyo de antebrazo", explosion=_ex(330, -60), densidad=2.70),
         Pieza("P14", "Cuna de antebrazo", "PA6-GF30 (o aluminio 5052 plegado)", 1, p14_cuna(), en_eje(S_CUNA[0]),

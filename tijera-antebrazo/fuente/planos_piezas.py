@@ -236,12 +236,16 @@ def p11():
     f = MD.p11_empunadura()
     b = bb(f)
     cot = [L("alzado", (b.min.X, 0, b.min.Z), (b.max.X, 0, b.min.Z), -14),
-           L("alzado", (b.max.X, 0, b.min.Z), (b.max.X, 0, b.max.Z), 14, 90)]
-    return Plano("P11", "Empuñadura con palanca de seguridad", "PA6-GF30 con sobremoldeo TPE", 1, masa("P11"), f,
+           L("alzado", (b.max.X, 0, b.min.Z), (b.max.X, 0, b.max.Z), 14, 90),
+           L("perfil", (0, -16, -80), (0, 16, -80), -14, 0)]
+    return Plano("P11", "Empuñadura ergonómica con guardamonte", "PA6-GF30 con sobremoldeo TPE 3 mm", 1, masa("P11"), f,
                  ["alzado", "perfil"], cot, [
-                     "Tipo pistola, inclinada ~15° hacia atrás para muñeca neutra.",
-                     "Palanca de seguridad en la espalda: la cuchilla solo cierra si la palma la aprieta junto con el gatillo.",
-                     "Hueca, pared 3 mm; aloja el sensor Hall del gatillo P12.",
+                     "Sección ovalada 44 x 32 mm (equivale a Ø38): agarre de fuerza cómodo, también con guante.",
+                     "Inclinada 15° hacia atrás: con el antebrazo en la cuna, la muñeca queda recta.",
+                     "Tope inferior para que la mano no resbale; sin estrías de dedos (sirve a cualquier mano).",
+                     "Seguridad sin esfuerzo: sensor capacitivo de presencia en la cara trasera (reemplaza la palanca",
+                     "   de palma). La cuchilla solo cierra con la mano puesta en el mango.",
+                     "Guardamonte: protege el gatillo de hojas y ramas que podrían accionarlo.",
                  ], [], origen="eje de la herramienta")
 
 
@@ -249,11 +253,28 @@ def p12():
     f = MD.p12_gatillo()
     b = bb(f)
     cot = [L("alzado", (b.min.X, 0, b.min.Z), (b.max.X, 0, b.min.Z), -14),
-           L("alzado", (b.min.X, 0, b.min.Z), (b.min.X, 0, b.max.Z), -14, 90)]
-    return Plano("P12", "Gatillo proporcional", "PA6-GF30", 1, masa("P12"), f, ["alzado", "planta"], cot, [
-        "Con imán para sensor Hall: la cuchilla sigue al gatillo (corte proporcional).",
+           L("alzado", (b.min.X, 0, b.min.Z), (b.min.X, 0, b.max.Z), -14, 90),
+           L("planta", (b.min.X, -10, 0), (b.min.X, 10, 0), -12, 90)]
+    return Plano("P12", "Gatillo de tres dedos (proporcional)", "PA6-GF30", 1, masa("P12"), f, ["alzado", "planta"], cot, [
+        "Gatillo largo para índice, medio y anular: reparte el esfuerzo y evita el \"dedo en gatillo\".",
+        "Empieza justo debajo de la carcasa: el índice queda arriba, donde descansa naturalmente.",
+        "Fuerza de accionamiento 6-8 N, recorrido 8 mm. Imán para sensor Hall: la cuchilla sigue al gatillo.",
         "Al soltarlo, freno eléctrico y la cuchilla vuelve a abrir.",
     ], [], origen="eje de la herramienta")
+
+
+def p18():
+    f = MD.p18_pulgar()
+    b = bb(f)
+    cot = [L("alzado", (b.min.X, 0, b.min.Z), (b.max.X, 0, b.min.Z), -12),
+           L("alzado", (b.max.X, 0, b.min.Z), (b.max.X, 0, b.max.Z), 12, 90)]
+    return Plano("P18", "Palanca de pulgar (opcional)", "PA6-GF30 con TPE", 1, masa("P18"), f, ["alzado", "planta"],
+                 cot, [
+                     "Palanca arriba, en el costado izquierdo del mango, donde descansa el pulgar.",
+                     "Trabaja en paralelo con el gatillo P12: cualquiera de los dos cierra la cuchilla.",
+                     "Sirve para alternar pulgar y dedos durante la jornada y descansar la mano.",
+                     "Fuerza 5 N, recorrido 5 mm. Se puede desactivar en el controlador si el operario no la usa.",
+                 ], [], origen="eje de la herramienta")
 
 
 def p13():
@@ -328,7 +349,7 @@ def p17():
                  ], [], origen="centro de la garganta", tratamiento="H1025 o pavonado")
 
 
-TODOS = [p01, p02, p03, p04, p05, p06, p07, p08, p09, p10, p11, p12, p13, p14, p15, p16, p17]
+TODOS = [p01, p02, p03, p04, p05, p06, p07, p08, p09, p10, p11, p12, p13, p14, p15, p16, p17, p18]
 
 
 def main(solo=None):
