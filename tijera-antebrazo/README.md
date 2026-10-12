@@ -126,6 +126,7 @@ En laderas más empinadas que 27° hay que dejarla colgada de la correa de hombr
 | Carpeta / archivo | Qué es | Con qué se abre |
 |---|---|---|
 | `imagenes/` | Vistas 3D: armada, cabezal cerrado y abierto, planta, corte parcial, mango, lateral con medidas, despiece, en la mata, en reposo, motor por dentro | Cualquier visor de imágenes |
+| `dossier_fabricacion.pdf` | **Para imprimir e ir a construir:** portada, cómo funciona, las 11 imágenes 3D, orden de construcción, lista de materiales, presupuesto en Ecuador, proveedores y los 20 planos a escala | Cualquier lector de PDF |
 | `planos_cortadora.pdf` | Los 20 planos en un PDF a escala | Cualquier lector de PDF |
 | `lista_de_materiales.xlsx` | Lista de materiales (material, cantidad, masa, cómo se fabrica cada pieza, archivo DXF/STEP), presupuesto estimado en Ecuador con proveedores y nivel de confianza de cada precio, y lista de proveedores | Excel, LibreOffice Calc, Google Sheets |
 | `planos_dxf/` | Un DXF por pieza (P01…P19) y el conjunto `00` con la lista de materiales (incluye los comerciales C01…C09) | AutoCAD (Guardar como → DWG), DraftSight, LibreCAD, QCAD |
@@ -151,7 +152,7 @@ La hoja "Presupuesto Ecuador" de `lista_de_materiales.xlsx` estima el costo del 
 ## Regenerar todo
 
 ```bash
-pip install build123d ezdxf matplotlib openpyxl
+pip install build123d ezdxf matplotlib openpyxl reportlab pypdf
 cd fuente
 python3 generar_todo.py
 ```

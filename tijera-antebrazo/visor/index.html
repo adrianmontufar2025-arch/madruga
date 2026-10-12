@@ -184,8 +184,10 @@ import { GLTFLoader } from 'three/addons/loaders/GLTFLoader.js';
 import { RoomEnvironment } from 'three/addons/environments/RoomEnvironment.js';
 import { mergeGeometries } from 'three/addons/utils/BufferGeometryUtils.js';
 
-const CAPTURA = location.hash === '#captura';
+const CAPTURA = location.hash.startsWith('#captura');
+const LIMPIA = location.hash === '#captura-limpia';   // imágenes para imprimir, sin el rótulo
 if (CAPTURA) document.documentElement.classList.add('captura');
+if (LIMPIA) document.getElementById('rotulo').style.display = 'none';
 const reduceMotion = matchMedia('(prefers-reduced-motion: reduce)').matches;
 
 const escena = document.getElementById('escena');
