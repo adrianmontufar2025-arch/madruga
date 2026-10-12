@@ -37,6 +37,10 @@ def colocar(p, mundo, etiqueta=None):
 
 
 def balance(piezas):
+    """Cargas en la mano, la cuna y la muñeca en la postura de corte (eje a 45°).
+
+    La cuna solo empuja perpendicular al antebrazo; lo que tira de la herramienta hacia la punta (a lo largo
+    del eje) lo aguantan los dedos, salvo que la correa de hombro lo tome."""
     mundo = MD.a_mundo()
     tot = mx = mz = 0.0
     for p in piezas:
@@ -50,18 +54,49 @@ def balance(piezas):
     mx += TORNILLERIA_G * cc[0]
     mz += TORNILLERIA_G * cc[2]
     cg = (mx / tot, mz / tot)
+    W = tot / 1000 * 9.81
+    kgf = lambda f: round(abs(f) / 9.81, 1)  # noqa: E731
+
+    o = [v + h for v, h in zip(MD.eje(0), MD.H_A_MUNDO)]
+    def local(x, z):
+        return ((x - o[0]) * MD.U[0] + (z - o[2]) * MD.U[2], (x - o[0]) * MD.N_ARRIBA[0] + (z - o[2]) * MD.N_ARRIBA[2])
+    sg, ng = local(*cg)
+    sh, nh = MD.S_EMP, -85.0                                   # mano en la empuñadura
+    sw, nw = MD.S_EMP + 45.0, MD.Z_ANTEBRAZO + 5.0             # muñeca
+    sc = sum(MD.S_CUNA) / 2                                    # cuna (empuja solo según N)
+    wu, wn = -W * MD.U[2], -W * MD.N_ARRIBA[2]                 # peso en ejes locales
+    m_peso = (sg - sh) * wn - (ng - nh) * wu                   # momento del peso respecto de la mano
+
+    def muneca(fu, fn):
+        return abs((sh - sw) * fn - (nh - nw) * fu) / 1000
+
     ref = MD.antebrazo_mundo()
-    mano = ref["mano"]
-    e = MD.eje(sum(MD.S_CUNA) / 2)
-    cuna_x = e[0] + MD.Z_ANTEBRAZO * MD.N_ARRIBA[0] + MD.H_A_MUNDO[0]
-    peso = tot / 1000 * 9.81
-    momento = abs(peso * (mano[0] - cg[0]) / 1000)
-    brazo = abs(cuna_x - mano[0]) / 1000
+    mano, mun = ref["mano"], ref["muneca"]
+    # 1) en el aire, sin cuna: la muñeca aguanta todo el momento del peso
+    m_sin = W * abs(mun[0] - cg[0]) / 1000
+    # 2) en el aire, con cuna
+    fc = -m_peso / (sc - sh)
+    fu = -wu
+    fn = -wn - fc
+    aire_cuna = dict(mano_kgf=kgf(math.hypot(fu, fn)), dedos_kgf=kgf(fu), cuna_kgf=kgf(fc), muneca_Nm=round(muneca(fu, fn), 1))
+    # 3) en el aire, con cuna y correa de hombro (la correa toma lo que tira hacia la punta)
+    tu, ty, tn = MD.direccion_correa()
+    a = MD.anilla_mundo()
+    sr, nr = local(a[0], a[2])
+    T = -wu / tu
+    fc2 = -(m_peso + (sr - sh) * T * tn - (nr - nh) * T * tu) / (sc - sh)
+    fn2 = -wn - fc2 - T * tn
+    aire_correa = dict(mano_kgf=kgf(fn2), dedos_kgf=0.0, cuna_kgf=kgf(fc2), correa_kgf=kgf(T),
+                       lateral_kgf=kgf(T * ty), muneca_Nm=round(muneca(0.0, fn2), 1))
+    # 4) cortando: el patín apoya en el suelo y la mano lleva el resto (fuerzas verticales)
     x_apoyo = -80 + MD.H_A_MUNDO[0]
     carga_apoyado = tot * (cg[0] - x_apoyo) / (mano[0] - x_apoyo)
-    return dict(masa_total_g=round(tot), cg_mundo=[round(cg[0]), round(cg[1])], momento_muneca_Nm=round(momento, 1),
-                fuerza_cuna_kgf=round(momento / brazo / 9.81, 1), carga_mano_apoyado_g=round(carga_apoyado),
-                altura_mano_mm=round(mano[2]), distancia_mano_tallo_mm=round(-mano[0]))
+    apoyado = dict(mano_kgf=round(carga_apoyado / 1000, 1),
+                   muneca_Nm=round(carga_apoyado / 1000 * 9.81 * abs(mano[0] - mun[0]) / 1000, 1))
+    return dict(masa_total_g=round(tot), cg_mundo=[round(cg[0]), round(cg[1])], momento_muneca_Nm=round(m_sin, 1),
+                aire_cuna=aire_cuna, aire_correa=aire_correa, apoyado=apoyado,
+                fuerza_cuna_kgf=aire_cuna["cuna_kgf"], carga_mano_apoyado_g=round(carga_apoyado),
+                anilla_sobre_cg_mm=round(sr - sg), altura_mano_mm=round(mano[2]), distancia_mano_tallo_mm=round(-mano[0]))
 
 
 def corte_parcial(a_dir=50.0, d=35.0, D=60.0):

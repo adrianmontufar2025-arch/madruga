@@ -241,11 +241,13 @@ def p11():
     return Plano("P11", "Empuñadura ergonómica con guardamonte", "PA6-GF30 con sobremoldeo TPE 3 mm", 1, masa("P11"), f,
                  ["alzado", "perfil"], cot, [
                      "Sección ovalada 44 x 32 mm (equivale a Ø38): agarre de fuerza cómodo, también con guante.",
-                     "Inclinada 15° hacia atrás: con el antebrazo en la cuna, la muñeca queda recta.",
+                     "Inclinada hacia atrás: con el antebrazo en la cuna, la muñeca queda recta (posición de dar la mano).",
+                     "Tope superior trasero (cola de castor): ahí apoya el arco entre pulgar e índice. Por ahí se levanta",
+                     "   la herramienta, así los cuatro dedos quedan libres para el gatillo P12.",
                      "Tope inferior para que la mano no resbale; sin estrías de dedos (sirve a cualquier mano).",
                      "Seguridad sin esfuerzo: sensor capacitivo de presencia en la cara trasera (reemplaza la palanca",
                      "   de palma). La cuchilla solo cierra con la mano puesta en el mango.",
-                     "Guardamonte: protege el gatillo de hojas y ramas que podrían accionarlo.",
+                     "Guardamonte amplio (luz de 26 a 48 mm para dedos con guante): protege el gatillo de hojas y ramas.",
                  ], [], origen="eje de la herramienta")
 
 
@@ -255,11 +257,13 @@ def p12():
     cot = [L("alzado", (b.min.X, 0, b.min.Z), (b.max.X, 0, b.min.Z), -14),
            L("alzado", (b.min.X, 0, b.min.Z), (b.min.X, 0, b.max.Z), -14, 90),
            L("planta", (b.min.X, -10, 0), (b.min.X, 10, 0), -12, 90)]
-    return Plano("P12", "Gatillo de tres dedos (proporcional)", "PA6-GF30", 1, masa("P12"), f, ["alzado", "planta"], cot, [
-        "Gatillo largo para índice, medio y anular: reparte el esfuerzo y evita el \"dedo en gatillo\".",
-        "Empieza justo debajo de la carcasa: el índice queda arriba, donde descansa naturalmente.",
-        "Fuerza de accionamiento 6-8 N, recorrido 8 mm. Imán para sensor Hall: la cuchilla sigue al gatillo.",
+    return Plano("P12", "Gatillo de cuatro dedos (tipo rozadora)", "PA6-GF30", 1, masa("P12"), f, ["alzado", "planta"], cot, [
+        "Gatillo largo como el acelerador de la rozadora: índice, medio, anular y meñique reparten el esfuerzo.",
+        "Cuatro hendiduras ubican los dedos. Pivote arriba, bajo la repisa del guardamonte.",
+        "Fuerza 10-12 N (unos 3 N por dedo), recorrido 10 mm en el centro. Imán para sensor Hall.",
         "Al soltarlo, freno eléctrico y la cuchilla vuelve a abrir.",
+        "Usar con la correa de hombro C08: en el aire, la correa aguanta lo que la herramienta tira hacia la",
+        "   punta y los dedos no aprietan el gatillo sin querer.",
     ], [], origen="eje de la herramienta")
 
 
@@ -325,8 +329,10 @@ def p15():
 def p16():
     return tubo_plano("P16", "Anilla para correa de hombro", "Abrazadera PA6 + anilla inoxidable", MD.p16_anilla(),
                       38, 30, 22, [
-                          f"Se ubica en el centro de gravedad de la herramienta (a {int(MD.S_ANILLA)} mm del brazo A, sobre P08).",
-                          "Engancha una correa de hombro: entre corte y corte la herramienta cuelga y el brazo descansa.",
+                          f"Se ubica en el centro de gravedad de la herramienta (a {int(MD.S_ANILLA)} mm del brazo A, sobre P08):",
+                          "   colgada de la anilla, la herramienta queda horizontal.",
+                          "Engancha la correa de hombro C08 (arnés simple de rozadora, cruzado al hombro izquierdo).",
+                          "Al caminar y entre corte y corte la herramienta cuelga y el brazo descansa.",
                       ])
 
 

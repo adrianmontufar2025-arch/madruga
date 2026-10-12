@@ -196,7 +196,7 @@
    "material": "PA6-GF30 con sobremoldeo TPE",
    "cantidad": 1,
    "grupo": "Brazo",
-   "masa_g": 119,
+   "masa_g": 156,
    "plano": true,
    "explosion": [
     -261.6,
@@ -211,11 +211,11 @@
   },
   {
    "codigo": "P12",
-   "nombre": "Gatillo de tres dedos (proporcional)",
+   "nombre": "Gatillo de cuatro dedos (tipo rozadora)",
    "material": "PA6-GF30",
    "cantidad": 1,
    "grupo": "Brazo",
-   "masa_g": 34,
+   "masa_g": 39,
    "plano": true,
    "explosion": [
     -261.6,
@@ -457,6 +457,25 @@
    ]
   },
   {
+   "codigo": "C08",
+   "nombre": "Correa de hombro de rozadora con mosquetón",
+   "material": "Comercial (arnés simple de desbrozadora)",
+   "cantidad": 1,
+   "grupo": "Brazo",
+   "masa_g": 14,
+   "plano": false,
+   "explosion": [
+    28.3,
+    0.0,
+    183.8
+   ],
+   "color": [
+    0.16,
+    0.2,
+    0.26
+   ]
+  },
+  {
    "codigo": "C05",
    "nombre": "Batería Li-ion 36 V 2,5-4 Ah al cinturón + cable espiral",
    "material": "Comercial",
@@ -508,6 +527,21 @@
    36.0,
    432.6747109368333
   ],
+  "hombro": [
+   -858.8934004368655,
+   436.0,
+   958.9488809165285
+  ],
+  "anilla": [
+   -335.63438235882035,
+   36.0,
+   299.73863607376245
+  ],
+  "correa_fin": [
+   -515.2027990676074,
+   147.60506319305074,
+   525.9618560374015
+  ],
   "radio": 40.0
  },
  "altura_corte_mm": 11.0,
@@ -520,14 +554,33 @@
   "d": 35.0,
   "a_dir": 50.0
  },
- "masa_total_g": 3656,
+ "masa_total_g": 3712,
  "cg_mundo": [
-  -366,
-  264
+  -370,
+  266
  ],
- "momento_muneca_Nm": 9.8,
- "fuerza_cuna_kgf": 5.8,
- "carga_mano_apoyado_g": 1607,
+ "momento_muneca_Nm": 10.7,
+ "aire_cuna": {
+  "mano_kgf": 7.1,
+  "dedos_kgf": 2.6,
+  "cuna_kgf": 4.0,
+  "muneca_Nm": 2.7
+ },
+ "aire_correa": {
+  "mano_kgf": 4.7,
+  "dedos_kgf": 0.0,
+  "cuna_kgf": 2.4,
+  "correa_kgf": 2.9,
+  "lateral_kgf": 1.3,
+  "muneca_Nm": 2.1
+ },
+ "apoyado": {
+  "mano_kgf": 1.7,
+  "muneca_Nm": 0.4
+ },
+ "fuerza_cuna_kgf": 4.0,
+ "carga_mano_apoyado_g": 1657,
+ "anilla_sobre_cg_mm": 0,
  "altura_mano_mm": 433,
  "distancia_mano_tallo_mm": 640
 }

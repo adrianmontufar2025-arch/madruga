@@ -2,8 +2,10 @@
 Tijera de caña con apoyo de antebrazo — modelo paramétrico conceptual (Rev. A).
 
 Herramienta de una mano: el operario sostiene la caña con la mano libre y con la
-otra corta al ras del suelo. El antebrazo descansa en una cuna (P14) que recibe el
-momento del cabezal, para que la muñeca no cargue el peso.
+otra corta al ras del suelo. El antebrazo descansa en una cuna (P14) que recibe casi
+todo el momento del cabezal; la correa de hombro (C08), enganchada en la anilla P16
+sobre el centro de gravedad, toma lo que la herramienta tira hacia la punta, así los
+dedos quedan libres para el gatillo de cuatro dedos (P12).
 
 Todas las medidas en mm.
 
@@ -413,30 +415,52 @@ def _trazo(puntos, ancho):
     return pieza
 
 
-GUARDAMONTE = [(-10.0, -134.0), (-64.0, -128.0), (-68.0, -66.0), (-40.0, -20.0)]
+GUARDAMONTE = [(-6.0, -150.0), (-78.0, -148.0), (-90.0, -74.0), (-48.0, -25.0)]
 
 
 def p11_empunadura():
-    """Empuñadura ergonómica tipo pistola con guardamonte (plano XZ local; el frente mira al cabezal, -X).
+    """Empuñadura tipo pistola con gatillo de cuatro dedos y guardamonte (plano XZ local; el frente mira al cabezal, -X).
 
-    Sección ovalada de 44 x 32 mm (equivale a Ø38: agarre de fuerza con guante), inclinada 15° hacia
-    atrás para que la muñeca quede neutra con el antebrazo en la cuna, y tope inferior para que la mano
-    no resbale. La seguridad es un sensor capacitivo de presencia en la cara trasera: no hay que apretar nada."""
+    Sección ovalada de 44 x 32 mm (equivale a Ø38: agarre de fuerza con guante), inclinada hacia atrás para que la
+    muñeca quede neutra con el antebrazo en la cuna. Arriba atrás lleva un tope (cola de castor) donde apoya el arco
+    entre pulgar e índice: por ahí se levanta la herramienta, así los dedos quedan libres para el gatillo. Arriba
+    adelante, una repisa cierra el guardamonte sobre el índice. Tope inferior para que la mano no resbale.
+    La seguridad es un sensor capacitivo de presencia en la cara trasera: no hay que apretar nada."""
     pl = Plane.XZ
-    pts = [(-24, -20), (30, -20), (36, -45), (40, -120), (47, -131), (42, -146), (-8, -146), (-13, -134),
-           (-8, -122), (-20, -45)]
+    pts = [(-50, -20), (30, -20), (50, -23), (49, -31), (37, -44), (41, -128), (48, -140), (43, -156), (-7, -156),
+           (-12, -144), (-7, -132), (-20, -45), (-24, -31), (-50, -29)]
     sol = pl * extrude(poly(*pts), 16, both=True)
     sol = safe_fillet(sol, sol.edges().filter_by(Axis.Y, reverse=True), 8)
     guarda = pl * extrude(_trazo(GUARDAMONTE, 8), 6, both=True)
     return sol + guarda
 
 
+def _frente_empunadura(z):
+    """x local de la cara delantera de la empuñadura a la altura z (z negativo hacia abajo)."""
+    if z >= -45:
+        return -24 + (-31 - z) * (4 / 14)
+    return -20 + (-45 - z) * (13 / 87)
+
+
+GATILLO_Z = (-35.0, -128.0)      # el gatillo cubre los cuatro dedos
+GATILLO_DEDOS = (-48.0, -71.0, -94.0, -116.0)
+
+
 def p12_gatillo():
-    """Gatillo largo de tres dedos (índice, medio y anular): reparte el esfuerzo en vez de cargar un solo dedo."""
-    pl = Plane.XZ
-    pts = [(-23, -36), (-34, -38), (-38, -52), (-35, -60), (-38, -72), (-35, -80), (-37, -92), (-31, -106),
-           (-22, -110), (-14, -106), (-17, -80), (-20, -58)]
-    return pl * extrude(poly(*pts), 10, both=True)
+    """Gatillo largo de cuatro dedos, como el acelerador de una rozadora: índice, medio, anular y meñique
+    reparten el esfuerzo. Cuatro hendiduras ubican los dedos; pivote arriba, bajo la repisa."""
+    z0, z1 = GATILLO_Z
+    n = 40
+    atras, frente = [], []
+    for k in range(n + 1):
+        z = z0 + (z1 - z0) * k / n
+        xb = _frente_empunadura(z) - 3.5
+        hondo = min(abs(z - zd) for zd in GATILLO_DEDOS)
+        esp = 13.0 + 4.0 * min(hondo / 11.5, 1.0)          # 13 mm en la hendidura, 17 mm en las crestas
+        atras.append((xb, z))
+        frente.append((xb - esp, z))
+    pts = frente + [(frente[-1][0] + 6, z1 - 3), (atras[-1][0], z1)] + atras[::-1]
+    return Plane.XZ * extrude(poly(*pts), 10, both=True)
 
 
 def p18_pulgar():
@@ -486,7 +510,7 @@ def p15_almohadilla():
     return Pos(0, 0, Z_ANTEBRAZO) * (pad + correa + hebilla)
 
 
-S_ANILLA = 250.0               # cerca del centro de gravedad (ver balance)
+S_ANILLA = 230.0               # el agujero de la anilla queda sobre el centro de gravedad (ver balance)
 
 
 def p16_anilla():
@@ -494,6 +518,55 @@ def p16_anilla():
     a = a + Pos(11, 0, 19) * Box(16, 10, 9, align=(Align.CENTER, Align.CENTER, Align.MIN))
     anillo = Pos(11, 0, 36) * Rot(90, 0, 0) * (Cylinder(11, 5) - Cylinder(7, 5))
     return a + anillo
+
+
+ANILLA_AGUJERO = (11.0, 36.0)   # centro del agujero de la anilla (local: a lo largo del eje, hacia N_ARRIBA)
+HOMBRO_SOBRE_CODO = 300.0       # brazo (húmero) aproximadamente vertical en la postura de corte
+ANCHO_HOMBROS = 400.0
+
+
+def hombro_izquierdo():
+    """Hombro izquierdo del operario (mundo, mm): ahí pasa la correa, cruzada sobre el pecho como en la rozadora."""
+    e = eje(S_CUNA[1] + 30)
+    codo = [e[0] + Z_ANTEBRAZO * N_ARRIBA[0] + H_A_MUNDO[0], e[1] + H_A_MUNDO[1],
+            e[2] + Z_ANTEBRAZO * N_ARRIBA[2] + H_A_MUNDO[2]]
+    return (codo[0], codo[1] + ANCHO_HOMBROS, codo[2] + HOMBRO_SOBRE_CODO)
+
+
+def anilla_mundo():
+    e = eje(S_ANILLA + ANILLA_AGUJERO[0])
+    z = ANILLA_AGUJERO[1]
+    return (e[0] + z * N_ARRIBA[0] + H_A_MUNDO[0], e[1] + H_A_MUNDO[1], e[2] + z * N_ARRIBA[2] + H_A_MUNDO[2])
+
+
+def direccion_correa():
+    """Dirección unitaria de la correa (anilla -> hombro) en el sistema local del eje (x = U, y, z = N_ARRIBA)."""
+    a, h = anilla_mundo(), hombro_izquierdo()
+    d = [hh - aa for hh, aa in zip(h, a)]
+    n = math.sqrt(sum(c * c for c in d))
+    d = [c / n for c in d]
+    # el eje local y es -Y del mundo (plano_eje: x = U, z = N_ARRIBA)
+    return (d[0] * U[0] + d[2] * U[2], -d[1], d[0] * N_ARRIBA[0] + d[2] * N_ARRIBA[2])
+
+
+LARGO_TRAMO_CORREA = 260.0      # tramo de correa dibujado (el resto sube al hombro)
+
+
+def c08_correa():
+    """Mosquetón enganchado en la anilla P16 y el arranque de la correa de hombro (sistema local de P16)."""
+    dx, dy, dz = direccion_correa()
+    n = math.hypot(dx, dz)
+    a, c = dx / n, dz / n                          # el mosquetón gira sobre la anilla, en el plano local XZ
+    hx, hz = ANILLA_AGUJERO
+    centro = (hx + 29.0 * a, 0.0, hz + 29.0 * c)
+    pl = Plane(origin=centro, x_dir=(a, 0, c), z_dir=(-c, 0, a))
+    mosqueton = pl * extrude(SlotCenterToCenter(30, 25) - SlotCenterToCenter(30, 15), 2, both=True)
+    arriba = (hx + 54.0 * a, 0.0, hz + 54.0 * c)
+    zc = (-dz, 0.0, dx)
+    nz = math.hypot(zc[0], zc[2])
+    plc = Plane(origin=arriba, x_dir=(dx, dy, dz), z_dir=(zc[0] / nz, 0.0, zc[2] / nz))
+    correa = plc * Box(LARGO_TRAMO_CORREA, 25, 2, align=(Align.MIN, Align.CENTER, Align.CENTER))
+    return mosqueton + correa
 
 
 def interior_motor():
@@ -583,7 +656,7 @@ def construir(theta=0.0):
               en_eje(S_CARCASA[0]), NARANJA, "Brazo", explosion=_ex(260), densidad=1.36, cascara=2.5),
         Pieza("P11", "Empuñadura ergonómica con guardamonte", "PA6-GF30 con sobremoldeo TPE", 1, p11_empunadura(),
               en_eje(S_EMP), NARANJA, "Brazo", explosion=_ex(260, -110), densidad=1.36, cascara=3.0),
-        Pieza("P12", "Gatillo de tres dedos (proporcional)", "PA6-GF30", 1, p12_gatillo(), en_eje(S_EMP), CAUCHO, "Brazo",
+        Pieza("P12", "Gatillo de cuatro dedos (tipo rozadora)", "PA6-GF30", 1, p12_gatillo(), en_eje(S_EMP), CAUCHO, "Brazo",
               explosion=_ex(260, -110), densidad=1.36),
         Pieza("P18", "Palanca de pulgar (opcional)", "PA6-GF30 con TPE", 1, p18_pulgar(), en_eje(S_EMP), CAUCHO,
               "Brazo", explosion=_ex(260, -110), densidad=1.36),
@@ -614,6 +687,9 @@ def construir(theta=0.0):
               ident, (0.6, 0.6, 0.62), "Cabezal", plano=False, explosion=(30, 0, 140)),
         Pieza("C06", "Perno pivote M12 con hombro + arandelas Belleville", "Comercial (ISO 7379)", 1, c06_perno(),
               ident, (0.6, 0.6, 0.62), "Cabezal", plano=False, explosion=(0, 0, 150)),
+        Pieza("C08", "Correa de hombro de rozadora con mosquetón", "Comercial (arnés simple de desbrozadora)", 1,
+              c08_correa(), en_eje(S_ANILLA), (0.16, 0.20, 0.26), "Brazo", plano=False, explosion=_ex(110, 150),
+              densidad=0.9),
     ]
     return p
 
@@ -627,6 +703,17 @@ def a_mundo():
     return Location(H_A_MUNDO)
 
 
+def correa_fin_mundo():
+    """Extremo del tramo de correa dibujado en C08 (mundo, mm); desde ahí el visor la sigue hasta el hombro."""
+    dx, dy, dz = direccion_correa()
+    n = math.hypot(dx, dz)
+    hx, hz = ANILLA_AGUJERO
+    p = (hx + 54.0 * dx / n + LARGO_TRAMO_CORREA * dx, LARGO_TRAMO_CORREA * dy, hz + 54.0 * dz / n + LARGO_TRAMO_CORREA * dz)
+    v = (a_mundo() * Location(plano_eje(S_ANILLA))) * Pos(*p)
+    t = v.position
+    return [t.X, t.Y, t.Z]
+
+
 def antebrazo_mundo():
     """Puntos de referencia del brazo del operario (mundo, mm) para el visor."""
     def local(s, z):
@@ -636,5 +723,8 @@ def antebrazo_mundo():
         "muneca": local(S_EMP + 45, Z_ANTEBRAZO + 5),
         "codo": local(S_CUNA[1] + 30, Z_ANTEBRAZO),
         "mano": local(S_EMP, -85),
+        "hombro": list(hombro_izquierdo()),
+        "anilla": list(anilla_mundo()),
+        "correa_fin": correa_fin_mundo(),
         "radio": R_ANTEBRAZO,
     }

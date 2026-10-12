@@ -176,10 +176,10 @@ def main():
     h.tabla(xt, 64 + 6.0 * (len(filas) + 1) + 2, cols, filas, titulo="LISTA DE MATERIALES", h=2.0, fila_h=6.0)
     notas = [
         f"Masa sin batería: {(total + 150) / 1000:.1f} kg (con 0,15 kg estimados de tornillería y cables).".replace(".", ",", 1),
-        "Sin el apoyo de antebrazo la muñeca cargaría unos 9,5 N·m; con la cuna P14 solo guía.",
-        "Con el patín P04 apoyado en el suelo, la mano carga unos 1,6 kg.",
+        "Muñeca en el aire: 10,7 N·m sin apoyo, 2,7 N·m con la cuna P14; 0,4 N·m apoyado.",
+        "Correa C08 en la anilla P16: en el aire los dedos no cargan peso, solo el gatillo.",
         "Corte de tallos hasta %%c65, a 11 mm del suelo (fondo plano del cabezal).",
-        "Mango ergonómico: gatillo de 3 dedos (6-8 N), palanca de pulgar opcional y sensor de presencia.",
+        "Gatillo de 4 dedos tipo rozadora (10-12 N), palanca de pulgar opcional, sensor de mano.",
         "Fuerza de corte estimada 3-3,5 kN: confirmar con ensayo en tallos de Pangua.",
         "Caña apretada: la punta P17 cede y la mordida parcial corta más de la mitad del diámetro.",
     ]

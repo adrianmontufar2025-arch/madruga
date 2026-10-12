@@ -403,10 +403,14 @@ async function cargar() {
   document.getElementById('c-masa').textContent = '≈' + fmtKg(datos.masa_total_g) + ' sin batería';
   const coma = (x) => String(x).replace('.', ',');
   document.getElementById('c-mom').textContent = coma(datos.momento_muneca_Nm) + ' N·m';
+  const ac = datos.aire_cuna, ar = datos.aire_correa, ap = datos.apoyado;
   document.getElementById('balance').textContent =
-    `Con la herramienta en el aire, el cabezal tira hacia abajo con ${coma(datos.momento_muneca_Nm)} N·m. Sin apoyo, eso lo aguantaría la muñeca. ` +
-    `Con la cuna, el antebrazo recibe unos ${coma(datos.fuerza_cuna_kgf)} kg de presión y la muñeca solo guía. ` +
-    `Al cortar, el patín se apoya en el suelo y la mano carga unos ${coma((datos.carga_mano_apoyado_g / 1000).toFixed(1))} kg.`;
+    `En el aire y sin apoyo, la muñeca aguantaría ${coma(datos.momento_muneca_Nm)} N·m. ` +
+    `Con la cuna baja a ${coma(ac.muneca_Nm)} N·m: el antebrazo recibe ${coma(ac.cuna_kgf)} kg y la mano ${coma(ac.mano_kgf)} kg. ` +
+    `De eso, ${coma(ac.dedos_kgf)} kg los aguantan los dedos, porque la herramienta tira hacia la punta. ` +
+    `Con la correa de hombro en la anilla, la correa toma esa parte (${coma(ar.correa_kgf)} kg). ` +
+    `Los dedos quedan libres para el gatillo y el peso pasa al tope entre pulgar e índice (${coma(ar.mano_kgf)} kg). ` +
+    `Al cortar, el patín se apoya en el suelo: la mano carga ${coma(ap.mano_kgf)} kg y la muñeca ${coma(ap.muneca_Nm)} N·m.`;
   construirBrazo();
   const cp = datos.corte_parcial;
   VISTAS.parcial.p = `Caña Ø${cp.D} con más de la mitad afuera de la garganta: la cuchilla corta ${cp.profundidad_pct} % del diámetro (naranja). ` +
@@ -435,6 +439,7 @@ function construirCotas() {
 const brazoRef = new THREE.Group();
 zup.add(brazoRef);
 const matPiel = new THREE.MeshStandardMaterial({ color: new THREE.Color().setRGB(0.80, 0.62, 0.50, THREE.SRGBColorSpace), roughness: 0.8, transparent: true, opacity: 0.55, depthWrite: false });
+const matCorrea = new THREE.MeshStandardMaterial({ color: new THREE.Color().setRGB(0.16, 0.20, 0.26, THREE.SRGBColorSpace), roughness: 0.9, transparent: true, opacity: 0.55, depthWrite: false });
 function construirBrazo() {
   const b = datos.brazo;
   const m = new THREE.Vector3(...b.muneca).multiplyScalar(0.001);
@@ -448,6 +453,12 @@ function construirBrazo() {
   const mano = new THREE.Mesh(new THREE.SphereGeometry(0.045, 24, 16), matPiel);
   mano.position.copy(new THREE.Vector3(...b.mano).multiplyScalar(0.001));
   brazoRef.add(mano);
+  const f = new THREE.Vector3(...b.correa_fin).multiplyScalar(0.001);
+  const h = new THREE.Vector3(...b.hombro).multiplyScalar(0.001);
+  const correa = new THREE.Mesh(new THREE.BoxGeometry(0.025, f.distanceTo(h), 0.003), matCorrea);
+  correa.position.copy(f.clone().add(h).multiplyScalar(0.5));
+  correa.quaternion.setFromUnitVectors(new THREE.Vector3(0, 1, 0), h.clone().sub(f).normalize());
+  brazoRef.add(correa);
   const libre = new THREE.Mesh(new THREE.SphereGeometry(0.045, 24, 16), matPiel);
   libre.position.set(0.0, 0.0, 0.78);
   libre.userData.libre = true;
@@ -539,7 +550,7 @@ function aplicarExplosion(t) {
 let soloMata = false;
 const VISTAS = {
   armada:   { cam: V(0.62, 1.38, 0.86), obj: V(-0.40, 0.03, 0.30), exp: 0, cana: true, mata: false, cotas: false, brazo: true,
-              t: 'Conjunto armado', p: 'Tijera de una mano con cuna de antebrazo. El brazo en color piel es solo referencia.' },
+              t: 'Conjunto armado', p: 'Tijera de una mano con cuna de antebrazo y correa de hombro de rozadora en el centro de gravedad. El brazo en color piel y la correa hasta el hombro son referencia.' },
   cabezal:  { cam: V(0.30, 0.38, 0.30), obj: V(-0.09, 0.03, 0.06), exp: 0, cana: true, mata: false, cotas: false, brazo: false,
               t: 'Cabezal de corte al ras', p: 'Fondo plano: gancho y placa base al mismo nivel, patín de UHMW de 3 mm. Corte a 11 mm del suelo.' },
   lateral:  { cam: V(-0.36, -2.25, 0.34), obj: V(-0.36, 0, 0.32), exp: 0, cana: true, mata: false, cotas: true, brazo: true,
@@ -548,8 +559,8 @@ const VISTAS = {
               t: 'Despiece', p: 'Códigos P = piezas con plano DXF. Códigos C = componentes comerciales.' },
   planta:   { cam: V(-0.07, 0.03, 2.0), obj: V(-0.07, 0.034, 0.0), fov: 12, exp: 0, cana: false, mata: false, cotas: false, aro: true, brazo: false,
               t: 'Planta del cabezal', p: 'Cuchilla abierta 62°. El círculo marca la capacidad de Ø65 en la garganta.' },
-  mango:    { cam: V(-0.50, 0.62, 0.56), obj: V(-0.66, 0.04, 0.40), exp: 0, cana: false, mata: false, cotas: false, brazo: false,
-              t: 'Mango ergonómico', p: 'Gatillo de tres dedos que empieza arriba, palanca de pulgar opcional, sensor de presencia en vez de palanca de palma y guardamonte contra las hojas.' },
+  mango:    { cam: V(-0.44, 0.78, 0.60), obj: V(-0.64, 0.04, 0.42), exp: 0, cana: false, mata: false, cotas: false, brazo: false,
+              t: 'Mango ergonómico', p: 'Gatillo largo de cuatro dedos, como el de la rozadora. Arriba atrás, un tope donde apoya el arco entre pulgar e índice: por ahí se levanta la herramienta y los dedos quedan libres. Palanca de pulgar opcional, sensor de presencia y guardamonte amplio para guantes.' },
   parcial:  { cam: V(0.005, 0.012, 2.0), obj: V(0.005, 0.016, 0.0), fov: 15, exp: 0, cana: false, mata: false, cotas: false, brazo: false,
               parcial: true, apertura: 6, dedo: true,
               t: 'Corte parcial en mata apretada', p: '' },
