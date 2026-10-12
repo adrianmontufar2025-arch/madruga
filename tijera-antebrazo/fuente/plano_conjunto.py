@@ -14,7 +14,7 @@ from planos import DIR_DXF, Cota, Hoja, Plano  # noqa: E402
 
 K = 5.0            # escala 1:5
 K_DET = 2.0        # detalle 1:2
-GRUPO_CABEZAL = {"P01", "P02", "P03", "P05", "P06", "P07", "C06"}
+GRUPO_CABEZAL = {"P01", "P02", "P03", "P05", "P06", "P07", "P17", "C06", "C07"}
 
 
 def proyectar(forma, origen, arriba):
@@ -181,6 +181,7 @@ def main():
         "Corte de tallos hasta %%c65, a 11 mm del suelo (fondo plano del cabezal).",
         "Motor 36 V 300-400 W + reductor 15:1 + husillo SFU1605 + balancín P06 + biela P07.",
         "Fuerza de corte estimada 3-3,5 kN: confirmar con ensayo en tallos de Pangua.",
+        "Caña apretada: la punta P17 cede y la mordida parcial corta más de la mitad del diámetro.",
     ]
     y = 104
     h.texto("NOTAS", 262, y, 3.0)

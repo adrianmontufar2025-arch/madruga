@@ -55,6 +55,18 @@ D_TUBO = 30.0
 
 LAP_X = (-52.0, -32.0)         # junta a media madera gancho / placa base
 
+# Rev. B: gancho corto con dientes + punta envolvente con resorte
+FIN_MANDIBULA = 345.0          # la mandíbula fija termina aquí (sin pico curvo)
+R_BISAGRA_DEDO = 46.0
+BISAGRA_DEDO = (C_GARGANTA[0] + R_BISAGRA_DEDO * math.cos(math.radians(FIN_MANDIBULA)),
+                C_GARGANTA[1] + R_BISAGRA_DEDO * math.sin(math.radians(FIN_MANDIBULA)))
+DEDO_ARCO = (352.0, 60.0)      # arco que cubre la punta envolvente cuando está cerrada
+ANG_DEDO_ABIERTO = -80.0       # giro de la punta cuando cede (caña apretada)
+Z_DEDO = ESP_GANCHO + ESP_CUCHILLA + 0.8
+ESP_DEDO = 6.0
+DIENTES = (300.0, 343.0, 3.0, 1.2)   # tramo con dientes de agarre: desde, hasta, paso (mm), alto (mm)
+FIN_FILO = 345.0               # la cuchilla barre hasta la punta de la mandíbula
+
 
 def _rot2(v, ang_deg):
     a = math.radians(ang_deg)
@@ -160,9 +172,9 @@ GANCHO_X0 = LAP_X[0]
 
 def _perfil_gancho():
     cx, cy = C_GARGANTA
-    mandibula = sector(C_GARGANTA, R_GANCHO_INT, R_GANCHO_EXT, 250, 115)
+    mandibula = sector(C_GARGANTA, R_GANCHO_INT, R_GANCHO_EXT, 250, FIN_MANDIBULA - 250)
     rp = (R_GANCHO_INT + R_GANCHO_EXT) / 2
-    pico = circ(cx + rp * math.cos(math.radians(5)), cy + rp * math.sin(math.radians(5)),
+    pico = circ(cx + rp * math.cos(math.radians(FIN_MANDIBULA)), cy + rp * math.sin(math.radians(FIN_MANDIBULA)),
                 (R_GANCHO_EXT - R_GANCHO_INT) / 2)
     a_in = (cx + R_GANCHO_INT * math.cos(math.radians(250)), cy + R_GANCHO_INT * math.sin(math.radians(250)))
     a_out = (cx + R_GANCHO_EXT * math.cos(math.radians(250)), cy + R_GANCHO_EXT * math.sin(math.radians(250)))
@@ -170,8 +182,25 @@ def _perfil_gancho():
     return mandibula + pico + cuello
 
 
+def _dientes():
+    """Dientes de sierra en el borde interior: apuntan hacia el fondo de la garganta para que la caña no se salga."""
+    cx, cy = C_GARGANTA
+    a0, a1, paso, alto = DIENTES
+    dang = math.degrees(paso / R_GANCHO_INT)
+    cortes = None
+    a = a0
+    while a + dang <= a1 + 1e-6:
+        p1 = (cx + (R_GANCHO_INT - 0.5) * math.cos(math.radians(a)), cy + (R_GANCHO_INT - 0.5) * math.sin(math.radians(a)))
+        p2 = (cx + (R_GANCHO_INT - 0.5) * math.cos(math.radians(a + dang)), cy + (R_GANCHO_INT - 0.5) * math.sin(math.radians(a + dang)))
+        p3 = (cx + (R_GANCHO_INT + alto) * math.cos(math.radians(a + dang)), cy + (R_GANCHO_INT + alto) * math.sin(math.radians(a + dang)))
+        t = poly(p1, p2, p3)
+        cortes = t if cortes is None else cortes + t
+        a += dang
+    return cortes
+
+
 def p01_gancho():
-    perfil = _perfil_gancho() - circ(0, 0, 6.25)
+    perfil = _perfil_gancho() - _dientes() - circ(0, 0, 6.25) - circ(*BISAGRA_DEDO, 3.0)
     for x, y in AGUJEROS_LAP:
         perfil = perfil - circ(x, y, 3.3)
     pieza = extrude(perfil, ESP_GANCHO)
@@ -183,10 +212,9 @@ def p01_gancho():
 
 def _perfil_cuchilla():
     r_filo = R_GANCHO_INT + 4.0
-    filo = CenterArc(C_GARGANTA, r_filo, 251.0, 84.0)
+    filo = CenterArc(C_GARGANTA, r_filo, 251.0, FIN_FILO - 251.0)
     p_ini, p_fin = filo @ 0, filo @ 1
-    lomo = Spline((p_fin.X, p_fin.Y), (p_fin.X - 7, p_fin.Y + 16), (72, 25.0), (0, 20.0),
-                  tangents=[(0.15, 1), (-1, 0)])
+    lomo = Spline((p_fin.X, p_fin.Y), (106, 16), (95, 24), (80, 26.5), (60, 25.5), (40, 24), (20, 22), (0, 20.0))
     cuerpo = Face(Wire([Line((0, 20.0), (0, -20.0)), Line((0, -20.0), p_ini), filo, lomo]))
     cubo = circ(0, 0, 23)
     tx, ty = punta_cola(0)
@@ -301,6 +329,33 @@ def loc_biela(theta):
     dot = xd[2]
     zd = (-dot * xd[0], -dot * xd[1], 1 - dot * xd[2])
     return Location(Plane(origin=b, x_dir=xd, z_dir=zd))
+
+
+def p17_dedo(abierto=False):
+    """Punta envolvente con resorte: rodea la caña si hay espacio; cede si la caña está apretada."""
+    cx, cy = C_GARGANTA
+    a0, a1 = DEDO_ARCO
+    arco = sector(C_GARGANTA, R_GANCHO_INT + 3, R_GANCHO_EXT - 4, a0, (a1 - a0) % 360)
+    rp = (R_GANCHO_INT + 3 + R_GANCHO_EXT - 4) / 2
+    punta = circ(cx + rp * math.cos(math.radians(a1)), cy + rp * math.sin(math.radians(a1)), (R_GANCHO_EXT - R_GANCHO_INT - 7) / 2)
+    cubo = circ(*BISAGRA_DEDO, 8.5)
+    tope = Pos(*BISAGRA_DEDO) * Rot(0, 0, FIN_MANDIBULA - 90) * Pos(0, -9, 0) * Rectangle(8, 6)
+    perfil = arco + punta + cubo + tope - circ(*BISAGRA_DEDO, 3.1)
+    pieza = Pos(0, 0, Z_DEDO) * extrude(perfil, ESP_DEDO)
+    if abierto:
+        bx, by = BISAGRA_DEDO
+        pieza = Location((bx, by, 0)) * Location((0, 0, 0), (0, 0, 1), ANG_DEDO_ABIERTO) * Location((-bx, -by, 0)) * pieza
+    return pieza
+
+
+def c07_pasador_resorte():
+    bx, by = BISAGRA_DEDO
+    pasador = Pos(bx, by, 0) * Cylinder(3, Z_DEDO + ESP_DEDO + 2, align=(Align.CENTER, Align.CENTER, Align.MIN))
+    separador = Pos(bx, by, ESP_GANCHO) * Cylinder(4.5, Z_DEDO - ESP_GANCHO, align=(Align.CENTER, Align.CENTER, Align.MIN))
+    cabeza = Pos(bx, by, Z_DEDO + ESP_DEDO) * Cylinder(5, 2.5, align=(Align.CENTER, Align.CENTER, Align.MIN))
+    resorte = Pos(bx, by, Z_DEDO + ESP_DEDO + 2.5) * (Cylinder(4.5, 3, align=(Align.CENTER, Align.CENTER, Align.MIN)) -
+                                                      Cylinder(3.2, 3, align=(Align.CENTER, Align.CENTER, Align.MIN)))
+    return pasador + separador + cabeza + resorte
 
 
 def c06_perno():
@@ -506,6 +561,8 @@ def construir(theta=0.0):
         Pieza("P15", "Almohadilla y correa", "EVA 5 mm + correa de velcro con hebilla de liberación", 1,
               p15_almohadilla(), en_eje(S_CUNA[0]), ESPUMA, "Apoyo de antebrazo", explosion=_ex(400, -40),
               densidad=0.15),
+        Pieza("P17", "Punta envolvente con resorte", "Acero inoxidable 17-4PH o SAE 4140 pavonado, e = 6", 1,
+              p17_dedo(False), ident, ACERO_FILO, "Cabezal", explosion=(30, 0, 90)),
         Pieza("P16", "Anilla para correa de hombro", "Abrazadera PA6 + anilla inoxidable", 1, p16_anilla(),
               en_eje(S_ANILLA), (0.80, 0.81, 0.83), "Brazo", explosion=_ex(110, 90), densidad=2.0),
     ]
@@ -520,6 +577,8 @@ def construir(theta=0.0):
               "Accionamiento", plano=False, explosion=ex_mot),
         Pieza("C04", "Tuerca del husillo + horquilla de tiro", "Comercial", 1, t, en_eje(S_CARCASA[0]),
               (0.35, 0.36, 0.4), "Accionamiento", plano=False, explosion=ex_mot, densidad=5.0),
+        Pieza("C07", "Pasador Ø6 + separador + resorte de torsión de la punta", "Comercial", 1, c07_pasador_resorte(),
+              ident, (0.6, 0.6, 0.62), "Cabezal", plano=False, explosion=(30, 0, 140)),
         Pieza("C06", "Perno pivote M12 con hombro + arandelas Belleville", "Comercial (ISO 7379)", 1, c06_perno(),
               ident, (0.6, 0.6, 0.62), "Cabezal", plano=False, explosion=(0, 0, 150)),
     ]

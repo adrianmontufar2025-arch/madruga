@@ -49,12 +49,15 @@ def p01():
     ag = [("A", 0, 0, 12.5, "pivote, avellanado abajo")]
     for i, (x, y) in enumerate(MD.AGUJEROS_LAP):
         ag.append(("BCD"[i], x, y, 6.6, "M6 avellanado abajo"))
+    ag.append(("E", round(MD.BISAGRA_DEDO[0], 1), round(MD.BISAGRA_DEDO[1], 1), 6, "pasador punta P17 (H7)"))
     cot = [
         L("planta", (b.min.X, b.min.Y, 0), (b.max.X, b.min.Y, 0), -16),
         L("planta", (b.max.X, b.min.Y, 0), (b.max.X, b.max.Y, 0), 14, 90),
         L("planta", (0, 0, 0), (C[0], 0, 0), 52, 0),
         L("planta", (C[0], 0, 0), (C[0], C[1], 0), -62, 90),
-        R("planta", (C[0], C[1], 0), MD.R_GANCHO_INT, 335, "R35 filo"),
+        R("planta", (C[0], C[1], 0), MD.R_GANCHO_INT, 285, "R35 filo"),
+        N("planta", (C[0] + 35.6 * math.cos(math.radians(322)), C[1] + 35.6 * math.sin(math.radians(322)), 0), 24, -30,
+          "dientes de agarre: paso 3, alto 1,2"),
         R("planta", (C[0], C[1], 0), MD.R_GANCHO_EXT, 268),
         L("alzado", (MD.LAP_X[0], 0, 0), (MD.LAP_X[1], 0, 0), 16),
         L("alzado", (b.min.X, 0, 0), (b.min.X, 0, 4), -10, 90),
@@ -68,7 +71,10 @@ def p01():
                      "Filo: borde interior R35 de la garganta, bisel simple de 25° por la cara INFERIOR.",
                      "Cara superior plana y rectificada (contacto con la cuchilla P02).",
                      "Avellanar A (perno pivote) y B, C, D por la cara inferior: el fondo de la herramienta queda plano.",
-                     "Punta del pico redondeada R11, sin filo, para meterla entre cañas y retoños.",
+                     "Mandíbula corta (termina a 345°) con punta roma R11: entra entre cañas y retoños.",
+                     "Dientes de agarre en el tramo delantero (300° a 343°), inclinados hacia el fondo de la garganta:",
+                     "   sujetan la caña en el corte parcial, cuando no entra completa.",
+                     "Agujero E: pasador Ø6 de la punta envolvente P17 (ajuste a presión por abajo)",
                  ], ag, tratamiento="Temple 52-55 HRC; pavonado")
 
 
@@ -303,7 +309,26 @@ def p16():
                       ])
 
 
-TODOS = [p01, p02, p03, p04, p05, p06, p07, p08, p09, p10, p11, p12, p13, p14, p15, p16]
+def p17():
+    f = Pos(-C[0], -C[1], -MD.Z_DEDO) * MD.p17_dedo(False)
+    b = bb(f)
+    bx, by = MD.BISAGRA_DEDO[0] - C[0], MD.BISAGRA_DEDO[1] - C[1]
+    a0, a1 = MD.DEDO_ARCO
+    cot = [R("planta", (0, 0, 0), MD.R_GANCHO_INT + 3, 20, "R38"), R("planta", (0, 0, 0), MD.R_GANCHO_EXT - 4, 30, "R53"),
+           Cota("ang", "planta", (0, 0, 0), (a0, a1), dist=0, r=MD.R_GANCHO_EXT + 6, texto="<>"),
+           D("planta", (bx, by, 0), 3.1, 225, "%%c6,2")]
+    return Plano("P17", "Punta envolvente con resorte", "Acero inoxidable 17-4PH (o SAE 4140 pavonado), e = 6 mm", 1,
+                 masa("P17"), f, ["planta"], cot, [
+                     "Cortar por láser o hilo desde este DXF (1:1). Espesor 6 mm. Dibujada en posición CERRADA.",
+                     "Gira sobre el pasador Ø6 del gancho P01 (agujero E), 0,8 mm por encima de la cuchilla.",
+                     "Resorte de torsión de 0,3 N·m: la punta rodea la caña sola cuando hay espacio.",
+                     f"Si las cañas vecinas no la dejan pasar, cede hacia afuera (hasta {int(-MD.ANG_DEDO_ABIERTO)}°) y la tijera",
+                     "   corta igual con la mordida parcial. El tope evita que se cierre hacia la garganta.",
+                     "Pasador de bloqueo opcional para dejarla fija abierta en zonas muy cerradas.",
+                 ], [], origen="centro de la garganta", tratamiento="H1025 o pavonado")
+
+
+TODOS = [p01, p02, p03, p04, p05, p06, p07, p08, p09, p10, p11, p12, p13, p14, p15, p16, p17]
 
 
 def main(solo=None):

@@ -7,7 +7,7 @@ import re
 import sys
 import unicodedata
 
-from build123d import Color, Compound, Location, export_gltf, export_step
+from build123d import Circle, Color, Compound, Location, Pos, Vector, export_gltf, export_step, extrude
 
 sys.path.insert(0, os.path.dirname(__file__))
 import modelo as MD  # noqa: E402
@@ -64,6 +64,35 @@ def balance(piezas):
                 altura_mano_mm=round(mano[2]), distancia_mano_tallo_mm=round(-mano[0]))
 
 
+def corte_parcial(a_dir=50.0, d=35.0, D=60.0):
+    """Caña Ø60 que entra solo una parte (centro a d mm afuera del centro de la garganta).
+
+    Devuelve la zona que barre la cuchilla (se corta) y la que queda (se parte con el tirón)."""
+    cuchillas = [Location((0, 0, 0), (0, 0, 1), t) * MD.p02_cuchilla() for t in range(0, int(MD.ANG_APERTURA) + 1, 2)]
+    barrido = cuchillas[0]
+    for c in cuchillas[1:]:
+        barrido = barrido + c
+    ux, uy = math.cos(math.radians(a_dir)), math.sin(math.radians(a_dir))
+    cx, cy = MD.C_GARGANTA[0] + d * ux, MD.C_GARGANTA[1] + d * uy
+    zc = MD.Z_CORTE + 1.0
+    losa = Pos(cx, cy, zc) * extrude(Circle(D / 2), 1.2)
+    corte = losa & barrido
+    resto = losa - barrido
+    n, k = 120, 0
+    while k <= n:
+        t = D * k / n
+        p = Vector(cx - (D / 2 - t) * ux, cy - (D / 2 - t) * uy, zc + 0.6)
+        if not any(c.is_inside(p) for c in cuchillas):
+            break
+        k += 1
+    profundidad = max(k - 1, 0) / n
+    area = corte.volume / losa.volume
+    v1 = (cx + (D / 2 + 25 + 3) * ux, cy + (D / 2 + 25 + 3) * uy)
+    v2 = (cx + 55 * math.cos(math.radians(a_dir - 30)), cy + 55 * math.sin(math.radians(a_dir - 30)))
+    return dict(corte=corte, resto=resto, centro=(cx, cy), vecinas=[(v1, 25.0), (v2, 22.0)], zc=zc,
+                profundidad_pct=round(profundidad * 100), area_pct=round(area * 100), D=D, d=d, a_dir=a_dir)
+
+
 def main():
     mundo = MD.a_mundo()
     piezas = MD.construir(0.0)
@@ -85,6 +114,26 @@ def main():
         for p in MD.construir(th):
             if p.codigo in MOVILES:
                 nodos.append(colocar(p, mundo, f"{p.codigo}@{int(round(th))}"))
+    # punta envolvente: cerrada (@0) y abierta (@1)
+    for k, abierto in enumerate((False, True)):
+        g = mundo * MD.p17_dedo(abierto)
+        g.label = f"P17@{k}"
+        g.color = Color(*MD.ACERO_FILO)
+        nodos.append(g)
+    nodos = [n for n in nodos if n.label != "P17"]
+    # escena de corte parcial (solo para la vista "Corte parcial")
+    cp = corte_parcial()
+    zc = cp["zc"]
+    extra = [("XCORTE", cp["corte"], (0.95, 0.45, 0.10)),
+             ("XRESTO", cp["resto"], (0.55, 0.64, 0.27)),
+             ("XTOCON", Pos(cp["centro"][0], cp["centro"][1], -MD.ESP_PATIN) * extrude(Circle(cp["D"] / 2), zc + MD.ESP_PATIN), (0.62, 0.66, 0.30))]
+    for i, ((x, y), r) in enumerate(cp["vecinas"]):
+        extra.append((f"XVECINA{i + 1}", Pos(x, y, -MD.ESP_PATIN) * extrude(Circle(r), 120), (0.62, 0.66, 0.30)))
+    for nombre, forma, color in extra:
+        g = mundo * forma
+        g.label = nombre
+        g.color = Color(*color)
+        nodos.append(g)
     ruta_glb = os.path.join(D3, "tijera.glb")
     export_gltf(Compound(children=nodos), ruta_glb, binary=True, linear_deflection=0.06, angular_deflection=0.25)
     with open(ruta_glb, "rb") as f:
@@ -102,10 +151,12 @@ def main():
                           color=[round(c, 3) for c in p.color]))
     info = dict(piezas=datos, moviles=list(MOVILES), cuadros=[int(round(t)) for t in FRAMES],
                 tornilleria_cables_g=TORNILLERIA_G, brazo=MD.antebrazo_mundo(), altura_corte_mm=MD.ALTURA_CORTE,
-                capacidad_mm=MD.D_TALLO_MAX, angulo_eje=MD.ANG_EJE, **bal)
+                capacidad_mm=MD.D_TALLO_MAX, angulo_eje=MD.ANG_EJE,
+                corte_parcial={k: v for k, v in cp.items() if k in ("profundidad_pct", "area_pct", "D", "d", "a_dir")},
+                **bal)
     with open(os.path.join(DVIS, "piezas.json"), "w", encoding="utf-8") as f:
         json.dump(info, f, ensure_ascii=False, indent=1)
-    print(json.dumps(bal))
+    print(json.dumps(bal), info["corte_parcial"])
 
 
 if __name__ == "__main__":

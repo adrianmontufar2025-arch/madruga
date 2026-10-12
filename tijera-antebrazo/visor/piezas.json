@@ -6,7 +6,7 @@
    "material": "Acero SK5 / 65Mn templado 52-55 HRC, e = 8",
    "cantidad": 1,
    "grupo": "Cabezal",
-   "masa_g": 451,
+   "masa_g": 426,
    "plano": true,
    "explosion": [
     0,
@@ -25,7 +25,7 @@
    "material": "Acero D2 o SK5 templado 56-58 HRC, e = 5",
    "cantidad": 1,
    "grupo": "Cabezal",
-   "masa_g": 256,
+   "masa_g": 273,
    "plano": true,
    "explosion": [
     0,
@@ -286,6 +286,25 @@
    ]
   },
   {
+   "codigo": "P17",
+   "nombre": "Punta envolvente con resorte",
+   "material": "Acero inoxidable 17-4PH o SAE 4140 pavonado, e = 6",
+   "cantidad": 1,
+   "grupo": "Cabezal",
+   "masa_g": 52,
+   "plano": true,
+   "explosion": [
+    30,
+    0,
+    90
+   ],
+   "color": [
+    0.74,
+    0.77,
+    0.8
+   ]
+  },
+  {
    "codigo": "P16",
    "nombre": "Anilla para correa de hombro",
    "material": "Abrazadera PA6 + anilla inoxidable",
@@ -381,6 +400,25 @@
    ]
   },
   {
+   "codigo": "C07",
+   "nombre": "Pasador Ø6 + separador + resorte de torsión de la punta",
+   "material": "Comercial",
+   "cantidad": 1,
+   "grupo": "Cabezal",
+   "masa_g": 8,
+   "plano": false,
+   "explosion": [
+    30,
+    0,
+    140
+   ],
+   "color": [
+    0.6,
+    0.6,
+    0.62
+   ]
+  },
+  {
    "codigo": "C06",
    "nombre": "Perno pivote M12 con hombro + arandelas Belleville",
    "material": "Comercial (ISO 7379)",
@@ -456,14 +494,21 @@
  "altura_corte_mm": 11.0,
  "capacidad_mm": 65.0,
  "angulo_eje": 45.0,
- "masa_total_g": 3562,
+ "corte_parcial": {
+  "profundidad_pct": 62,
+  "area_pct": 62,
+  "D": 60.0,
+  "d": 35.0,
+  "a_dir": 50.0
+ },
+ "masa_total_g": 3614,
  "cg_mundo": [
-  -369,
-  266
+  -363,
+  262
  ],
- "momento_muneca_Nm": 9.5,
- "fuerza_cuna_kgf": 5.6,
- "carga_mano_apoyado_g": 1585,
+ "momento_muneca_Nm": 9.8,
+ "fuerza_cuna_kgf": 5.8,
+ "carga_mano_apoyado_g": 1567,
  "altura_mano_mm": 433,
  "distancia_mano_tallo_mm": 640
 }

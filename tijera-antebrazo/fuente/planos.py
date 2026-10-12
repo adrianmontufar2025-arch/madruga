@@ -279,7 +279,7 @@ class Hoja:
         campo(x0 + 135, y0 + 8, "Hoja", p.hoja)
         campo(x0, y0, "Dibujó / Fecha", f"Claude (asistente IA) · {FECHA}", 2.2)
         campo(x0 + 90, y0, "Proyección", "ISO-E (europea)", 2.2)
-        campo(x0 + 135, y0, "Revisión", "A · conceptual", 2.2)
+        campo(x0 + 135, y0, "Revisión", "B · conceptual", 2.2)
         # símbolo de primer diedro
         sx, sy = x0 + 120, y0 + 30
         self.linea((sx - 9, sy - 2.5), (sx - 9, sy + 2.5), "TEXTO")
@@ -386,7 +386,7 @@ def generar(plano: Plano):
             print("  cota omitida", plano.codigo, c.tipo, ex)
     # notas
     if plano.notas:
-        y = 56
+        y = max(56, 14 + 5.2 * len(plano.notas))
         hoja.texto("NOTAS", 24, y, 3.0)
         i = 0
         for n in plano.notas:

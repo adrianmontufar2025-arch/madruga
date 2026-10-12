@@ -1,4 +1,4 @@
-# Tijera de caña con apoyo de antebrazo (Rev. A, conceptual)
+# Tijera de caña con apoyo de antebrazo (Rev. B, conceptual)
 
 Esta tijera eléctrica se usa con una mano y sirve para cortar caña de hasta 6 cm de diámetro al ras del suelo, en matas cerradas y con retoños. Se trabaja igual que con el machete: **la mano libre sostiene la caña** y decide hacia dónde cae, y la otra mano corta. La diferencia es que no hace falta fuerza ni puntería. El gancho centra la caña sola, se aprieta el gatillo y la cuchilla corta en menos de un segundo.
 
@@ -8,11 +8,29 @@ El antebrazo descansa en una **cuna (P14)**, así que la muñeca no carga el pes
 
 ## Cómo funciona
 
-1. Se mete el pico del gancho (P01) entre las cañas hasta rodear la caña elegida. El pico es redondeado y sin filo, para no lastimar los retoños.
+1. Se mete la punta del gancho (P01) entre las cañas, junto a la caña elegida. La punta es roma, para no lastimar los retoños.
+   - **Si hay espacio:** la punta envolvente con resorte (P17) rodea la caña sola y la deja centrada en la garganta.
+   - **Si la caña está apretada entre otras:** la punta cede hacia afuera y la tijera muerde solo la parte de la caña que alcanza (ver "Corte parcial").
 2. El cabezal se apoya en el suelo sobre el patín de UHMW (P04). Gancho y placa base forman un fondo plano, y el corte queda a **11 mm del suelo**.
 3. Se aprieta la palanca de seguridad con la palma y luego el gatillo (P12). El motor tira de la varilla (P09), la varilla gira el balancín (P06) y la biela (P07) cierra la cuchilla (P02) contra el gancho.
 4. La mano libre sostiene la caña cortada y la baja hacia la calle.
 5. Para una caña virada, se gira el antebrazo y el cabezal queda de canto.
+
+## Corte parcial (caña apretada)
+
+Cuando las cañas vecinas no dejan rodear la caña, la tijera igual corta lo que entra en la boca:
+- La mandíbula fija es corta (sin pico curvo) y tiene **dientes de agarre** en el tramo delantero. Los dientes sujetan la caña para que no se salga mientras la cuchilla cierra.
+- La cuchilla llega hasta la punta de la mandíbula, así que corta también lo que queda en la entrada de la boca.
+
+Comprobado en el modelo con una caña de Ø60:
+
+| Cuánto entra la caña | Lo que corta la cuchilla |
+|---|---|
+| Completa | 100 % |
+| La mitad afuera de la garganta (centro 30 mm afuera) | 68–78 % del diámetro |
+| Dos tercios afuera (centro 40 mm afuera) | 52–61 % del diámetro |
+
+El rango depende del ángulo con que entra la caña (45° a 60°). Después del corte, la mano libre empuja la caña **hacia el lado contrario al corte**, para que el corte se abra. La caña madura es cristalina, se parte por lo que falta y sale.
 
 ## Cifras del modelo
 
@@ -22,8 +40,8 @@ El antebrazo descansa en una **cuna (P14)**, así que la muñeca no carga el pes
 | Altura de corte | 11 mm sobre el suelo |
 | Masa sin batería | ≈ 3,6 kg (incluye 0,15 kg estimados de tornillería y cables) |
 | Batería | 36 V al cinturón, con cable espiral (no pesa en el brazo) |
-| Momento sobre la muñeca **sin** apoyo | ≈ 9,5 N·m: más de lo que una muñeca aguanta todo un día |
-| Con la cuna de antebrazo | el antebrazo recibe ≈ 5,6 kg de presión y la muñeca solo guía |
+| Momento sobre la muñeca **sin** apoyo | ≈ 9,8 N·m: más de lo que una muñeca aguanta todo un día |
+| Con la cuna de antebrazo | el antebrazo recibe ≈ 5,8 kg de presión y la muñeca solo guía |
 | Carga en la mano con el patín apoyado | ≈ 1,6 kg |
 | Postura | mano a 0,43 m del suelo y a 0,64 m del tallo, parecida a la del machete |
 | Accionamiento | motor 300–400 W, reductor 15:1, husillo de bolas SFU1605, balancín y biela |
@@ -44,15 +62,15 @@ La herramienta pesa bastante más que un machete. Por eso lleva tres cosas:
 
 | Carpeta / archivo | Qué es | Con qué se abre |
 |---|---|---|
-| `imagenes/` | Vistas 3D: armada, cabezal cerrado y abierto, planta, lateral con medidas, despiece, en la mata | Cualquier visor de imágenes |
-| `planos_cortadora.pdf` | Los 17 planos en un PDF a escala | Cualquier lector de PDF |
-| `planos_dxf/` | Un DXF por pieza (P01…P16) y el conjunto `00` con la lista de materiales | AutoCAD (Guardar como → DWG), DraftSight, LibreCAD, QCAD |
+| `imagenes/` | Vistas 3D: armada, cabezal cerrado y abierto, planta, corte parcial, lateral con medidas, despiece, en la mata | Cualquier visor de imágenes |
+| `planos_cortadora.pdf` | Los 18 planos en un PDF a escala | Cualquier lector de PDF |
+| `planos_dxf/` | Un DXF por pieza (P01…P17) y el conjunto `00` con la lista de materiales | AutoCAD (Guardar como → DWG), DraftSight, LibreCAD, QCAD |
 | `modelo_3d/tijera_conjunto.step` y `piezas_step/` | Modelo 3D del conjunto y de cada pieza | FreeCAD, Fusion 360, SolidWorks |
 | `modelo_3d/tijera.glb` | Modelo 3D liviano con colores | Visor 3D de Windows, Blender |
 | `visor/` | Visor 3D interactivo (HTML) | Navegador, servido por HTTP |
 | `fuente/` | Modelo paramétrico y generadores de planos | Python 3 |
 
-En los DXF, la geometría está a escala real 1:1. El contorno de las piezas de chapa (P01, P02, P03, P04, P06, P07) va directo a corte láser, plasma o chorro de agua; solo hay que borrar las capas `COTAS`, `TEXTO`, `EJES` y `MARCO`.
+En los DXF, la geometría está a escala real 1:1. El contorno de las piezas de chapa (P01, P02, P03, P04, P06, P07, P17) va directo a corte láser, plasma o chorro de agua; solo hay que borrar las capas `COTAS`, `TEXTO`, `EJES` y `MARCO`.
 
 ## Siguiente paso
 

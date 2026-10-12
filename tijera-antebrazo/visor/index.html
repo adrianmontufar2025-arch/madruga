@@ -104,7 +104,7 @@ ol.lista{list-style:none;margin:0;padding:0;display:flex;flex-direction:column}
   <header class="barra">
     <div>
       <h1>Tijera de caña de antebrazo</h1>
-      <p>Una mano sostiene la caña, la otra corta al ras · modelo conceptual Rev. A · arrastra para girar, rueda o pellizco para acercar</p>
+      <p>Una mano sostiene la caña, la otra corta al ras · modelo conceptual Rev. B · arrastra para girar, rueda o pellizco para acercar</p>
     </div>
     <div class="cifras" id="cifras">
       <span class="cifra">corte hasta <b>Ø65</b></span>
@@ -130,6 +130,7 @@ ol.lista{list-style:none;margin:0;padding:0;display:flex;flex-direction:column}
           <button type="button" data-vista="cabezal" aria-pressed="false">Cabezal</button>
           <button type="button" data-vista="lateral" aria-pressed="false">Lateral</button>
           <button type="button" data-vista="planta" aria-pressed="false">Planta</button>
+          <button type="button" data-vista="parcial" aria-pressed="false">Corte parcial</button>
           <button type="button" data-vista="despiece" aria-pressed="false">Despiece</button>
           <button type="button" data-vista="mata" aria-pressed="false">En la mata</button>
         </div>
@@ -139,6 +140,7 @@ ol.lista{list-style:none;margin:0;padding:0;display:flex;flex-direction:column}
         <div class="fila"><label for="apertura">Apertura</label><output id="apertura-v" for="apertura">0°</output></div>
         <input type="range" id="apertura" min="0" max="6" step="1" value="0">
         <button type="button" class="boton" id="simular">Simular un corte</button>
+        <label class="check"><input type="checkbox" id="dedo-abierto"> Punta envolvente abierta (caña apretada)</label>
         <p class="nota">El motor tira de la varilla (P09), la varilla gira el balancín (P06), el balancín empuja la biela (P07) y la biela cierra la cuchilla (P02) contra el gancho (P01).</p>
       </section>
       <section>
@@ -319,7 +321,8 @@ function lineaCota(a, b) {
 // ---------------------------------------------------------------- modelo
 const nodos = new Map();     // nombre -> Object3D
 const base = new Map();      // nombre -> posición base
-let datos, piezaSel = null, explode = 0, cuadro = 0;
+let datos, piezaSel = null, explode = 0, cuadro = 0, dedoAbierto = false;
+const escenaParcial = [];
 
 function materialPara(p) {
   const c = new THREE.Color().setRGB(p.color[0], p.color[1], p.color[2], THREE.SRGBColorSpace);
@@ -387,6 +390,15 @@ async function cargar() {
     }
   });
   scene.add(raiz);
+  const colores = { XCORTE: [0.95, 0.45, 0.10], XRESTO: [0.45, 0.62, 0.22], XTOCON: [0.62, 0.66, 0.30], XVECINA1: [0.62, 0.66, 0.30], XVECINA2: [0.62, 0.66, 0.30] };
+  for (const [n, c] of Object.entries(colores)) {
+    const o = raiz.getObjectByName(n);
+    if (!o) continue;
+    fusionar(o);
+    o.traverse((m) => { if (m.isMesh) { m.material = new THREE.MeshStandardMaterial({ color: new THREE.Color().setRGB(...c, THREE.SRGBColorSpace), roughness: 0.6 }); m.castShadow = true; } });
+    o.visible = false;
+    escenaParcial.push(o);
+  }
   document.getElementById('c-masa').textContent = '≈' + fmtKg(datos.masa_total_g) + ' sin batería';
   const coma = (x) => String(x).replace('.', ',');
   document.getElementById('c-mom').textContent = coma(datos.momento_muneca_Nm) + ' N·m';
@@ -395,6 +407,9 @@ async function cargar() {
     `Con la cuna, el antebrazo recibe unos ${coma(datos.fuerza_cuna_kgf)} kg de presión y la muñeca solo guía. ` +
     `Al cortar, el patín se apoya en el suelo y la mano carga unos ${coma((datos.carga_mano_apoyado_g / 1000).toFixed(1))} kg.`;
   construirBrazo();
+  const cp = datos.corte_parcial;
+  VISTAS.parcial.p = `Caña Ø${cp.D} con más de la mitad afuera de la garganta: la cuchilla corta ${cp.profundidad_pct} % del diámetro (naranja). ` +
+    'El resto (verde) se parte con un leve tirón hacia afuera del corte.';
   construirCotas();
   construirLista(porCodigo);
   aplicarCuadro(0);
@@ -497,7 +512,7 @@ function aplicarCuadro(i) {
   const ang = datos.cuadros[i];
   for (const [n, o] of nodos) {
     const [cod, a] = n.split('@');
-    if (a !== undefined) o.visible = Number(a) === ang;
+    if (a !== undefined) o.visible = cod === 'P17' ? Number(a) === (dedoAbierto ? 1 : 0) : Number(a) === ang;
   }
   canaEntera.visible = ang > 0; canaCortada.visible = ang === 0;
   const bat = nodos.get('C05'); if (bat) bat.visible = false;   // la batería va al cinturón; no se dibuja
@@ -532,6 +547,9 @@ const VISTAS = {
               t: 'Despiece', p: 'Códigos P = piezas con plano DXF. Códigos C = componentes comerciales.' },
   planta:   { cam: V(-0.07, 0.03, 2.0), obj: V(-0.07, 0.034, 0.0), fov: 12, exp: 0, cana: false, mata: false, cotas: false, aro: true, brazo: false,
               t: 'Planta del cabezal', p: 'Cuchilla abierta 62°. El círculo marca la capacidad de Ø65 en la garganta.' },
+  parcial:  { cam: V(0.005, 0.012, 2.0), obj: V(0.005, 0.016, 0.0), fov: 15, exp: 0, cana: false, mata: false, cotas: false, brazo: false,
+              parcial: true, apertura: 6, dedo: true,
+              t: 'Corte parcial en mata apretada', p: '' },
   mata:     { cam: V(1.05, 1.75, 0.95), obj: V(-0.28, 0.03, 0.42), exp: 0, cana: false, mata: true, cotas: false, brazo: true,
               t: 'En la mata', p: 'La mano libre sostiene la caña y decide hacia dónde cae; la tijera corta al ras entre retoños.' },
 };
@@ -546,6 +564,9 @@ function ponerVista(nombre, instantaneo = false) {
   sombra.visible = !v.mata;
   cotas.visible = v.cotas;
   aro.visible = !!v.aro;
+  escenaParcial.forEach((o) => { o.visible = !!v.parcial; });
+  dedoAbierto = !!v.dedo; document.getElementById('dedo-abierto').checked = dedoAbierto;
+  cuadro = v.apertura ?? 0;
   brazoRef.visible = !!v.brazo && document.getElementById('ver-brazo').checked;
   brazoRef.children.forEach((c) => { if (c.userData.libre) c.visible = v.mata; });
   document.getElementById('ver-cotas').checked = v.cotas;
@@ -642,11 +663,12 @@ document.getElementById('despiece').addEventListener('input', (e) => aplicarExpl
 document.getElementById('simular').addEventListener('click', () => { if (datos) { animCorte = performance.now(); pedirRender(); } });
 document.getElementById('ver-cana').addEventListener('change', (e) => { canaRef.visible = e.target.checked && VISTAS[vistaActual].cana; pedirRender(); });
 document.getElementById('ver-cotas').addEventListener('change', (e) => { cotas.visible = e.target.checked; pedirRender(); });
+document.getElementById('dedo-abierto').addEventListener('change', (e) => { dedoAbierto = e.target.checked; aplicarCuadro(cuadro); });
 document.getElementById('ver-brazo').addEventListener('change', (e) => { brazoRef.visible = e.target.checked && !!VISTAS[vistaActual].brazo; pedirRender(); });
 
 window.__ponerVista = (n, extra = {}) => {
   ponerVista(n, true);
-  aplicarCuadro(extra.apertura ?? 0);
+  aplicarCuadro(extra.apertura ?? VISTAS[n].apertura ?? 0);
   window.__renderizado = false; pedirRender();
 };
 ajustar();
