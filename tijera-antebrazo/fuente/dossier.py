@@ -253,7 +253,9 @@ def seccion_intro(datos):
         ("Muñeca", f"{numero(a['momento_muneca_Nm'])[:-1]} N·m sin apoyo; {numero(a['aire_cuna']['muneca_Nm'])[:-1]} N·m con la cuna; "
                    f"{numero(a['apoyado']['muneca_Nm'])[:-1]} N·m con el patín apoyado".replace(",0 ", " ")),
         ("Parada sola (pata abajo)", f"se vuelca recién a los {a['reposo']['pendiente_max_grados']}° de pendiente"),
-        ("Fuerza de corte supuesta", "3–3,5 kN para cañas de 6 cm: confirmar con el ensayo"),
+        ("Fuerza de corte", "el diseño supone 3–3,5 kN para cañas de 6 cm. La cuchilla recibe 0,6–1,9 kN al empezar "
+                            "el corte y hasta 5,6 kN al final: medir la caña dura y revisar la palanca antes de fabricar"),
+        ("Tiempo de corte", "1,5 a 2 s para cerrar la cuchilla"),
     ]:
         filas.append([P(k, "celda_n"), P(v)])
     h.append(tabla(filas, [55 * mm, 200 * mm]))
@@ -296,8 +298,11 @@ def seccion_construccion():
                    "su plano.", E["p"])]
     etapas = [
         ("Antes de fabricar", [
-            "Medir la fuerza de corte en unas 20 cañas de 6 cm, con una gata hidráulica y una celda de carga. El diseño "
-            "supone 3–3,5 kN.",
+            "Medir la fuerza de corte en unas 20 cañas de 6 cm, las más duras, en el asiento y en un nudo, con una gata "
+            "hidráulica con manómetro (fuerza = presión × área del pistón).",
+            "<b>Ojo:</b> con la palanca actual la cuchilla recibe solo 0,6–1,9 kN al empezar a morder la caña y 3–5,6 kN "
+            "al final (con 8 kN en la varilla). Si la caña dura pide más, hay que rediseñar la palanca del cabezal antes "
+            "de fabricar P02, P05, P06 y P07. El motor y la batería sí alcanzan.",
             "Pedir las cotizaciones de la hoja de presupuesto: aceros y temple a Böhler (Quito), corte láser, torre "
             "CNC, UHMW. Importar juntos el motor con reductor y el husillo, en un solo envío por courier.",
         ]),

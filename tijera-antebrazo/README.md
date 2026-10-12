@@ -1,6 +1,6 @@
 # Tijera de caña con apoyo de antebrazo (Rev. B, conceptual)
 
-Esta tijera eléctrica se usa con una mano y sirve para cortar caña de hasta 6 cm de diámetro al ras del suelo, en matas cerradas y con retoños. Se trabaja igual que con el machete: **la mano libre sostiene la caña** y decide hacia dónde cae, y la otra mano corta. La diferencia es que no hace falta fuerza ni puntería. El gancho centra la caña sola, se aprieta el gatillo y la cuchilla corta en menos de un segundo.
+Esta tijera eléctrica se usa con una mano y sirve para cortar caña de hasta 6 cm de diámetro al ras del suelo, en matas cerradas y con retoños. Se trabaja igual que con el machete: **la mano libre sostiene la caña** y decide hacia dónde cae, y la otra mano corta. La diferencia es que no hace falta fuerza ni puntería. El gancho centra la caña sola, se aprieta el gatillo y la cuchilla cierra en 1,5 a 2 segundos.
 
 El antebrazo descansa en una **cuna (P14)**, que se lleva casi todo el momento del cabezal. Como en la rozadora, una **correa de hombro (C08)** enganchada en el centro de gravedad aguanta el resto del peso. Así los dedos quedan libres para el gatillo.
 
@@ -137,9 +137,28 @@ En laderas más empinadas que 27° hay que dejarla colgada de la correa de hombr
 
 En los DXF, la geometría está a escala real 1:1. El contorno de las piezas de chapa (P01, P02, P03, P04, P06, P07, P17) va directo a corte láser, plasma o chorro de agua; solo hay que borrar las capas `COTAS`, `TEXTO`, `EJES` y `MARCO`.
 
+## Fuerza de corte: revisar antes de fabricar el cabezal
+
+En la zona subtropical de Pangua la caña es dura casi como un palo, y en el asiento hace falta un buen machetazo para cortarla. Por eso conviene separar dos cosas.
+
+**El motor y la batería alcanzan de sobra:**
+- Con su par nominal, el motor tira de la varilla con unos 14,5 kN, a través del reductor y el husillo.
+- Cada corte dispone de unos 270 J. Un machetazo fuerte (machete de 0,6 kg a 15 m/s) son unos 70 J.
+- Una batería de 36 V y 4 Ah da para unos 1.700 cortes de caña dura.
+
+**El punto débil es la palanca del cabezal (varilla → balancín → biela → cuchilla).** Con 8 kN en la varilla, que es más o menos lo que aguanta el husillo SFU1605, la cuchilla recibe, en el centro de la garganta:
+
+| Apertura de la cuchilla | 55° (empieza a morder) | 45° | 35° | 20° | 10° (termina) |
+|---|---|---|---|---|---|
+| Fuerza en la cuchilla | 0,6 kN | 1,9 kN | 3,1 kN | 4,6 kN | 5,6 kN |
+
+La fuerza es baja justo cuando la cuchilla empieza a morder la cáscara. Si la caña dura pide más de 2 a 3 kN al comienzo, la cuchilla se trabaría. Hay que hacer dos cosas antes de fabricar el cabezal:
+1. **Medir la fuerza real** en las cañas más duras, en el asiento y en un nudo: con una gata hidráulica con manómetro que empuje una cuchilla contra la caña (fuerza = presión × área del pistón).
+2. **Rediseñar la palanca** para que la cuchilla reciba 6 kN o más desde el comienzo del corte. Se logra alargando la cola de la cuchilla y llevando el punto muerto de la biela a la mitad del corte. Para no perder velocidad, se baja la reducción del motor.
+
 ## Siguiente paso
 
-1. Medir la fuerza de corte en las cañas de 6 cm, con una gata hidráulica y una celda de carga. El diseño supone entre 3 y 3,5 kN.
+1. Medir la fuerza de corte en las cañas de 6 cm más duras, con una gata hidráulica y un manómetro o una celda de carga. Con ese dato, rediseñar la palanca del cabezal (ver "Fuerza de corte").
 2. Primero armar el cabezal (P01 a P07) y la cuna, y probar el corte y la postura en la mata, aunque el accionamiento sea provisional.
 3. Imprimir en 3D el mango P11 con el gatillo P12 y probarlo con guantes, con y sin la correa de hombro. Comprobar que al levantar la herramienta los dedos no aprietan el gatillo.
 4. Probar la pata P19 en la ladera: en tierra suelta, en tierra mojada y con piedras. Comprobar que no se enganche en los retoños.

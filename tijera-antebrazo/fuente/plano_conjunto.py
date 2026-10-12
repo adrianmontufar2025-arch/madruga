@@ -186,7 +186,7 @@ def main():
         "Correa C08 en la anilla P16: en el aire los dedos no cargan peso, solo el gatillo.",
         "Corte de tallos hasta %%c65, a 11 mm del suelo (fondo plano del cabezal).",
         "Gatillo de 4 dedos tipo rozadora (10-12 N), palanca de pulgar opcional, sensor de mano.",
-        "Fuerza de corte estimada 3-3,5 kN: confirmar con ensayo en tallos de Pangua.",
+        "Fuerza de corte supuesta 3-3,5 kN: medir caña dura y revisar la palanca del cabezal.",
         "Caña apretada: la punta P17 cede y la mordida parcial corta más de la mitad del diámetro.",
         "Pata P19 abajo: puntas clavadas, la tijera queda parada sola con la cuchilla cerrada.",
     ]
