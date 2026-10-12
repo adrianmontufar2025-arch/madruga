@@ -127,7 +127,7 @@ En laderas más empinadas que 27° hay que dejarla colgada de la correa de hombr
 |---|---|---|
 | `imagenes/` | Vistas 3D: armada, cabezal cerrado y abierto, planta, corte parcial, mango, lateral con medidas, despiece, en la mata, en reposo, motor por dentro | Cualquier visor de imágenes |
 | `planos_cortadora.pdf` | Los 20 planos en un PDF a escala | Cualquier lector de PDF |
-| `lista_de_materiales.xlsx` | Lista de materiales: material, cantidad, masa, cómo se fabrica cada pieza o qué comprar, y el archivo DXF/STEP de cada una | Excel, LibreOffice Calc, Google Sheets |
+| `lista_de_materiales.xlsx` | Lista de materiales (material, cantidad, masa, cómo se fabrica cada pieza, archivo DXF/STEP), presupuesto estimado en Ecuador con proveedores y nivel de confianza de cada precio, y lista de proveedores | Excel, LibreOffice Calc, Google Sheets |
 | `planos_dxf/` | Un DXF por pieza (P01…P19) y el conjunto `00` con la lista de materiales (incluye los comerciales C01…C09) | AutoCAD (Guardar como → DWG), DraftSight, LibreCAD, QCAD |
 | `modelo_3d/tijera_conjunto.step` y `piezas_step/` | Modelo 3D del conjunto y de cada pieza | FreeCAD, Fusion 360, SolidWorks |
 | `modelo_3d/tijera.glb` | Modelo 3D liviano con colores | Visor 3D de Windows, Blender |
@@ -143,6 +143,10 @@ En los DXF, la geometría está a escala real 1:1. El contorno de las piezas de 
 3. Imprimir en 3D el mango P11 con el gatillo P12 y probarlo con guantes, con y sin la correa de hombro. Comprobar que al levantar la herramienta los dedos no aprietan el gatillo.
 4. Probar la pata P19 en la ladera: en tierra suelta, en tierra mojada y con piedras. Comprobar que no se enganche en los retoños.
 5. Con los datos reales, ajustar `fuente/modelo.py` y regenerar todo.
+
+## Presupuesto en Ecuador
+
+La hoja "Presupuesto Ecuador" de `lista_de_materiales.xlsx` estima el costo del prototipo entre unos **770 y 1.940 USD**, con 15 % de imprevistos (consulta web del 12-oct-2026). Casi ningún proveedor ecuatoriano publica precios, así que la mayoría de las filas son rangos estimados o precios de importación. Cada fila dice su confianza y de dónde sale el dato. Los precios están en `fuente/precios_ecuador.py`: se actualizan ahí y se vuelve a generar la hoja.
 
 ## Regenerar todo
 

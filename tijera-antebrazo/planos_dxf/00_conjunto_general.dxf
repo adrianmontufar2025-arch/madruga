@@ -493,7 +493,7 @@ $SKPOLY
   9
 $TDCREATE
  40
-2461326.1462268517
+2461326.5318981484
   9
 $TDUCREATE
  40
@@ -501,7 +501,7 @@ $TDUCREATE
   9
 $TDUPDATE
  40
-2461326.1462615742
+2461326.5319328704
   9
 $TDUUPDATE
  40
@@ -933,11 +933,11 @@ $PSTYLEMODE
   9
 $FINGERPRINTGUID
   2
-{5AB8698E-5824-4579-A12F-C933B69EED11}
+{4E912D9E-7324-4F66-A44E-D39BD02E4B7A}
   9
 $VERSIONGUID
   2
-{9CBD56F3-B9F2-445E-A297-3FD1FC1F83B4}
+{DB26F9F5-5590-4DF4-9FB3-1CC2329A7480}
   9
 $EXTNAMES
 290
@@ -59837,7 +59837,7 @@ AcDbText
  40
 10.0
   1
-Acero SK5 / 65Mn templado 52-55 HRC, e = 8
+Acero O1 (Böhler K460), SK5 o 65Mn templado 52
  11
 2337.5
  21
@@ -60053,7 +60053,7 @@ AcDbText
  40
 10.0
   1
-Acero D2 o SK5 templado 56-58 HRC, e = 5
+Acero D2 (Böhler K110) o SK5 templado 56-58 HR
  11
 2337.5
  21
@@ -60917,7 +60917,7 @@ AcDbText
  40
 10.0
   1
-Acero SAE 4140 bonificado, e = 8
+Acero SAE 4140 bonificado (Böhler V320), e = 8
  11
 2337.5
  21
@@ -62645,7 +62645,7 @@ AcDbText
  40
 10.0
   1
-Aluminio 6061-T6, chapa 6 mm
+Aluminio 5052-H32, chapa 6 mm plegada
  11
 2337.5
  21
@@ -64989,7 +64989,7 @@ AcDbText
  40
 10.0
   1
-Perno pivote M12 con hombro + arandelas 
+Perno pivote con hombro Ø12, rosca M10 +
  11
 2037.5
  21
@@ -65021,7 +65021,7 @@ AcDbText
  40
 10.0
   1
-Comercial (ISO 7379)
+Comercial (ISO 7379 / DIN 2093)
  11
 2337.5
  21
@@ -67457,7 +67457,7 @@ DictionaryVariables
 280
 0
   1
-1.4.4 @ 2026-10-12T03:30:34.688291+00:00
+1.4.4 @ 2026-10-12T12:45:56.459449+00:00
   0
 DICTIONARYVAR
   5
@@ -67469,7 +67469,7 @@ DictionaryVariables
 280
 0
   1
-1.4.4 @ 2026-10-12T03:30:37.474099+00:00
+1.4.4 @ 2026-10-12T12:45:59.651179+00:00
   0
 ENDSEC
   0

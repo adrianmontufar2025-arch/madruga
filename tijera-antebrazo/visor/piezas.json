@@ -3,7 +3,7 @@
   {
    "codigo": "P01",
    "nombre": "Contracuchilla-gancho",
-   "material": "Acero SK5 / 65Mn templado 52-55 HRC, e = 8",
+   "material": "Acero O1 (Böhler K460), SK5 o 65Mn templado 52-55 HRC, e = 8",
    "cantidad": 1,
    "grupo": "Cabezal",
    "masa_g": 426,
@@ -22,7 +22,7 @@
   {
    "codigo": "P02",
    "nombre": "Cuchilla móvil",
-   "material": "Acero D2 o SK5 templado 56-58 HRC, e = 5",
+   "material": "Acero D2 (Böhler K110) o SK5 templado 56-58 HRC, e = 5",
    "cantidad": 1,
    "grupo": "Cabezal",
    "masa_g": 273,
@@ -98,7 +98,7 @@
   {
    "codigo": "P06",
    "nombre": "Palanca angular (balancín)",
-   "material": "Acero SAE 4140 bonificado, e = 8",
+   "material": "Acero SAE 4140 bonificado (Böhler V320), e = 8",
    "cantidad": 1,
    "grupo": "Cabezal",
    "masa_g": 96,
@@ -250,7 +250,7 @@
   {
    "codigo": "P13",
    "nombre": "Brazo del apoyo de antebrazo",
-   "material": "Aluminio 6061-T6, chapa 6 mm",
+   "material": "Aluminio 5052-H32, chapa 6 mm plegada",
    "cantidad": 1,
    "grupo": "Apoyo de antebrazo",
    "masa_g": 111,
@@ -458,8 +458,8 @@
   },
   {
    "codigo": "C06",
-   "nombre": "Perno pivote M12 con hombro + arandelas Belleville",
-   "material": "Comercial (ISO 7379)",
+   "nombre": "Perno pivote con hombro Ø12, rosca M10 + arandelas Belleville",
+   "material": "Comercial (ISO 7379 / DIN 2093)",
    "cantidad": 1,
    "grupo": "Cabezal",
    "masa_g": 52,

@@ -693,9 +693,9 @@ def construir(theta=0.0):
         return Location(plano_eje(s))
 
     p = [
-        Pieza("P01", "Contracuchilla-gancho", "Acero SK5 / 65Mn templado 52-55 HRC, e = 8", 1, p01_gancho(), ident,
+        Pieza("P01", "Contracuchilla-gancho", "Acero O1 (Böhler K460), SK5 o 65Mn templado 52-55 HRC, e = 8", 1, p01_gancho(), ident,
               ACERO_TEMPLADO, "Cabezal", explosion=(0, 0, -50)),
-        Pieza("P02", "Cuchilla móvil", "Acero D2 o SK5 templado 56-58 HRC, e = 5", 1, p02_cuchilla(), rot_cuch,
+        Pieza("P02", "Cuchilla móvil", "Acero D2 (Böhler K110) o SK5 templado 56-58 HRC, e = 5", 1, p02_cuchilla(), rot_cuch,
               ACERO_FILO, "Cabezal", explosion=(0, 0, 60)),
         Pieza("P03", "Placa base", "Aluminio 7075-T6, e = 8, anodizado", 1, p03_placa_base(), ident,
               ALUMINIO_ANOD, "Cabezal", explosion=(-60, 0, -50), densidad=2.81),
@@ -703,7 +703,7 @@ def construir(theta=0.0):
               explosion=(0, 0, -120), densidad=0.94),
         Pieza("P05", "Torre del cabezal", "Aluminio 6061-T6 mecanizado, anodizado", 1, p05_torre(), ident,
               ALUMINIO_ANOD, "Cabezal", explosion=(-40, 70, 70), densidad=2.70),
-        Pieza("P06", "Palanca angular (balancín)", "Acero SAE 4140 bonificado, e = 8", 1, p06_balancin(), rot_bal,
+        Pieza("P06", "Palanca angular (balancín)", "Acero SAE 4140 bonificado (Böhler V320), e = 8", 1, p06_balancin(), rot_bal,
               ACERO_TEMPLADO, "Cabezal", explosion=(-40, 150, 70)),
         Pieza("P07", "Biela", "Acero SAE 1045, pletina 16 x 6", 1, p07_biela(), loc_biela(theta), ACERO_TEMPLADO,
               "Cabezal", explosion=(0, 40, 110)),
@@ -719,7 +719,7 @@ def construir(theta=0.0):
               explosion=_ex(260, -110), densidad=1.36),
         Pieza("P18", "Palanca de pulgar (opcional)", "PA6-GF30 con TPE", 1, p18_pulgar(), en_eje(S_EMP), CAUCHO,
               "Brazo", explosion=_ex(260, -110), densidad=1.36),
-        Pieza("P13", "Brazo del apoyo de antebrazo", "Aluminio 6061-T6, chapa 6 mm", 1, p13_brazo_apoyo(),
+        Pieza("P13", "Brazo del apoyo de antebrazo", "Aluminio 5052-H32, chapa 6 mm plegada", 1, p13_brazo_apoyo(),
               en_eje(S_CARCASA[0]), ALUMINIO, "Apoyo de antebrazo", explosion=_ex(330, -60), densidad=2.70),
         Pieza("P14", "Cuna de antebrazo", "PA6-GF30 (o aluminio 5052 plegado)", 1, p14_cuna(), en_eje(S_CUNA[0]),
               NARANJA, "Apoyo de antebrazo", explosion=_ex(400, -120), densidad=1.36),
@@ -746,7 +746,7 @@ def construir(theta=0.0):
               (0.35, 0.36, 0.4), "Accionamiento", plano=False, explosion=ex_mot, densidad=5.0),
         Pieza("C07", "Pasador Ø6 + separador + resorte de torsión de la punta", "Comercial", 1, c07_pasador_resorte(),
               ident, (0.6, 0.6, 0.62), "Cabezal", plano=False, explosion=(30, 0, 140)),
-        Pieza("C06", "Perno pivote M12 con hombro + arandelas Belleville", "Comercial (ISO 7379)", 1, c06_perno(),
+        Pieza("C06", "Perno pivote con hombro Ø12, rosca M10 + arandelas Belleville", "Comercial (ISO 7379 / DIN 2093)", 1, c06_perno(),
               ident, (0.6, 0.6, 0.62), "Cabezal", plano=False, explosion=(0, 0, 150)),
         Pieza("C08", "Correa de hombro de rozadora con mosquetón", "Comercial (arnés simple de desbrozadora)", 1,
               c08_correa(), en_eje(S_ANILLA), (0.16, 0.20, 0.26), "Brazo", plano=False, explosion=_ex(110, 150),

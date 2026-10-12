@@ -63,7 +63,7 @@ def p01():
         L("alzado", (b.min.X, 0, 0), (b.min.X, 0, 4), -10, 90),
         L("alzado", (b.max.X, 0, 0), (b.max.X, 0, 8), 10, 90),
     ]
-    return Plano("P01", "Contracuchilla-gancho", "Acero SK5 o 65Mn, chapa e = 8 mm", 1, masa("P01"), f,
+    return Plano("P01", "Contracuchilla-gancho", "Acero O1 (Böhler K460), SK5 o 65Mn, chapa e = 8 mm", 1, masa("P01"), f,
                  ["alzado", "planta"], cot, [
                      "Cortar por láser o chorro de agua desde este DXF (1:1). Espesor 8 mm.",
                      "Media madera: fresar 4 mm de la cara superior entre x = -52 y x = -32 (empalme con P03).",
@@ -90,7 +90,7 @@ def p02():
         Cota("lin", "planta", (0, 0, 0), (tx, ty, 0), dist=-18, angulo=90),
         Cota("lin", "planta", (tx, ty, 0), (0, 0, 0), dist=26, angulo=0),
     ]
-    return Plano("P02", "Cuchilla móvil", "Acero D2 (o SK5), chapa e = 5 mm", 1, masa("P02"), f, ["planta"], cot, [
+    return Plano("P02", "Cuchilla móvil", "Acero D2 (Böhler K110) o SK5, chapa e = 5 mm", 1, masa("P02"), f, ["planta"], cot, [
         "Cortar por láser o hilo desde este DXF (1:1). Espesor 5 mm. Se muestra en posición CERRADA.",
         "Temple y revenido a 56-58 HRC. Rectificar plana la cara inferior (contacto con el gancho P01).",
         "Filo: borde convexo R39, bisel simple de 22° por la cara SUPERIOR; asentar con piedra fina.",
@@ -289,7 +289,7 @@ def p13():
            L("alzado", (b.max.X, 0, b.min.Z), (b.max.X, 0, b.max.Z), 14, 90),
            N("alzado", ((MD.S_CUNA[0] + MD.S_CUNA[1]) / 2 - MD.S_CARCASA[0], 0, MD.Z_ANTEBRAZO), 24, -26,
              "colisa 8,2 x 48: ajuste ±20 mm")]
-    return Plano("P13", "Brazo del apoyo de antebrazo", "Aluminio 6061-T6, chapa 6 mm plegada + ala de 7 mm", 1,
+    return Plano("P13", "Brazo del apoyo de antebrazo", "Aluminio 5052-H32, chapa 6 mm plegada (radio int. ≥ 9 mm) + ala de 7 mm", 1,
                  masa("P13"), f, ["alzado", "planta", "perfil"], cot, [
                      "Escuadra en el lado EXTERIOR del antebrazo (lado derecho para un operario diestro).",
                      "Ala superior atornillada bajo la cola de la carcasa P10 con 2 tornillos M6.",

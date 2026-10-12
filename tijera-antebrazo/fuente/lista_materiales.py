@@ -5,6 +5,8 @@ import os
 from openpyxl import Workbook
 from openpyxl.styles import Alignment, Border, Font, PatternFill, Side
 
+import precios_ecuador as PE
+
 RAIZ = os.path.abspath(os.path.join(os.path.dirname(__file__), ".."))
 SALIDA = os.path.join(RAIZ, "lista_de_materiales.xlsx")
 
@@ -23,7 +25,7 @@ FABRICACION = {
     "P10": "Prototipo: impresión 3D en PA-CF. Serie: inyección PA6-GF30.",
     "P11": "Prototipo: impresión 3D. Serie: inyección PA6-GF30 con sobremoldeo TPE de 3 mm.",
     "P12": "Prototipo: impresión 3D. Serie: inyección PA6-GF30.",
-    "P13": "Corte láser y plegado (chapa 6 mm) + ala de 7 mm.",
+    "P13": "Corte láser y plegado (chapa 6 mm de 5052; el 6061-T6 se agrieta al doblar) + ala de 7 mm.",
     "P14": "Impresión 3D, o chapa de aluminio 5052 plegada.",
     "P15": "EVA de 5 mm cortada a cuchilla + correa de velcro cosida con hebilla de liberación rápida.",
     "P16": "Abrazadera impresa en 3D + anilla de acero inoxidable comercial.",
@@ -39,7 +41,7 @@ COMPRA = {
     "C04": "Tuerca SFU1605 + horquilla de tiro mecanizada.",
     "C05": "Batería de herramienta de 36 V. Con 2,5 Ah pesa unos 0,9 kg y con 4 Ah unos 1,3 kg. Va al cinturón con "
            "cable espiral.",
-    "C06": "Perno con hombro ISO 7379 de M12 + arandelas Belleville (mantienen el juego de 0,05-0,1 mm).",
+    "C06": "Perno con hombro ISO 7379 de Ø12 x 25 mm (rosca M10, clase 12.9) + 2 arandelas Belleville DIN 2093 12,2 x 25 (mantienen el juego de 0,05-0,1 mm).",
     "C07": "Pasador Ø6 + separador + resorte de torsión de 0,3 N·m.",
     "C08": "Arnés simple de desbrozadora, con mosquetón de liberación rápida.",
     "C09": "Palanca de pulgar + cable de freno de bicicleta con funda.",
@@ -47,6 +49,7 @@ COMPRA = {
 
 FUENTE = "Arial"
 GRIS = PatternFill("solid", start_color="E7E9EC")
+GRIS_CLARO = PatternFill("solid", start_color="F3F4F6")
 FINO = Side(style="thin", color="B5BAC1")
 BORDE = Border(left=FINO, right=FINO, top=FINO, bottom=FINO)
 
@@ -150,8 +153,134 @@ def main():
     ws.page_setup.fitToWidth = 1
     ws.page_setup.fitToHeight = 0
     ws.sheet_properties.pageSetUpPr.fitToPage = True
+    hoja_presupuesto(wb)
+    hoja_proveedores(wb)
     wb.save(SALIDA)
     print(SALIDA)
+
+
+COLOR_CONFIANZA = {"alta": "1E7B34", "media": "8A6D00", "baja": "B42318"}
+
+
+def _celda(ws, r, c, v, negrita=False, formato=None, envolver=False, color=None, borde=True, relleno=None):
+    celda = ws.cell(row=r, column=c, value=v)
+    celda.font = Font(name=FUENTE, size=10, bold=negrita, color=color)
+    celda.alignment = Alignment(vertical="top", wrap_text=envolver)
+    if borde:
+        celda.border = BORDE
+    if formato:
+        celda.number_format = formato
+    if relleno:
+        celda.fill = relleno
+    return celda
+
+
+def hoja_presupuesto(wb):
+    ws = wb.create_sheet("Presupuesto Ecuador")
+    ws["A1"] = "Presupuesto estimado del prototipo en Ecuador (USD)"
+    ws["A1"].font = Font(name=FUENTE, size=14, bold=True)
+    ws["A2"] = (f"Consulta web del {PE.FECHA_CONSULTA}. Casi ningún proveedor publica precios: la mayoría son rangos "
+                "estimados o de importación, así que hay que confirmarlos con cotización. Algunos precios incluyen IVA "
+                "(15 %) y otros no.")
+    ws["A2"].font = Font(name=FUENTE, size=10, italic=True, color="555B63")
+    cab = ["Grupo", "Código(s)", "Qué comprar o encargar", "Medida / cantidad", "Proveedor sugerido", "Ciudad", "Cant.",
+           "Precio mín. (USD)", "Precio máx. (USD)", "Subtotal mín. (USD)", "Subtotal máx. (USD)", "Confianza",
+           "Fuente", "Nota"]
+    fila_cab = 4
+    for j, t in enumerate(cab, 1):
+        c = _celda(ws, fila_cab, j, t, negrita=True, envolver=True, relleno=GRIS)
+        c.alignment = Alignment(vertical="center", wrap_text=True)
+    usd = "#,##0.00"
+    r = fila_cab + 1
+    primera = r
+    for grupo in PE.GRUPOS:
+        letra = grupo[0]
+        for j in range(1, len(cab) + 1):
+            _celda(ws, r, j, grupo if j == 1 else None, negrita=True, relleno=GRIS_CLARO)
+        r += 1
+        for (g, cod, que, medida, prov, ciudad, cant, pmin, pmax, conf, fuente, nota) in PE.LINEAS:
+            if g != letra:
+                continue
+            valores = [g, cod, que, medida, prov, ciudad, cant, pmin, pmax, f"=G{r}*H{r}", f"=G{r}*I{r}", conf,
+                       fuente or "—", nota]
+            for j, v in enumerate(valores, 1):
+                c = _celda(ws, r, j, v, envolver=j in (2, 3, 4, 5, 6, 13, 14),
+                           formato=usd if j in (8, 9, 10, 11) else None,
+                           color=COLOR_CONFIANZA.get(conf) if j == 12 else None)
+                if j == 13 and fuente:
+                    c.hyperlink = fuente
+                    c.font = Font(name=FUENTE, size=9, color="1F5FAD", underline="single")
+            r += 1
+    ultima = r - 1
+    r += 1
+    _celda(ws, r, 3, "Resumen", negrita=True, borde=False)
+    _celda(ws, r, 10, "Mínimo (USD)", negrita=True, relleno=GRIS)
+    _celda(ws, r, 11, "Máximo (USD)", negrita=True, relleno=GRIS)
+    r += 1
+    filas_grupo = []
+    for grupo in PE.GRUPOS[:-1]:
+        letra = grupo[0]
+        _celda(ws, r, 3, grupo, borde=False)
+        _celda(ws, r, 10, f'=SUMIF($A${primera}:$A${ultima},"{letra}",J${primera}:J${ultima})', formato=usd)
+        _celda(ws, r, 11, f'=SUMIF($A${primera}:$A${ultima},"{letra}",K${primera}:K${ultima})', formato=usd)
+        filas_grupo.append(r)
+        r += 1
+    _celda(ws, r, 3, "Subtotal (A a D)", negrita=True, borde=False)
+    _celda(ws, r, 10, f"=SUM(J{filas_grupo[0]}:J{filas_grupo[-1]})", negrita=True, formato=usd)
+    _celda(ws, r, 11, f"=SUM(K{filas_grupo[0]}:K{filas_grupo[-1]})", negrita=True, formato=usd)
+    fila_sub = r
+    r += 1
+    _celda(ws, r, 3, "Imprevistos (porcentaje editable)", borde=False)
+    _celda(ws, r, 9, 0.15, formato="0%", color="0000FF", relleno=PatternFill("solid", start_color="FFF6BF"))
+    _celda(ws, r, 10, f"=J{fila_sub}*$I${r}", formato=usd)
+    _celda(ws, r, 11, f"=K{fila_sub}*$I${r}", formato=usd)
+    fila_imp = r
+    r += 1
+    _celda(ws, r, 3, "Total estimado del prototipo", negrita=True, borde=False)
+    _celda(ws, r, 10, f"=J{fila_sub}+J{fila_imp}", negrita=True, formato=usd, relleno=GRIS_CLARO)
+    _celda(ws, r, 11, f"=K{fila_sub}+K{fila_imp}", negrita=True, formato=usd, relleno=GRIS_CLARO)
+    r += 1
+    _celda(ws, r, 3, PE.GRUPOS[-1], borde=False)
+    _celda(ws, r, 10, f'=SUMIF($A${primera}:$A${ultima},"E",J${primera}:J${ultima})', formato=usd)
+    _celda(ws, r, 11, f'=SUMIF($A${primera}:$A${ultima},"E",K${primera}:K${ultima})', formato=usd)
+    r += 2
+    notas = ["Cómo leer la confianza",
+             "alta: precio publicado en una tienda de Ecuador.",
+             "media: precio de importación, de otro país o de otra presentación.",
+             "baja: estimado; la nota de cada fila explica cómo se calculó.",
+             "La celda amarilla (imprevistos) se puede cambiar; los totales se recalculan solos.",
+             "",
+             "Importación por courier"] + PE.IMPORTACION
+    for k, t in enumerate(notas):
+        _celda(ws, r + k, 1, t, negrita=t in ("Cómo leer la confianza", "Importación por courier"), borde=False)
+    for col, ancho in zip("ABCDEFGHIJKLMN", (7, 14, 38, 26, 34, 18, 6, 11, 11, 12, 12, 10, 40, 60)):
+        ws.column_dimensions[col].width = ancho
+    ws.freeze_panes = ws.cell(row=fila_cab + 1, column=4)
+    ws.page_setup.orientation = "landscape"
+    ws.sheet_properties.pageSetUpPr.fitToPage = True
+    ws.page_setup.fitToWidth = 1
+    ws.page_setup.fitToHeight = 0
+
+
+def hoja_proveedores(wb):
+    ws = wb.create_sheet("Proveedores")
+    ws["A1"] = "Proveedores y talleres encontrados en Ecuador"
+    ws["A1"].font = Font(name=FUENTE, size=14, bold=True)
+    ws["A2"] = f"Consulta web del {PE.FECHA_CONSULTA}. Confirmar dirección, existencias y precio antes de viajar."
+    ws["A2"].font = Font(name=FUENTE, size=10, italic=True, color="555B63")
+    for j, t in enumerate(["Proveedor", "Ciudad", "Qué ofrece", "Web"], 1):
+        _celda(ws, 4, j, t, negrita=True, relleno=GRIS)
+    for i, (nombre, ciudad, que, web) in enumerate(PE.PROVEEDORES, 5):
+        _celda(ws, i, 1, nombre, envolver=True)
+        _celda(ws, i, 2, ciudad, envolver=True)
+        _celda(ws, i, 3, que, envolver=True)
+        c = _celda(ws, i, 4, web)
+        if web.startswith("http"):
+            c.hyperlink = web
+            c.font = Font(name=FUENTE, size=10, color="1F5FAD", underline="single")
+    for col, ancho in zip("ABCD", (42, 28, 70, 42)):
+        ws.column_dimensions[col].width = ancho
+    ws.freeze_panes = "A5"
 
 
 if __name__ == "__main__":
