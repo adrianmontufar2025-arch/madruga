@@ -1,9 +1,10 @@
-"""Regenera todo: modelo 3D (STEP/GLB), planos DXF pieza por pieza, plano de conjunto y PDF.
+"""Regenera todo: modelo 3D (STEP/GLB), planos DXF pieza por pieza, plano de conjunto, PDF y lista de materiales.
 
 Uso:  python3 generar_todo.py
-Requiere: pip install build123d ezdxf matplotlib
+Requiere: pip install build123d ezdxf matplotlib openpyxl
 """
 import exportar_3d
+import lista_materiales
 import pdf_planos
 import plano_conjunto
 import planos_piezas
@@ -13,3 +14,4 @@ if __name__ == "__main__":
     planos_piezas.main()
     plano_conjunto.main()
     pdf_planos.main()
+    lista_materiales.main()
