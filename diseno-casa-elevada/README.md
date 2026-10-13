@@ -2,7 +2,9 @@
 
 Anteproyecto de una vivienda de madera y caña guadua sobre pórtico de hormigón
 armado, para clima cálido-húmedo (unos 200 msnm, Ecuador). Abre `index.html`
-en el navegador para ver la lámina completa.
+en el navegador para ver la lámina completa, o
+`Casa-Elevada-200msnm-planos.pdf` para el juego de 12 láminas A3 con escalas exactas
+(plantas 1:75, cortes y elevaciones 1:50, escalera 1:25).
 
 - Piso alto: sala, comedor, cocina, 2 dormitorios, baño y terraza (59.4 m² cerrados + 25.0 m² de terraza).
 - Planta baja abierta de 81 m² con ½ baño, bodega, lavandería y estacionamiento.
@@ -11,5 +13,7 @@ en el navegador para ver la lámina completa.
 
 Los planos se generan con `python3 generar_planos.py plantilla.html salida.html`:
 todas las piezas salen de una sola malla de ejes y una tabla de niveles.
+El PDF se arma con `python3 build_pdf.py plantilla.html plantilla-pdf.html planos-print.html`
+y luego `node pdf.js` (usa Playwright y Chromium).
 
 Es un anteproyecto: falta estudio de suelos, cálculo estructural (NEC) y permiso municipal.

@@ -467,7 +467,7 @@ def planta_alta():
     dim_v(d, [0, 2.4, 5.7, 9.0], -1.35)
     dim_v(d, [0, 9.0], -1.85, ["9.00"], total=True)
     dim_v(d, [ST_TOP, DESC_Y0, DESC_Y1, ST_Y0], 11.05)
-    escala_grafica(d, 5.6, -2.3)
+    escala_grafica(d, -2.9, -2.38)
     return d.svg("Planta alta")
 
 
@@ -547,7 +547,7 @@ def planta_baja():
     dim_v(d, [0, 2.4, 5.7, 9.0], -1.35)
     dim_v(d, [0, 9.0], -1.85, ["9.00"], total=True)
     dim_v(d, [ST_TOP, DESC_Y0, DESC_Y1, ST_Y0], 11.05)
-    escala_grafica(d, 5.6, -2.3)
+    escala_grafica(d, -2.9, -2.38)
     return d.svg("Planta baja")
 
 
@@ -611,7 +611,7 @@ def planta_estructural():
     dim_h(d, [0, VOL], -1.95, ["10.40"], total=True)
     dim_v(d, [0, 2.4, 5.7, 9.0], -1.35)
     dim_v(d, [0, 9.0], -1.85, ["9.00"], total=True)
-    escala_grafica(d, 5.6, -2.3)
+    escala_grafica(d, -2.9, -2.38)
     return d.svg("Planta de cimentación y estructura")
 
 
@@ -961,10 +961,10 @@ def elevacion_frontal():
 
 # ========================================================= DETALLE ESCALERA
 def detalle_escalera():
-    d = Dwg(0.95, -1.0, 8.95, 4.75)
-    d.rect(1.1, -0.6, 8.7, NTN, "tierra")
-    d.line(1.1, NTN, 8.7, NTN, "terreno")
-    d.rect(1.1, NTN, 8.7, NPB, "vereda-e")
+    d = Dwg(1.40, -1.0, 8.95, 4.75)
+    d.rect(1.45, -0.6, 8.7, NTN, "tierra")
+    d.line(1.45, NTN, 8.7, NTN, "terreno")
+    d.rect(1.45, NTN, 8.7, NPB, "vereda-e")
     m = CH / HU
     w = 0.15 * math.sqrt(1 + m * m)
     z_desc = riser_z(9)
@@ -984,10 +984,10 @@ def detalle_escalera():
     d.poly(pts, "corte-hormigon")
     # viga del eje 2 (llegada), piso del mirador y su baranda
     d.rect(ST_TOP - 0.25, FV, ST_TOP, TV, "corte-hormigon")
-    d.rect(1.1, TV, ST_TOP, NPA, "madera-vista")
-    d.rect(1.1, NPA - 0.02, ST_TOP, NPA, "madera-corte")
-    d.rect(1.1, NPA + 0.92, ST_TOP, NPA + 1.0, "madera-e")
-    y = 1.2
+    d.rect(1.45, TV, ST_TOP, NPA, "madera-vista")
+    d.rect(1.45, NPA - 0.02, ST_TOP, NPA, "madera-corte")
+    d.rect(1.45, NPA + 0.92, ST_TOP, NPA + 1.0, "madera-e")
+    y = 1.55
     while y < ST_TOP - 0.02:
         d.line(y, NPA, y, NPA + 0.92, "balaustre")
         y += 0.125
@@ -1023,8 +1023,8 @@ def detalle_escalera():
     d.text(6.55, 3.05, "pasamanos h = 0.90 m", "t-nota", 0.12)
     d.text(3.30, 1.10, "losa H.A. e = 0.15 m", "t-nota", 0.12)
     d.text(4.86, 2.10, "descanso +1.79", "t-nota", 0.12)
-    d.text(1.15, 4.36, "baranda del mirador h = 1.00", "t-nota", 0.12, "start")
-    d.text(1.80, 2.38, "viga eje 2", "t-nota", 0.12)
+    d.text(1.50, 4.36, "baranda del mirador h = 1.00", "t-nota", 0.12, "start")
+    d.text(1.95, 2.38, "viga eje 2", "t-nota", 0.12)
     d.text(7.65, -0.30, "dado", "t-nota", 0.11)
     return d.svg("Detalle de escalera")
 
