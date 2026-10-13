@@ -1,0 +1,645 @@
+<title>Casa Elevada 200 msnm</title>
+<meta name="description" content="Anteproyecto de vivienda elevada de madera y caña guadua sobre pórtico de hormigón, para clima cálido-húmedo a 200 msnm: plantas, corte, elevaciones, escalera, especificaciones y metrado.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@500;600;700&amp;family=Barlow:ital,wght@0,400;0,500;0,600;1,400&amp;display=swap">
+<style>
+/* Layout: juego de láminas de obra. Cajetín arriba, cada plano a todo el ancho con su código, notas técnicas debajo. */
+:root{
+  --papel:#E9EDE8;
+  --lamina:#FBFCFA;
+  --tinta:#1C2925;
+  --tinta-2:#55645E;
+  --trazo:#C4CDC7;
+  --cota:#2A5B88;
+  --acento:#1D6A4B;
+  --madera:#C59A70;
+  --madera-claro:#EAD9C4;
+  --cana:#DDC894;
+  --cana-2:#C8AC6E;
+  --hormigon:#C9CDC8;
+  --hormigon-2:#A3AAA4;
+  --cubierta:#4D595D;
+  --cubierta-claro:#8D999D;
+  --vidrio:#5F93B8;
+  --vidrio-f:#D8E7F0;
+  --tierra:#A8987C;
+  --tierra-f:#EFE9DD;
+  --piso:#F4EFE7;
+  --deck:#ECDFCC;
+  --f-display:"Barlow Condensed","Arial Narrow","Roboto Condensed",sans-serif;
+  --f-texto:"Barlow","Helvetica Neue",Arial,sans-serif;
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme="light"]){
+    --papel:#0F1513;--lamina:#161E1B;--tinta:#E1E8E3;--tinta-2:#9AACA4;--trazo:#33423C;--cota:#8DB7E1;--acento:#76C59F;
+    --madera:#8E6B4A;--madera-claro:#4A3D2F;--cana:#7C6C49;--cana-2:#65573A;--hormigon:#4A514D;--hormigon-2:#69716C;
+    --cubierta:#2B3336;--cubierta-claro:#56636A;--vidrio:#79A9CB;--vidrio-f:#233746;--tierra:#6B6049;--tierra-f:#221F19;
+    --piso:#201C17;--deck:#2C251D;color-scheme:dark;
+  }
+}
+:root[data-theme="dark"]{
+  --papel:#0F1513;--lamina:#161E1B;--tinta:#E1E8E3;--tinta-2:#9AACA4;--trazo:#33423C;--cota:#8DB7E1;--acento:#76C59F;
+  --madera:#8E6B4A;--madera-claro:#4A3D2F;--cana:#7C6C49;--cana-2:#65573A;--hormigon:#4A514D;--hormigon-2:#69716C;
+  --cubierta:#2B3336;--cubierta-claro:#56636A;--vidrio:#79A9CB;--vidrio-f:#233746;--tierra:#6B6049;--tierra-f:#221F19;
+  --piso:#201C17;--deck:#2C251D;color-scheme:dark;
+}
+*,*::before,*::after{box-sizing:border-box}
+body{margin:0;background:var(--papel);color:var(--tinta);font-family:var(--f-texto);font-size:1.0625rem;line-height:1.55}
+a{color:var(--cota)}
+:focus-visible{outline:3px solid var(--cota);outline-offset:3px}
+.hoja{max-width:76rem;margin-inline:auto;padding-inline:clamp(1rem,4vw,2.5rem);padding-block:1.5rem 4rem}
+
+/* cajetín */
+.cajetin{display:grid;gap:1.5rem 2.5rem;background:var(--lamina);border:1.5px solid var(--tinta);padding:clamp(1.1rem,3vw,2.2rem)}
+@media (min-width:62rem){.cajetin{grid-template-columns:minmax(0,1.2fr) minmax(0,1fr)}}
+.eyebrow{margin:0 0 .5rem;font-family:var(--f-display);font-weight:600;font-size:.95rem;letter-spacing:.14em;text-transform:uppercase;color:var(--acento)}
+h1{margin:0 0 .9rem;font-family:var(--f-display);font-weight:700;font-size:clamp(2.7rem,8vw,4.6rem);line-height:.94;letter-spacing:-.01em;text-wrap:balance}
+.lede{margin:0;max-width:36rem;font-size:1.13rem;color:var(--tinta-2)}
+.datos{margin:0;display:grid;grid-template-columns:minmax(6.5rem,auto) minmax(0,1fr);align-self:start;border-top:1.5px solid var(--tinta)}
+.datos dt,.datos dd{margin:0;padding:.55rem 0;border-bottom:1px solid var(--trazo);font-size:.95rem}
+.datos dt{font-family:var(--f-display);font-weight:600;text-transform:uppercase;letter-spacing:.07em;font-size:.82rem;color:var(--tinta-2);padding-right:1rem;padding-top:.68rem}
+.cifras{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:1px;background:var(--trazo);border:1.5px solid var(--tinta);border-top:0}
+@media (min-width:40rem){.cifras{grid-template-columns:repeat(3,minmax(0,1fr))}}
+@media (min-width:68rem){.cifras{grid-template-columns:repeat(6,minmax(0,1fr))}}
+.cifra{background:var(--lamina);padding:.95rem 1.1rem 1.05rem;min-width:0}
+.cifra b{display:block;font-family:var(--f-display);font-weight:700;font-size:clamp(1.7rem,4vw,2.1rem);line-height:1.05;font-variant-numeric:tabular-nums}
+.cifra span{display:block;margin-top:.25rem;font-size:.88rem;line-height:1.35;color:var(--tinta-2)}
+
+/* índice */
+.indice{margin:1.25rem 0 0;display:flex;flex-wrap:wrap;gap:.4rem}
+.indice a{display:inline-flex;align-items:center;min-height:2.5rem;padding:.3rem .8rem;border:1px solid var(--tinta);background:var(--lamina);color:var(--tinta);text-decoration:none;font-family:var(--f-display);font-weight:600;font-size:1rem}
+.indice a:hover{background:var(--tinta);color:var(--lamina)}
+
+/* secciones */
+.sec{margin-top:3.75rem}
+.sec-cab{display:grid;gap:.35rem;margin-bottom:1.4rem}
+.sec-cab .eyebrow{margin:0}
+h2{margin:0;font-family:var(--f-display);font-weight:700;font-size:clamp(1.8rem,4.5vw,2.5rem);line-height:1.02;text-wrap:balance}
+h3{text-wrap:balance}
+.intro{margin:0;max-width:44rem;color:var(--tinta-2)}
+.supuesto{margin:1rem 0 0;padding:.8rem 1rem;border-left:4px solid var(--acento);background:var(--lamina);max-width:48rem;font-size:.97rem}
+
+/* tablas */
+.tabla{overflow-x:auto;background:var(--lamina);border:1.5px solid var(--tinta)}
+table{border-collapse:collapse;width:100%;font-size:.96rem}
+caption{caption-side:top;text-align:left;padding:.75rem .9rem .3rem;font-family:var(--f-display);font-weight:600;font-size:1.15rem}
+th,td{text-align:left;vertical-align:top;padding:.55rem .9rem;border-bottom:1px solid var(--trazo)}
+thead th{font-family:var(--f-display);font-weight:600;font-size:.82rem;letter-spacing:.07em;text-transform:uppercase;color:var(--tinta-2);border-bottom:1.5px solid var(--tinta);white-space:nowrap}
+td.num,th.num{text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap}
+tr.total td{font-weight:600;border-top:1.5px solid var(--tinta)}
+tbody tr:last-child td{border-bottom:0}
+.malo{color:var(--tinta-2)}
+.tablas{display:grid;gap:1.25rem}
+@media (min-width:62rem){.tablas.dos{grid-template-columns:minmax(0,1fr) minmax(0,1fr);align-items:start}}
+
+/* planos */
+.leyenda{display:flex;flex-wrap:wrap;gap:.5rem 1.4rem;margin:0 0 1.4rem;padding:0;list-style:none;font-size:.92rem;color:var(--tinta-2)}
+.leyenda li{display:inline-flex;align-items:center;gap:.5rem}
+.leyenda svg{width:2.2rem;height:1.3rem;border:1px solid var(--tinta);flex:none}
+.plano{margin:0 0 2.5rem;background:var(--lamina);border:1.5px solid var(--tinta)}
+.plano-cab{display:flex;flex-wrap:wrap;align-items:center;gap:.4rem 1rem;padding:.65rem 1rem;border-bottom:1.5px solid var(--tinta)}
+.codigo{font-family:var(--f-display);font-weight:700;font-size:1.05rem;letter-spacing:.05em;background:var(--tinta);color:var(--lamina);padding:.08rem .55rem}
+.plano-titulo{font-family:var(--f-display);font-weight:600;font-size:1.4rem;line-height:1.1}
+.plano-esc{margin-left:auto;font-size:.88rem;color:var(--tinta-2)}
+.dib-wrap{overflow-x:auto;-webkit-overflow-scrolling:touch}
+.dib{min-width:42rem;padding:.6rem .6rem .2rem}
+.dib.cuadro{max-width:56rem;margin-inline:auto}
+.dib svg{display:block;width:100%;height:auto}
+.plano-notas{display:grid;gap:1rem 2.5rem;padding:1rem 1.2rem 1.25rem;border-top:1px solid var(--trazo);font-size:.96rem}
+@media (min-width:56rem){.plano-notas.dos{grid-template-columns:minmax(0,1fr) minmax(0,1fr)}}
+.plano-notas p{margin:0;max-width:62ch}
+.llamadas{margin:0;padding:0;list-style:none;counter-reset:ll;display:grid;gap:.45rem 2.5rem}
+@media (min-width:56rem){.llamadas{grid-template-columns:minmax(0,1fr) minmax(0,1fr)}}
+.llamadas li{display:grid;grid-template-columns:1.55rem minmax(0,1fr);gap:.6rem;align-items:start}
+.llamadas li::before{counter-increment:ll;content:counter(ll);display:grid;place-items:center;width:1.45rem;height:1.45rem;border-radius:50%;background:var(--acento);color:var(--lamina);font-family:var(--f-display);font-weight:700;font-size:.85rem;margin-top:.08rem}
+
+/* clima */
+.estrategias{display:grid;gap:1px;background:var(--trazo);border:1.5px solid var(--tinta)}
+@media (min-width:48rem){.estrategias{grid-template-columns:minmax(0,1fr) minmax(0,1fr)}}
+.estrategia{background:var(--lamina);padding:1.1rem 1.25rem 1.2rem;min-width:0}
+.estrategia h3{margin:0 0 .35rem;font-family:var(--f-display);font-weight:600;font-size:1.3rem;line-height:1.15}
+.estrategia p{margin:0;color:var(--tinta-2);max-width:60ch}
+.estrategia strong{color:var(--tinta);font-weight:600}
+
+/* especificaciones */
+.specs{border-top:1.5px solid var(--tinta)}
+.spec{display:grid;gap:.35rem 2rem;padding:1.05rem 0;border-bottom:1px solid var(--trazo)}
+@media (min-width:50rem){.spec{grid-template-columns:13rem minmax(0,1fr)}}
+.spec h3{margin:0;font-family:var(--f-display);font-weight:600;font-size:1.25rem;line-height:1.2}
+.spec p{margin:0;max-width:66ch}
+.spec p+p{margin-top:.45rem}
+
+/* pasos */
+.pasos{margin:0;padding:0;list-style:none;counter-reset:ps;display:grid;gap:0;border-top:1.5px solid var(--tinta)}
+.pasos li{display:grid;grid-template-columns:2.4rem minmax(0,1fr);gap:.8rem;padding:.85rem 0;border-bottom:1px solid var(--trazo)}
+.pasos li::before{counter-increment:ps;content:counter(ps,decimal-leading-zero);font-family:var(--f-display);font-weight:700;font-size:1.35rem;line-height:1.2;color:var(--acento);font-variant-numeric:tabular-nums}
+.pasos p{margin:0;max-width:64ch}
+.variantes{display:grid;gap:1px;background:var(--trazo);border:1.5px solid var(--tinta);margin-top:1.5rem}
+@media (min-width:56rem){.variantes{grid-template-columns:repeat(3,minmax(0,1fr))}}
+.variante{background:var(--lamina);padding:1rem 1.15rem;min-width:0}
+.variante h3{margin:0 0 .3rem;font-family:var(--f-display);font-weight:600;font-size:1.2rem}
+.variante p{margin:0;font-size:.96rem;color:var(--tinta-2)}
+
+.pie{margin-top:3.5rem;padding-top:1rem;border-top:1.5px solid var(--tinta);font-size:.9rem;color:var(--tinta-2);max-width:60rem}
+
+/* ---------- dibujo técnico ---------- */
+.dib svg *{vector-effect:non-scaling-stroke}
+.ln{fill:none;stroke:var(--tinta);stroke-width:1}
+.fino{fill:none;stroke:var(--tinta-2);stroke-width:.6}
+.eje{stroke:var(--cota);stroke-width:.6;stroke-dasharray:12 3 2 3;opacity:.75}
+.burbuja{fill:var(--lamina);stroke:var(--cota);stroke-width:1.1}
+.t-eje{fill:var(--cota);font-family:var(--f-display);font-weight:700}
+.cota{stroke:var(--cota);stroke-width:.6}
+.cota-tick{stroke:var(--cota);stroke-width:1.6}
+.t-cota{fill:var(--cota);font-family:var(--f-display);font-weight:500;font-variant-numeric:tabular-nums}
+.t-tot{font-weight:700}
+.proyeccion{fill:none;stroke:var(--tinta-2);stroke-width:.7;stroke-dasharray:7 4}
+.piso{fill:var(--piso);stroke:none}
+.deck{fill:url(#p-deck);stroke:none}
+.borde{fill:none;stroke:var(--tinta);stroke-width:1.3}
+.escalera{fill:var(--hormigon);fill-opacity:.45;stroke:var(--tinta);stroke-width:1}
+.descanso{fill:var(--hormigon);fill-opacity:.7;stroke:var(--tinta);stroke-width:.8}
+.peldano{stroke:var(--tinta);stroke-width:.7}
+.oculto{fill:none;stroke:var(--tinta-2);stroke-width:.7;stroke-dasharray:4 3}
+.peldano.oculto{stroke:var(--tinta-2)}
+.baranda{fill:none;stroke:var(--tinta);stroke-width:.9}
+.baranda2{fill:none;stroke:var(--tinta-2);stroke-width:.6}
+.poste{fill:var(--madera);stroke:var(--tinta);stroke-width:1}
+.poste-cumbrera{fill:var(--tinta)}
+.muro{fill:var(--madera);stroke:var(--tinta);stroke-width:1.1}
+.muro-bloque{fill:var(--hormigon-2);stroke:var(--tinta);stroke-width:1.1}
+.vano{fill:var(--lamina);stroke:var(--tinta);stroke-width:.6}
+.vidrio{stroke:var(--vidrio);stroke-width:2.2}
+.vidrio-alto{stroke:var(--vidrio);stroke-width:2.2;stroke-dasharray:5 3}
+.t-vano{fill:var(--tinta-2);font-family:var(--f-display);font-weight:600}
+.hoja{stroke:var(--tinta);stroke-width:1.2}
+.arco{fill:none;stroke:var(--tinta-2);stroke-width:.6;stroke-dasharray:3 2}
+.meson{fill:var(--madera-claro);stroke:var(--tinta);stroke-width:.8}
+.mueble{fill:none;stroke:var(--tinta-2);stroke-width:.7}
+.closet{fill:var(--madera-claro);fill-opacity:.7;stroke:var(--tinta-2);stroke-width:.7}
+.ducha{fill:var(--vidrio-f);stroke:var(--tinta-2);stroke-width:.7}
+.hamaca{fill:var(--cana);fill-opacity:.6;stroke:var(--tinta-2);stroke-width:.7}
+.auto{fill:var(--lamina);stroke:var(--tinta-2);stroke-width:.9}
+.rueda{fill:var(--tinta-2);fill-opacity:.45;stroke:var(--tinta-2);stroke-width:.6}
+.t-amb{fill:var(--tinta);font-family:var(--f-display);font-weight:600;letter-spacing:.02em}
+.t-area{fill:var(--tinta-2);font-family:var(--f-display);font-weight:500;font-variant-numeric:tabular-nums}
+.t-nota{fill:var(--tinta-2);font-family:var(--f-texto)}
+.t-nota-f{fill:var(--tinta);font-family:var(--f-display);font-weight:500}
+.t-nivel{fill:var(--acento);font-family:var(--f-display);font-weight:600;font-variant-numeric:tabular-nums}
+.nivel-tri{fill:var(--acento)}
+.t-paso{fill:var(--tinta-2);font-family:var(--f-display);font-weight:600}
+.corte-linea{stroke:var(--tinta);stroke-width:2.6}
+.corte-p{fill:var(--tinta)}
+.t-corte{fill:var(--tinta);font-family:var(--f-display);font-weight:700}
+.flecha{stroke:var(--tinta-2);stroke-width:1}
+.flecha-p{fill:var(--tinta-2)}
+.flecha-est{stroke:var(--acento);stroke-width:1}
+.flecha-est-p{fill:var(--acento)}
+.esc-a{fill:var(--tinta)}
+.esc-b{fill:var(--lamina);stroke:var(--tinta);stroke-width:.6}
+.vereda{fill:var(--hormigon);fill-opacity:.22;stroke:var(--tinta-2);stroke-width:.6}
+.contrapiso{fill:var(--hormigon);fill-opacity:.4;stroke:none}
+.columna{fill:var(--hormigon-2);stroke:var(--tinta);stroke-width:1.1}
+.plinto{fill:none;stroke:var(--tinta-2);stroke-width:.8;stroke-dasharray:5 3}
+.viga{fill:var(--hormigon);fill-opacity:.6;stroke:var(--tinta-2);stroke-width:.6}
+.viga-volado{fill:var(--hormigon-2);fill-opacity:.8;stroke:var(--tinta);stroke-width:.7}
+.vigueta{stroke:var(--madera);stroke-width:1.4}
+.marca-cumbrera{fill:none;stroke:var(--acento);stroke-width:1.6}
+.techo-terr{fill:var(--cubierta-claro);fill-opacity:.3;stroke:var(--tinta);stroke-width:1}
+.techo-main{fill:var(--cubierta-claro);fill-opacity:.55;stroke:var(--tinta);stroke-width:1}
+.cumbrera{stroke:var(--tinta);stroke-width:2.4}
+.quiebre{stroke:var(--tinta);stroke-width:1;stroke-dasharray:8 4}
+.canalon{fill:var(--vidrio-f);stroke:var(--tinta-2);stroke-width:.7}
+.bajante{fill:var(--lamina);stroke:var(--tinta);stroke-width:1.1}
+.tierra{fill:url(#p-tierra);stroke:none}
+.terreno{stroke:var(--tinta);stroke-width:1.6}
+.lastre{fill:url(#p-lastre);stroke:none}
+.corte-hormigon{fill:url(#p-hormigon);stroke:var(--tinta);stroke-width:1.2}
+.col-vista{fill:var(--hormigon);fill-opacity:.55;stroke:var(--tinta-2);stroke-width:.8}
+.viga-vista{fill:var(--hormigon);fill-opacity:.45;stroke:var(--tinta-2);stroke-width:.8}
+.madera-vista{fill:var(--madera-claro);stroke:var(--tinta-2);stroke-width:.7}
+.madera-corte{fill:var(--madera);stroke:var(--tinta);stroke-width:1.1}
+.muro-corte{fill:var(--madera);stroke:var(--tinta);stroke-width:1.2}
+.marco{fill:var(--lamina);stroke:var(--tinta-2);stroke-width:.6}
+.cubierta-corte{fill:var(--cubierta);stroke:var(--tinta);stroke-width:1}
+.cielo{fill:none;stroke:var(--cana-2);stroke-width:2.2}
+.canalon-l{fill:none;stroke:var(--tinta);stroke-width:1.3}
+.persona{fill:var(--tinta-2);fill-opacity:.38;stroke:none}
+.guia{stroke:var(--acento);stroke-width:.8}
+.guia-p{fill:var(--acento)}
+.llamada{fill:var(--acento);stroke:none}
+.t-llamada{fill:var(--lamina);font-family:var(--f-display);font-weight:700}
+.tierra-e{fill:url(#p-tierra);opacity:.7}
+.vereda-e{fill:var(--hormigon);stroke:var(--tinta-2);stroke-width:.6}
+.fondo{fill:var(--hormigon);fill-opacity:.3;stroke:var(--tinta-2);stroke-width:.6;stroke-dasharray:4 3}
+.puerta-fondo{fill:var(--madera-claro);fill-opacity:.6;stroke:var(--tinta-2);stroke-width:.6}
+.columna-e{fill:var(--hormigon);stroke:var(--tinta);stroke-width:1}
+.viga-e{fill:var(--hormigon);stroke:var(--tinta);stroke-width:1}
+.madera-e{fill:var(--madera);stroke:var(--tinta);stroke-width:.9}
+.cana-e{fill:url(#p-cana);stroke:var(--tinta);stroke-width:1}
+.tabla-e{fill:var(--madera-claro);stroke:var(--tinta);stroke-width:.8}
+.tabla-l{stroke:var(--madera);stroke-width:.8}
+.marco-e{fill:var(--madera);stroke:var(--tinta);stroke-width:.7}
+.vidrio-e{fill:var(--vidrio-f);stroke:var(--tinta);stroke-width:.7}
+.celosia-e{fill:var(--madera-claro);stroke:var(--tinta-2);stroke-width:.6}
+.baranda-e{fill:none;stroke:none}
+.balaustre{stroke:var(--madera);stroke-width:1.4}
+.frontis{fill:var(--madera);stroke:var(--tinta);stroke-width:1}
+.cubierta-borde{fill:none;stroke:var(--cubierta);stroke-width:3}
+.bajante-e{fill:var(--hormigon-2);stroke:var(--tinta-2);stroke-width:.6}
+.escalera-e{fill:var(--hormigon);stroke:var(--tinta);stroke-width:1}
+.escalera-f{fill:var(--hormigon);fill-opacity:.3;stroke:var(--tinta);stroke-width:1}
+.pasamanos{fill:none;stroke:var(--madera);stroke-width:2.8}
+.panel-terr{fill:var(--cubierta-claro)}
+.panel-main{fill:var(--cubierta)}
+.nervio{stroke:var(--tinta);stroke-opacity:.22;stroke-width:.6}
+.canalon-e{fill:var(--hormigon-2);stroke:var(--tinta);stroke-width:.6}
+.mueble-e{fill:none;stroke:var(--tinta-2);stroke-width:.8}
+/* rellenos de patrones */
+.pf-hormigon{fill:var(--hormigon)}
+.pl{stroke:var(--tinta-2)}
+.pf-tierra{fill:var(--tierra-f)}
+.pl-tierra{stroke:var(--tierra)}
+.pf-lastre{fill:var(--piso)}
+.pd{fill:var(--tinta-2)}
+.pf-cana{fill:var(--cana)}
+.pf-cana2{fill:var(--cana-2)}
+.pl-cana{stroke:var(--madera)}
+.pf-deck{fill:var(--deck)}
+.pl-deck{stroke:var(--madera)}
+.defs{position:absolute;width:0;height:0;overflow:hidden}
+@media (prefers-reduced-motion:reduce){*{scroll-behavior:auto!important}}
+html{scroll-behavior:smooth}
+</style>
+
+<svg class="defs" aria-hidden="true" focusable="false"><defs>
+  <pattern id="p-hormigon" patternUnits="userSpaceOnUse" width="0.12" height="0.12" patternTransform="rotate(45)">
+    <rect width="0.12" height="0.12" class="pf-hormigon"/>
+    <line x1="0" y1="0" x2="0" y2="0.12" class="pl" stroke-width="0.011"/>
+  </pattern>
+  <pattern id="p-tierra" patternUnits="userSpaceOnUse" width="0.3" height="0.3" patternTransform="rotate(-45)">
+    <rect width="0.3" height="0.3" class="pf-tierra"/>
+    <line x1="0" y1="0" x2="0" y2="0.3" class="pl-tierra" stroke-width="0.014"/>
+    <line x1="0.1" y1="0" x2="0.1" y2="0.3" class="pl-tierra" stroke-width="0.007"/>
+  </pattern>
+  <pattern id="p-lastre" patternUnits="userSpaceOnUse" width="0.16" height="0.12">
+    <rect width="0.16" height="0.12" class="pf-lastre"/>
+    <circle cx="0.04" cy="0.04" r="0.017" class="pd"/>
+    <circle cx="0.12" cy="0.09" r="0.013" class="pd"/>
+  </pattern>
+  <pattern id="p-cana" patternUnits="userSpaceOnUse" width="0.24" height="0.24">
+    <rect width="0.24" height="0.24" class="pf-cana"/>
+    <rect x="0" y="0" width="0.12" height="0.12" class="pf-cana2"/>
+    <rect x="0.12" y="0.12" width="0.12" height="0.12" class="pf-cana2"/>
+    <line x1="0" y1="0.06" x2="0.12" y2="0.06" class="pl-cana" stroke-width="0.008"/>
+    <line x1="0.18" y1="0" x2="0.18" y2="0.12" class="pl-cana" stroke-width="0.008"/>
+    <line x1="0.12" y1="0.18" x2="0.24" y2="0.18" class="pl-cana" stroke-width="0.008"/>
+    <line x1="0.06" y1="0.12" x2="0.06" y2="0.24" class="pl-cana" stroke-width="0.008"/>
+  </pattern>
+  <pattern id="p-deck" patternUnits="userSpaceOnUse" width="0.14" height="0.14">
+    <rect width="0.14" height="0.14" class="pf-deck"/>
+    <line x1="0" y1="0.135" x2="0.14" y2="0.135" class="pl-deck" stroke-width="0.008"/>
+  </pattern>
+</defs></svg>
+
+<div class="hoja">
+
+<header class="cajetin">
+  <div>
+    <p class="eyebrow">Anteproyecto arquitectónico · vivienda unifamiliar</p>
+    <h1>Casa Elevada 200&nbsp;msnm</h1>
+    <p class="lede">Vivienda de madera y caña guadua sobre un pórtico de hormigón armado, pensada para clima cálido y húmedo. Toma el modelo de referencia y lo rehace con medidas que cierran, una escalera que cumple norma y una distribución que funciona.</p>
+  </div>
+  <dl class="datos">
+    <dt>Programa</dt><dd>Arriba: sala, comedor, cocina, 2 dormitorios, baño completo y terraza. Abajo: estar y comedor exterior, estacionamiento, ½ baño, bodega y lavandería.</dd>
+    <dt>Sitio</dt><dd>Supuesto: terreno plano en Ecuador a unos 200&nbsp;msnm (Costa interior o Amazonía baja).</dd>
+    <dt>Normas</dt><dd>NEC-SE-DS, NEC-SE-HM, NEC-SE-VIVIENDA, NEC-SE-MD, NEC-SE-GUADUA y NTE INEN 2249 (escaleras).</dd>
+    <dt>Unidades</dt><dd>Metros. Cotas a ejes. Niveles desde el terreno natural (NTN ±0.00).</dd>
+    <dt>Estado</dt><dd>Anteproyecto. Para construir faltan estudio de suelos, cálculo estructural y permiso municipal.</dd>
+  </dl>
+</header>
+<div class="cifras">
+  <div class="cifra"><b>59.4 m²</b><span>cerrados en el piso alto (9.00 × 6.60 a ejes)</span></div>
+  <div class="cifra"><b>25.0 m²</b><span>de terraza y mirador</span></div>
+  <div class="cifra"><b>81.0 m²</b><span>cubiertos en planta baja, 88 % abiertos</span></div>
+  <div class="cifra"><b>+3.20 m</b><span>nivel del piso alto</span></div>
+  <div class="cifra"><b>2.40 m</b><span>libres bajo las vigas en planta baja</span></div>
+  <div class="cifra"><b>8.35 m</b><span>altura total hasta la cumbrera</span></div>
+</div>
+
+<nav class="indice" aria-label="Contenido">
+  <a href="#correcciones">Correcciones</a>
+  <a href="#planos">Planos</a>
+  <a href="#areas">Áreas y vanos</a>
+  <a href="#clima">Diseño para 200 msnm</a>
+  <a href="#especificaciones">Especificaciones</a>
+  <a href="#metrado">Metrado</a>
+  <a href="#pasos">Antes de construir</a>
+</nav>
+
+<section class="sec" id="correcciones">
+  <div class="sec-cab">
+    <p class="eyebrow">Revisión del plano de referencia</p>
+    <h2>Qué no cerraba y cómo quedó</h2>
+    <p class="intro">El plano de referencia tiene una buena idea (casa elevada, terraza amplia, planta baja libre), pero sus medidas no se pueden construir tal como están. Estos son los problemas y la decisión que tomé en cada caso.</p>
+  </div>
+  <div class="tabla">
+    <table>
+      <thead><tr><th scope="col">En el plano de referencia</th><th scope="col">En este diseño</th></tr></thead>
+      <tbody>
+        <tr><td class="malo">Las cotas no suman: arriba 1.0 + 4.0 + 1.3 = 6.3 m y abajo 4.0 + 4.0 + 0.3 = 8.3 m, pero las dos líneas dicen 9.0 m.</td><td>Una sola malla de ejes: 3 vanos de 3.00 m al frente y 2.40 + 3.30 + 3.30 m de fondo. Todas las cotas salen de esa malla.</td></tr>
+        <tr><td class="malo">La planta alta dice “base 5 × 5 m”, pone una sala de 5.0 × 2.5 m en un espacio de 1.8 m, tiene dos “dormitorio principal” y el baño ocupa el sitio de la escalera.</td><td>Cuerpo cerrado de 9.00 × 6.60 m: sala, comedor y cocina hacia la terraza; dos dormitorios atrás con el baño entre ellos.</td></tr>
+        <tr><td class="malo">Escalera: 2.60 m ÷ 0.18 m = 14.4 contrahuellas, que no es un número entero. Con huellas de 0.30 m mediría unos 4.0 m en planta (no 3.0 ni 3.8 m) y no tiene descanso.</td><td>17 contrahuellas de 17.6 cm, 16 huellas de 28 cm y un descanso después del escalón 9. Mide 5.20 m en planta.</td></tr>
+        <tr><td class="malo">Con el piso alto a 2.60 m y vigas de 0.40 m quedan unos 2.00 m libres abajo: es bajo para estar y no entra una camioneta.</td><td>Piso alto a +3.20 m: 2.40 m libres bajo las vigas y 2.80 m entre vigas.</td></tr>
+        <tr><td class="malo">Las alturas no suman: 2.6 + 3.0 + 3.0 = 8.6 m, pero el plano dice 8.2 m. Las columnas aparecen como 0.30 × 0.30 y como 0.20 × 0.30.</td><td>Niveles fijos (piso, solera, cumbrera) y 16 columnas iguales de 30 × 30 cm.</td></tr>
+        <tr><td class="malo">El techo de la terraza es un segundo tejado más bajo. Entre los dos queda un canal interior, el punto donde más goteras aparecen con aguaceros y hojas.</td><td>El techo de la terraza sigue al principal con un quiebre de pendiente (30° a 15 %). No hay canal interior y quedan 2.44 m libres bajo la viga frontal.</td></tr>
+        <tr><td class="malo">Un “estacionamiento de 5.0 × 4.0 m” está dibujado como sala, y la terraza mide 3.0 m y 2.0 m a la vez.</td><td>Planta baja con zonas definidas y terraza de 2.40 m de fondo en todo el frente, más un mirador de 1.40 m donde llega la escalera.</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<section class="sec" id="planos">
+  <div class="sec-cab">
+    <p class="eyebrow">Juego de planos</p>
+    <h2>Plantas, cortes y elevaciones</h2>
+    <p class="intro">Los planos se pueden desplazar de lado en el teléfono. Las cotas azules van a ejes; los niveles verdes se miden desde el terreno natural.</p>
+  </div>
+  <ul class="leyenda" aria-label="Leyenda de materiales">
+    <li><svg viewBox="0 0 0.6 0.36" aria-hidden="true"><rect width="0.6" height="0.36" class="madera-e"/></svg>Madera estructural inmunizada</li>
+    <li><svg viewBox="0 0 0.6 0.36" aria-hidden="true"><rect width="0.6" height="0.36" class="cana-e"/></svg>Tejido de caña guadua</li>
+    <li><svg viewBox="0 0 0.6 0.36" aria-hidden="true"><rect width="0.6" height="0.36" class="corte-hormigon"/></svg>Hormigón armado f'c 210</li>
+    <li><svg viewBox="0 0 0.6 0.36" aria-hidden="true"><rect width="0.6" height="0.36" class="muro-bloque"/></svg>Bloque de hormigón</li>
+    <li><svg viewBox="0 0 0.6 0.36" aria-hidden="true"><rect width="0.6" height="0.36" class="panel-main"/></svg>Panel termoacústico</li>
+  </ul>
+
+  <figure class="plano" id="a01">
+    <figcaption class="plano-cab"><span class="codigo">A-01</span><span class="plano-titulo">Planta baja</span><span class="plano-esc">NPT +0.20 · cotas a ejes</span></figcaption>
+    <div class="dib-wrap"><div class="dib cuadro">{{PLANTA_BAJA}}</div></div>
+    <div class="plano-notas dos">
+      <p>La planta baja queda abierta y en sombra: es el lugar más fresco de la casa. El núcleo de servicio (½ baño, bodega y lavandería) usa bloque de 15 cm separado 2 cm de columnas y vigas, para que no rigidice un solo lado del pórtico durante un sismo.</p>
+      <p>La escalera arranca al lado derecho, cerca del fondo, y sube hacia el frente hasta el mirador. El vano entre los ejes C y D (2.70 m libres entre columnas) sirve para un vehículo; si no lo necesitas, se suma al estar.</p>
+    </div>
+  </figure>
+
+  <figure class="plano" id="a02">
+    <figcaption class="plano-cab"><span class="codigo">A-02</span><span class="plano-titulo">Planta alta</span><span class="plano-esc">NPT +3.20 · cotas a ejes</span></figcaption>
+    <div class="dib-wrap"><div class="dib cuadro">{{PLANTA_ALTA}}</div></div>
+    <div class="plano-notas dos">
+      <p>La zona social mira a la terraza y se abre con la mampara P1, que también es el acceso principal. Los dormitorios quedan atrás, separados por el baño. La pared del eje 3 lleva dentro los postes que sostienen la cumbrera (cuadros negros).</p>
+      <p>Las ventanas en línea discontinua son altas (antepecho de 1.50 m o más): ventilan sin quitar privacidad ni espacio de pared. El desagüe del baño corre bajo el piso de madera y baja junto al eje 4, registrable desde la planta baja. Las medidas de cada vano están en el <a href="#vanos">cuadro de vanos</a>.</p>
+    </div>
+  </figure>
+
+  <figure class="plano" id="a03">
+    <figcaption class="plano-cab"><span class="codigo">A-03</span><span class="plano-titulo">Planta de cubierta</span><span class="plano-esc">proyección 11.30 × 10.90 m = 123 m²</span></figcaption>
+    <div class="dib-wrap"><div class="dib cuadro">{{PLANTA_TECHO}}</div></div>
+    <div class="plano-notas">
+      <p>El agua corre solo hacia adelante y hacia atrás; los hastiales no reciben agua. Cuatro bajantes de PVC de 110 mm llevan la lluvia a una cisterna. El alero del lado derecho mide 1.50 m para cubrir la escalera.</p>
+    </div>
+  </figure>
+
+  <figure class="plano" id="a04">
+    <figcaption class="plano-cab"><span class="codigo">A-04</span><span class="plano-titulo">Elevación frontal</span><span class="plano-esc">fachada de la terraza</span></figcaption>
+    <div class="dib-wrap"><div class="dib">{{ELEV_FRONT}}</div></div>
+    <div class="plano-notas">
+      <ol class="llamadas">
+        <li>Poste de madera de 15 × 15 cm sobre platina de acero galvanizado; nunca empotrado en el hormigón.</li>
+        <li>Viga frontal de 4"×8" bajo los cabios: deja 2.44 m libres sobre el piso de la terraza.</li>
+        <li>P1, mampara corrediza de acceso de 2.40 × 2.20 m, con hoja de malla mosquitera.</li>
+        <li>V1, ventana de la cocina con barra exterior para servir en la terraza.</li>
+        <li>Núcleo de servicio de la planta baja: ½ baño (P5) y bodega (P6).</li>
+        <li>Bajante pluvial de PVC de 110 mm hacia la cisterna de lluvia.</li>
+      </ol>
+    </div>
+  </figure>
+
+  <figure class="plano" id="a05">
+    <figcaption class="plano-cab"><span class="codigo">A-05</span><span class="plano-titulo">Elevación lateral derecha</span><span class="plano-esc">lado de la escalera</span></figcaption>
+    <div class="dib-wrap"><div class="dib">{{ELEV_LAT}}</div></div>
+    <div class="plano-notas">
+      <ol class="llamadas">
+        <li>Alero lateral de 1.50 m: protege la escalera de la lluvia vertical.</li>
+        <li>Celosía de ventilación en el hastial, con malla mosquitera por dentro.</li>
+        <li>Zócalo de 1.00 m de tablas de madera traslapadas: es la franja que más se moja.</li>
+        <li>Tejido de caña guadua inmunizada entre marcos de madera, como en la referencia.</li>
+        <li>Escalera de hormigón armado: 9 + 8 escalones con descanso a +1.79 m.</li>
+        <li>Columneta de 20 × 20 cm y viga bajo el descanso.</li>
+        <li>Mirador de llegada en volado de 1.40 m, con baranda de 1.00 m.</li>
+      </ol>
+    </div>
+  </figure>
+
+  <figure class="plano" id="a06">
+    <figcaption class="plano-cab"><span class="codigo">A-06</span><span class="plano-titulo">Corte A-A</span><span class="plano-esc">por la sala y el dormitorio 2, mirando hacia el eje A</span></figcaption>
+    <div class="dib-wrap"><div class="dib">{{CORTE}}</div></div>
+    <div class="plano-notas">
+      <ol class="llamadas">
+        <li>Panel termoacústico (galvalume prepintado con 30 mm de poliuretano) sobre correas de 2"×3".</li>
+        <li>Cabios de 2"×6" cada 0.60 m. Sobre la pared frontal la pendiente cambia de 30° a 15 %.</li>
+        <li>Viga cumbrera de 4"×10" sobre postes de 4"×4" en los ejes A3, B3, C3 y D3.</li>
+        <li>Cielo raso de latilla de caña siguiendo la pendiente, con cámara ventilada hacia la cumbrera.</li>
+        <li>Pared de pies derechos de 2"×4" cada 0.40 m, 3.00 m de alto.</li>
+        <li>Piso: viguetas de 2"×8" cada 0.40 m, contrachapado fenólico de 15 mm y duela de madera dura.</li>
+        <li>Viga de hormigón armado de 25 × 40 cm en los ocho ejes.</li>
+        <li>Columna de hormigón armado de 30 × 30 cm.</li>
+        <li>Riostra de 25 × 30 cm y contrapiso de 10 cm sobre 20 cm de lastre compactado.</li>
+        <li>Plinto de 1.00 × 1.00 × 0.30 m sobre replantillo, fondo a −1.30 m (se ajusta con el estudio de suelos).</li>
+        <li>Baranda de madera de 1.00 m con balaustres a no más de 10 cm entre sí.</li>
+        <li>Canalón de 15 cm y bajante de PVC de 110 mm.</li>
+      </ol>
+    </div>
+  </figure>
+
+  <figure class="plano" id="a07">
+    <figcaption class="plano-cab"><span class="codigo">A-07</span><span class="plano-titulo">Detalle de escalera</span><span class="plano-esc">perfil lateral · hormigón armado</span></figcaption>
+    <div class="dib-wrap"><div class="dib">{{ESCALERA}}</div></div>
+    <div class="plano-notas dos">
+      <div class="tabla">
+        <table>
+          <caption>Cálculo de la escalera</caption>
+          <tbody>
+            <tr><td>Desnivel</td><td class="num">3.00 m (de +0.20 a +3.20)</td></tr>
+            <tr><td>Contrahuellas</td><td class="num">17 × 0.176 m</td></tr>
+            <tr><td>Huellas</td><td class="num">16 × 0.28 m</td></tr>
+            <tr><td>Regla de paso 2 CH + H</td><td class="num">0.633 m (rango 0.61–0.64)</td></tr>
+            <tr><td>Tramos</td><td class="num">9 + 8 contrahuellas</td></tr>
+            <tr><td>Descanso</td><td class="num">1.00 × 1.10 m a +1.79</td></tr>
+            <tr><td>Largo en planta</td><td class="num">5.20 m</td></tr>
+            <tr><td>Ancho</td><td class="num">1.10 m total, 1.00 m libre</td></tr>
+            <tr><td>Inclinación</td><td class="num">32°</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p>Contrahuella máxima de 18 cm y huella mínima de 28 cm, que son los límites usuales para vivienda. Ningún tramo pasa de 10 escalones. El pasamanos va a 0.90 m sobre la nariz de cada peldaño, por los dos lados, y los balaustres quedan a 10 cm o menos para que un niño no pase entre ellos. Las huellas llevan banda antideslizante o un forro de madera dura atornillado a la losa. La losa se apoya en un dado al pie, en la viga del descanso y en la viga del eje 2, separada 2 cm de las columnas.</p>
+    </div>
+  </figure>
+
+  <figure class="plano" id="e01">
+    <figcaption class="plano-cab"><span class="codigo">E-01</span><span class="plano-titulo">Cimentación y estructura</span><span class="plano-esc">prediseño · lo confirma el ingeniero</span></figcaption>
+    <div class="dib-wrap"><div class="dib cuadro">{{PLANTA_EST}}</div></div>
+    <div class="plano-notas">
+      <div class="tabla">
+        <table>
+          <thead><tr><th scope="col">Elemento</th><th scope="col">Sección</th><th scope="col">Refuerzo o detalle de prediseño</th></tr></thead>
+          <tbody>
+            <tr><td>Plintos (16)</td><td class="num">1.00 × 1.00 × 0.30 m</td><td>Parrilla Ø12 mm cada 15 cm en los dos sentidos; fondo a −1.30 m sobre replantillo de 5 cm.</td></tr>
+            <tr><td>Riostras</td><td class="num">0.25 × 0.30 m</td><td>4 Ø12 mm, estribos Ø10 mm cada 15 cm. Unen todos los plintos en las dos direcciones.</td></tr>
+            <tr><td>Columnas (16)</td><td class="num">0.30 × 0.30 m</td><td>8 Ø12 mm; estribos Ø10 mm cada 10 cm en los 0.60 m de cada extremo y cada 15 cm al centro.</td></tr>
+            <tr><td>Vigas de piso</td><td class="num">0.25 × 0.40 m</td><td>3 Ø14 mm arriba y 3 Ø14 mm abajo; estribos Ø10 mm cada 10 cm en 0.80 m desde cada apoyo y cada 20 cm al centro.</td></tr>
+            <tr><td>Volado del mirador</td><td class="num">0.25 × 0.40 m</td><td>Continuación de las vigas de los ejes 1 y 2 (1.40 m) con viga de borde.</td></tr>
+            <tr><td>Escalera</td><td class="num">losa e = 0.15 m</td><td>Ø12 mm cada 20 cm a lo largo, Ø10 mm cada 25 cm a lo ancho; 2 columnetas de 20 × 20 cm.</td></tr>
+            <tr><td>Viguetas de piso</td><td class="num">2"×8" @ 0.40</td><td>En sentido de los ejes numéricos; luces de 2.40 y 3.30 m. Bloqueos a media luz.</td></tr>
+            <tr><td>Cubierta</td><td class="num">cabios 2"×6" @ 0.60</td><td>Viga cumbrera 4"×10" sobre 4 postes de 4"×4"; viga frontal 4"×8" sobre 5 postes de 15 × 15 cm.</td></tr>
+            <tr><td>Materiales</td><td class="num">f'c 210 · fy 4,200</td><td>Hormigón de 210 kg/cm² y acero de 4,200 kg/cm². Recubrimiento de 4 cm (7.5 cm en plintos).</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </div>
+  </figure>
+</section>
+
+<section class="sec" id="areas">
+  <div class="sec-cab">
+    <p class="eyebrow">Cuadros</p>
+    <h2>Áreas y vanos</h2>
+    <p class="intro">Áreas útiles medidas entre caras interiores de pared (pared exterior de 12 cm, interior de 10 cm).</p>
+  </div>
+  <div class="tablas dos">
+    <div class="tabla">
+      <table>
+        <caption>Cuadro de áreas</caption>
+        <thead><tr><th scope="col">Ambiente</th><th scope="col" class="num">Medidas</th><th scope="col" class="num">Área</th></tr></thead>
+        <tbody>
+          <tr><td>Sala</td><td class="num">3.24 × 3.19</td><td class="num">10.3 m²</td></tr>
+          <tr><td>Comedor</td><td class="num">2.70 × 3.19</td><td class="num">8.6 m²</td></tr>
+          <tr><td>Cocina</td><td class="num">2.94 × 3.19</td><td class="num">9.4 m²</td></tr>
+          <tr><td>Dormitorio principal</td><td class="num">4.09 × 3.19</td><td class="num">13.0 m²</td></tr>
+          <tr><td>Dormitorio 2</td><td class="num">3.19 × 3.19</td><td class="num">10.2 m²</td></tr>
+          <tr><td>Baño completo</td><td class="num">1.40 × 3.19</td><td class="num">4.5 m²</td></tr>
+          <tr class="total"><td>Útil interior, piso alto</td><td class="num"></td><td class="num">56.0 m²</td></tr>
+          <tr><td>Terraza y mirador</td><td class="num">9.00 × 2.40 + 1.40 × 2.40</td><td class="num">25.0 m²</td></tr>
+          <tr><td>½ baño (PB)</td><td class="num">1.28 × 1.65</td><td class="num">2.1 m²</td></tr>
+          <tr><td>Bodega (PB)</td><td class="num">1.48 × 1.65</td><td class="num">2.4 m²</td></tr>
+          <tr><td>Lavandería techada (PB)</td><td class="num">2.93 × 1.43</td><td class="num">4.2 m²</td></tr>
+          <tr><td>Estar, comedor exterior y estacionamiento (PB)</td><td class="num">abierto</td><td class="num">71.1 m²</td></tr>
+          <tr class="total"><td>Área construida cerrada (a ejes)</td><td class="num">59.4 + 9.9</td><td class="num">69.3 m²</td></tr>
+        </tbody>
+      </table>
+    </div>
+    <div class="tabla" id="vanos">
+      <table>
+        <caption>Cuadro de vanos</caption>
+        <thead><tr><th scope="col">Código</th><th scope="col">Ambiente</th><th scope="col" class="num">Ancho × alto</th><th scope="col" class="num">Antepecho</th></tr></thead>
+        <tbody>
+          <tr><td>V1</td><td>Cocina, con barra a la terraza</td><td class="num">1.60 × 1.00</td><td class="num">1.00</td></tr>
+          <tr><td>V2</td><td>Comedor</td><td class="num">1.80 × 1.40</td><td class="num">0.80</td></tr>
+          <tr><td>V3</td><td>Dormitorio principal (posterior)</td><td class="num">0.90 × 1.20</td><td class="num">0.90</td></tr>
+          <tr><td>V4</td><td>Baño, celosía de vidrio</td><td class="num">0.90 × 0.50</td><td class="num">1.60</td></tr>
+          <tr><td>V5</td><td>Dormitorio 2 (posterior)</td><td class="num">1.50 × 1.20</td><td class="num">0.90</td></tr>
+          <tr><td>V6</td><td>Cocina, alta sobre la estufa</td><td class="num">1.00 × 0.60</td><td class="num">1.50</td></tr>
+          <tr><td>V7</td><td>Dormitorio principal (lateral)</td><td class="num">1.20 × 1.20</td><td class="num">0.90</td></tr>
+          <tr><td>V8</td><td>Sala, alta</td><td class="num">1.50 × 0.60</td><td class="num">2.00</td></tr>
+          <tr><td>V9</td><td>Dormitorio 2 (lateral)</td><td class="num">0.90 × 1.20</td><td class="num">0.90</td></tr>
+          <tr><td>P1</td><td>Mampara corrediza de acceso</td><td class="num">2.40 × 2.20</td><td class="num">—</td></tr>
+          <tr><td>P2, P4</td><td>Dormitorios</td><td class="num">0.80 × 2.10</td><td class="num">—</td></tr>
+          <tr><td>P3, P5</td><td>Baño y ½ baño</td><td class="num">0.70 × 2.10</td><td class="num">—</td></tr>
+          <tr><td>P6</td><td>Bodega</td><td class="num">0.80 × 2.10</td><td class="num">—</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<section class="sec" id="clima">
+  <div class="sec-cab">
+    <p class="eyebrow">Clima cálido-húmedo</p>
+    <h2>Diseño para 200 msnm</h2>
+    <p class="intro">A unos 200 msnm en Ecuador el clima es cálido y húmedo todo el año: temperatura media de 24 a 26 °C con máximas de 32 a 34 °C, humedad relativa de 80 a 90 % y entre 2,000 y 4,000 mm de lluvia al año, con aguaceros de más de 100 mm por hora. Aquí molesta más el aire quieto y húmedo que el calor, así que la casa se diseña para ventilar, dar sombra y secarse rápido. Las paredes gruesas no ayudan en este clima.</p>
+  </div>
+  <div class="estrategias">
+    <div class="estrategia"><h3>Elevar la casa</h3><p>Con el piso a <strong>+3.20 m</strong>, la casa se aleja de la humedad del suelo, de las crecidas, de serpientes e insectos, y recibe más brisa. Debajo queda una planta baja en sombra para la vida diaria.</p></div>
+    <div class="estrategia"><h3>Ventilación cruzada</h3><p>Cada ambiente tiene ventanas en dos lados o una ventana alta, y las puertas interiores llevan <strong>sobreluz con celosía</strong>. El aire caliente sale por las celosías de los hastiales y por la cumbrera ventilada.</p></div>
+    <div class="estrategia"><h3>Techo para aguaceros</h3><p><strong>30°</strong> en el cuerpo principal para evacuar rápido y <strong>15 %</strong> en la terraza con planchas de una sola pieza, sin traslapes. Aleros de 0.80 a 1.50 m protegen del sol y la lluvia a la madera y la caña.</p></div>
+    <div class="estrategia"><h3>Techo fresco y silencioso</h3><p>Una plancha de zinc sola pasa de 60 °C al sol y la lluvia suena como tambor. El <strong>panel termoacústico</strong> con 30 mm de poliuretano resuelve las dos cosas; además, el cielo raso deja una cámara de aire ventilada.</p></div>
+    <div class="estrategia"><h3>Orientación</h3><p>Fachadas largas (terraza y posterior) hacia el <strong>norte o el sur</strong>; hastiales hacia el este y el oeste, con pocas ventanas. Si el terreno lo permite, deja la escalera al oeste: su alero de 1.50 m da sombra en la tarde.</p></div>
+    <div class="estrategia"><h3>Mosquitos</h3><p><strong>Malla mosquitera</strong> en todas las ventanas, en la mampara y en las celosías. Canalones limpios y cisternas tapadas para no criar zancudos que transmiten dengue.</p></div>
+    <div class="estrategia"><h3>Madera y caña que duren</h3><p>Madera seca (humedad de <strong>19 % o menos</strong>) e inmunizada con sales de boro o CCB; caña guadua madura, de 4 a 6 años, inmunizada con bórax y ácido bórico. Ninguna pieza toca el suelo ni el hormigón: apoyos sobre platinas galvanizadas y lámina asfáltica. Como las columnas de hormigón llegan hasta el piso alto, cualquier camino de termitas se ve a simple vista.</p></div>
+    <div class="estrategia"><h3>Agua de lluvia</h3><p>123 m² de techo con 2,500 mm de lluvia al año recogen unos <strong>275 m³</strong>; cada milímetro de lluvia son unos 110 litros. Una cisterna de 5 m³ alcanza para inodoros, lavandería y riego.</p></div>
+    <div class="estrategia"><h3>Suelo y crecidas</h3><p>Contrapiso a +0.20 m y vereda con 2 % de pendiente hacia afuera. Pregunta en el sitio hasta dónde llegó la mayor crecida: el contrapiso debe quedar por lo menos <strong>0.30 m</strong> por encima de esa marca.</p></div>
+    <div class="estrategia"><h3>Sismo</h3><p>Una planta baja abierta se comporta como piso blando. Se resuelve con <strong>vigas en los ocho ejes</strong>, columnas con estribos cerrados cada 10 cm en sus extremos y una parte alta liviana de madera. En la Costa interior la NEC asigna un factor de zona alto (Z ≈ 0.40 g), así que el cálculo estructural es obligatorio.</p></div>
+  </div>
+</section>
+
+<section class="sec" id="especificaciones">
+  <div class="sec-cab">
+    <p class="eyebrow">Memoria técnica</p>
+    <h2>Especificaciones</h2>
+  </div>
+  <div class="specs">
+    <div class="spec"><h3>Cimentación</h3><div><p>Estudio de suelos antes de excavar: en la zona son comunes las arcillas blandas. Plintos de 1.00 × 1.00 × 0.30 m con fondo a −1.30 m sobre replantillo de 5 cm (f'c 140). Riostras de 25 × 30 cm uniendo todos los plintos.</p><p>Contrapiso de 10 cm (f'c 180) con malla electrosoldada sobre 20 cm de lastre compactado, a +0.20 m. Vereda perimetral de 0.90 a 1.00 m hasta la línea de goteo del alero.</p></div></div>
+    <div class="spec"><h3>Estructura de hormigón</h3><div><p>Hormigón f'c 210 kg/cm² y acero fy 4,200 kg/cm². 16 columnas de 30 × 30 cm hasta +3.00 m y vigas de 25 × 40 cm en los ocho ejes, con volado de 1.40 m para el mirador. Curado húmedo mínimo de 7 días.</p></div></div>
+    <div class="spec"><h3>Piso alto</h3><div><p>Viguetas de 2"×8" cada 0.40 m, ancladas a las vigas con conectores galvanizados sobre lámina asfáltica. Contrachapado fenólico de 15 mm, que amarra el piso como un diafragma, y duela machihembrada de madera dura (chanul, guayacán o teca).</p><p>En el baño: fenólico de 18 mm, impermeabilización líquida con media caña en el encuentro con las paredes y cerámica antideslizante.</p></div></div>
+    <div class="spec"><h3>Paredes</h3><div><p>Pies derechos de 2"×4" cada 0.40 m con solera doble, 3.00 m de alto, y tableros estructurales de 12 mm en las esquinas de cada fachada para resistir el sismo.</p><p>Por fuera: zócalo de 1.00 m de tablas traslapadas y, encima, tejido de caña guadua sobre una membrana impermeable que deja salir el vapor. Por dentro: latilla de caña, tablero o MDF resistente a la humedad. Aceite o barniz con filtro UV y fungicida, renovado cada 2 a 3 años.</p></div></div>
+    <div class="spec"><h3>Cubierta</h3><div><p>Viga cumbrera de 4"×10" sobre postes de 4"×4"; cabios de 2"×6" cada 0.60 m; correas de 2"×3" a la separación que indique el fabricante del panel. Panel termoacústico de galvalume prepintado con núcleo de poliuretano de 30 mm, cumbrera ventilada, canalones de 15 cm y 4 bajantes de PVC de 110 mm.</p><p>Cielo raso de latilla de caña siguiendo la pendiente: la altura interior va de 3.00 m junto a las fachadas a 4.90 m bajo la cumbrera.</p></div></div>
+    <div class="spec"><h3>Puertas y ventanas</h3><div><p>Marcos de madera dura, vidrio claro de 4 a 6 mm, celosías regulables y malla mosquitera en todas. Puertas interiores de 0.80 m (0.70 m en baños) por 2.10 m con sobreluz de celosía. Mampara principal corrediza de 2.40 × 2.20 m.</p></div></div>
+    <div class="spec"><h3>Agua y desagüe</h3><div><p>Cisterna de agua potable de 5 m³ con bomba presurizadora de ½ HP y una cisterna separada para agua lluvia (inodoros, lavandería y riego). Las tuberías corren bajo el piso de madera, a la vista y registrables desde la planta baja.</p><p>Sin alcantarillado: biodigestor o tanque séptico con campo de infiltración, a 5 m o más de la casa y lejos de cualquier pozo de agua (30 m como referencia).</p></div></div>
+    <div class="spec"><h3>Electricidad</h3><div><p>Tablero con un breaker por circuito y puesta a tierra. En paredes de madera, todo el cableado va dentro de tubería. Ventiladores de techo en la sala y los dormitorios, que aprovechan la altura bajo la cumbrera.</p></div></div>
+  </div>
+</section>
+
+<section class="sec" id="metrado">
+  <div class="sec-cab">
+    <p class="eyebrow">Para presupuestar</p>
+    <h2>Metrado preliminar</h2>
+    <p class="intro">Cantidades aproximadas (±15 %) calculadas sobre estos planos. Sirven para pedir cotizaciones; el metrado definitivo sale de los planos de construcción.</p>
+  </div>
+  <div class="tabla">
+    <table>
+      <thead><tr><th scope="col">Rubro</th><th scope="col" class="num">Cantidad</th><th scope="col">Nota</th></tr></thead>
+      <tbody>
+        <tr><td>Excavación</td><td class="num">40 m³</td><td>Plintos y riostras</td></tr>
+        <tr><td>Hormigón f'c 210</td><td class="num">24 m³</td><td>Plintos 4.8, columnas 5.8, riostras 4.7, vigas 6.8, escalera 2.0</td></tr>
+        <tr><td>Hormigón f'c 180, contrapiso y vereda</td><td class="num">128 m²</td><td>10 cm de espesor, unos 12.8 m³</td></tr>
+        <tr><td>Acero de refuerzo</td><td class="num">2,800 kg</td><td>Varilla corrugada de 10, 12 y 14 mm</td></tr>
+        <tr><td>Viguetas 2"×8"</td><td class="num">290 m</td><td>Incluye vigas de borde y bloqueos</td></tr>
+        <tr><td>Pies derechos y soleras 2"×4"</td><td class="num">520 m</td><td>Paredes exteriores e interiores</td></tr>
+        <tr><td>Cabios 2"×6"</td><td class="num">260 m</td><td>Incluye volados del alero lateral</td></tr>
+        <tr><td>Correas 2"×3"</td><td class="num">240 m</td><td>Según la separación del panel</td></tr>
+        <tr><td>Contrachapado fenólico 15 mm y duela</td><td class="num">84 m²</td><td>Piso alto y mirador</td></tr>
+        <tr><td>Revestimiento exterior</td><td class="num">88 m²</td><td>Zócalo de tablas y tejido de caña, hastiales incluidos</td></tr>
+        <tr><td>Revestimiento interior</td><td class="num">220 m²</td><td>Dos caras de tabiques y cara interior de fachadas</td></tr>
+        <tr><td>Cielo raso de caña</td><td class="num">69 m²</td><td>Interior; la terraza puede quedar con cabios a la vista</td></tr>
+        <tr><td>Panel termoacústico</td><td class="num">145 m²</td><td>137 m² inclinados más 5 % de desperdicio</td></tr>
+        <tr><td>Canalones y bajantes</td><td class="num">23 m y 24 m</td><td>Canalón de 15 cm, bajante PVC de 110 mm</td></tr>
+        <tr><td>Barandas de madera</td><td class="num">27 m</td><td>Terraza, mirador y escalera</td></tr>
+        <tr><td>Ventanas y mampara</td><td class="num">11.5 m² y 5.3 m²</td><td>V1 a V9 y P1</td></tr>
+      </tbody>
+    </table>
+  </div>
+</section>
+
+<section class="sec" id="pasos">
+  <div class="sec-cab">
+    <p class="eyebrow">Siguiente etapa</p>
+    <h2>Antes de construir</h2>
+  </div>
+  <ol class="pasos">
+    <li><p><strong>Levantamiento topográfico</strong> y ubicación de la casa en el terreno: retiros, orientación, accesos y árboles que conviene conservar para la sombra.</p></li>
+    <li><p><strong>Estudio de suelos.</strong> Define la profundidad y el tamaño final de los plintos.</p></li>
+    <li><p><strong>Cálculo estructural</strong> por un ingeniero civil según NEC-SE-DS, NEC-SE-HM, NEC-SE-MD y NEC-SE-GUADUA. Las secciones de este documento son de prediseño.</p></li>
+    <li><p><strong>Planos de construcción</strong> arquitectónicos, estructurales, hidrosanitarios y eléctricos, firmados por profesionales con título registrado.</p></li>
+    <li><p><strong>Permiso de construcción</strong> en el GAD municipal: confirma la línea de fábrica, los retiros y los coeficientes de ocupación del suelo de tu zona.</p></li>
+    <li><p><strong>Compra anticipada de la madera</strong> para que seque, e inmunización certificada de la madera y la caña antes de cortarlas a medida.</p></li>
+  </ol>
+  <div class="variantes">
+    <div class="variante"><h3>Tres dormitorios</h3><p>Se agrega un vano de 3.00 m a la malla (12.00 m de frente). El módulo nuevo aloja un tercer dormitorio atrás y amplía la sala adelante; suma 4 columnas y 4 plintos.</p></div>
+    <div class="variante"><h3>Piso alto de hormigón</h3><p>Una losa alivianada de 20 cm en lugar de las viguetas evita goteos hacia la planta baja, pero agrega unas 20 toneladas: hay que recalcular columnas y plintos.</p></div>
+    <div class="variante"><h3>Sin estacionamiento</h3><p>El vano entre los ejes C y D se suma al estar exterior y admite una segunda hamaca entre las columnas C2 y C3, que están a 3.30 m.</p></div>
+  </div>
+</section>
+
+<p class="pie">Anteproyecto de referencia, con medidas en metros. No reemplaza los planos firmados por un arquitecto y un ingeniero civil ni el permiso de construcción del GAD municipal.</p>
+
+</div>
